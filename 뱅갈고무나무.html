@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="1normalize.css">
+    <link rel="stylesheet" href="product.css">
+    <title>뱅갈고무나무</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <!--로딩화면-->
+    <div id="loading">
+        <img src="images/loading.gif" alt="loading" width="50px">
+    </div>
+
+    <header a name="TOP">
+        <!--네비게이션 바-->
+        <nav class="navbar">
+            <div class="navbar_menu">
+                <span class="openmenu" onclick='openNav()'> ☰</span>
+            </div>
+
+            <div class="navbar_logo">
+                <a href="index.html"><img src="images/logo.png" alt="logo" width="120px"></a>
+            </div>
+
+            <ul class="navbar_links">
+                <li><span class="openC" onclick='openC()'>Cart</span>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+        <!--메뉴 바-->
+        <div id="mysidenav" class="sidenav">
+            <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+            <h3><a href="pro_list.html">Product</a></h3>
+            <ul>
+                <li><a href="디시디아.html">디시디아</a></li>
+                <li><a href="마오리소포라.html">마오리소포라</a></li>
+                <li><a href="몬스테라.html">몬스테라</a></li>
+                <li><a href="뱅갈고무나무.html">뱅갈고무나무</a></li>
+                <li><a href="스투키.html">스투키</a></li>
+                <li><a href="스파티필름.html">스파티필름</a></li>
+                <li><a href="아레카야자.html">아레카야자</a></li>
+                <li><a href="아비스.html">아비스</a></li>
+                <li><a href="아이비.html">아이비</a></li>
+                <li><a href="여인초.html">여인초</a></li>
+                <li><a href="틸란드시아.html">틸란드시아</a></li>
+                <li><a href="호프셀렘.html">호프셀렘</a></li>
+            </ul>
+        </div>
+        <!--카트-->
+        <div id="mycart" class="mycart">
+            <a href="#" class="closebtnC" onclick='closeC()'>x</a>
+            <p id="CART">Your Cart</p>
+            <div class="cart_ex" id="cart">
+                <div class="cart_ex_ig">
+                    <img src="images/tt/7 뱅갈고무나무2.jpg" width='119px'>
+                </div>
+                <div class="cart_ex_ex">
+                    <p id="C_NAME">벵갈 고무나무</p>
+                    <p id="C_PRICE">36000원</p>
+                    <form class="C_number">
+                        <input type=button class="C_countp" value="-" onClick="javascript:this.form.amount.value--;">
+                        <input type=button class="C_countp" name=amount value=1>
+                        <input type=button class="C_countp" value="+" onClick="javascript:this.form.amount.value++;">
+                    </form>
+                </div>
+                <div class="removeC">
+                    <div id="remove">remove</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section class="main">
+        <div class="product">
+            <div class="up">
+                <!--이름 설명-->
+                <div class="name">
+                    <h1>벵갈 고무나무</h1>
+                    <hr>
+                    <P>난이도 ★☆☆<br>
+                        학명: Ficus benghalensis <br>
+                        벵갈 고무나무는 밝은 빛을 좋아하고 고무나무들 중에서도 건조에도 강한 편이라서 관리가 어렵지 않답니다. 여러 색이 섞인 잎이 매력적인 식물이에요.
+                    </P>
+                </div>
+                <!--가격 카트-->
+                <div class="sell">
+                    <h2>36000원</h2>
+                    <div class="number">
+                        <input type='button' class="countp" onclick='count("minus")' value='-' />
+                        <button class="countp" id='result'>0</button>
+                        <input type='button' class="countp" onclick='count("plus")' value='+' />
+                    </div>
+                    <button class="button_cart">카트에 담기</button>
+                </div>
+            </div>
+            <!--특성 설명-->
+            <div class="down">
+                <div class="left">
+                    <dt>Origin</dt>
+                    <dd>벵갈 고무나무는 열대 아열대 인도 말레이시아 등 다양한 지역에서 왔어요.</dd>
+                    <dt>Humidity</dt>
+                    <dd>벵갈 고무나무는 평균 실내 습도에서 무리 없이 잘 적응하지만 높은 습도를 좋아하는 편이에요. </dd>
+                    <img src="images/tt/7 뱅갈고무나무2.jpg" width="293px">
+                    <dt>Efficacy</dt>
+                    <dd>벵갈 고무나무는 공기정화식물로 폼알데하이드 제거능력이 뛰어나요. 또 악취제거에도 좋답니다.</dd>
+                </div>
+                <div class="right">
+                    <dt>Watering</dt>
+                    <dd>벵갈 고무나무는 상대적으로 건조한 흙에 잘 견디는 식물이에요. 너무 잦은 물 주기로 인한 뿌리 과습에 주의가 필요한 식물이랍니다.</dd>
+                    <img src="images/tt/7 뱅갈고무나무3.jpg" width="293px">
+                    <dt>Light</dt>
+                    <dd>벵갈 고무나무는 빛을 좋아해요. 하루 평균 2-3시간 이상의 간접적인 햇빛이 필요로 하답니다.</dd>
+                    <dt>Temperature</dt>
+                    <dd>벵갈 고무나무는 기온이 따뜻한 지역에서 자라온 열대 식물이에요. 평균 실내 온도에서 무난하게 잘 자라며, 따뜻한 온도를 더 선호한답니다.
+                    </dd>
+                    <img src="images/tt/7 뱅갈고무나무4.jpg" width="293px">
+                </div>
+            </div>
+        </div>
+        <!--상품 이미지-->
+        <div class="image_고무나무">
+            <img src="images/trans/7_뱅갈고무나무.png" alt="뱅갈고무나무" width="300px">
+        </div>
+
+
+        <!--배경이미지-->
+        <div class="bgi">
+            <div class="b0">
+                <img src="images/name_b.png" width='260px'>
+            </div>
+            <div class="b1">
+                <img src="images/pr_1.png" width='560px'>
+            </div>
+            <div class="b2">
+                <img src="images/pr_2.png" width='350px'>
+            </div>
+        </div>
+
+        <div class="b3">
+            <img src="images/pr_3.png" width='380px'>
+        </div>
+    </section>
+
+    <!--탑 버튼-->
+    <div class="top">
+        <a href="#TOP" class="t_button">∧</a>
+    </div>
+
+    <!--푸터-->
+    <footer class="footer">
+        <div class="footer_CS_center">
+            <P>CS center</P>
+            <p id="CS_b"><br></p>
+            <P id="CS_number">070-6554-6532</P>
+            <P id="CS_hour">Am 9:30~ Pm 5:30</P>
+
+        </div>
+        <div class="footer_Contact">
+            <P>Contact</P>
+            <p id="CS_b"><br></p>
+            <P id="Contact">coplant@naver.com</P>
+            <P id="Contact">coplant@gmail.com</P>
+        </div>
+        <div class="footer_Contact">
+            <P>Instagram</P>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="java.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="1normalize.css">
+    <link rel="stylesheet" href="product.css">
+    <title>아이비</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <!--로딩화면-->
+    <div id="loading">
+        <img src="images/loading.gif" alt="loading" width="50px">
+    </div>
+
+    <header a name="TOP">
+        <!--네비게이션 바-->
+        <nav class="navbar">
+            <div class="navbar_menu">
+                <span class="openmenu" onclick='openNav()'> ☰</span>
+            </div>
+
+            <div class="navbar_logo">
+                <a href="index.html"><img src="images/logo.png" alt="logo" width="120px"></a>
+            </div>
+
+            <ul class="navbar_links">
+                <li><span class="openC" onclick='openC()'>Cart</span>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+        <!--메뉴 바-->
+        <div id="mysidenav" class="sidenav">
+            <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+            <h3><a href="pro_list.html">Product</a></h3>
+            <ul>
+                <li><a href="디시디아.html">디시디아</a></li>
+                <li><a href="마오리소포라.html">마오리소포라</a></li>
+                <li><a href="몬스테라.html">몬스테라</a></li>
+                <li><a href="뱅갈고무나무.html">뱅갈고무나무</a></li>
+                <li><a href="스투키.html">스투키</a></li>
+                <li><a href="스파티필름.html">스파티필름</a></li>
+                <li><a href="아레카야자.html">아레카야자</a></li>
+                <li><a href="아비스.html">아비스</a></li>
+                <li><a href="아이비.html">아이비</a></li>
+                <li><a href="여인초.html">여인초</a></li>
+                <li><a href="틸란드시아.html">틸란드시아</a></li>
+                <li><a href="호프셀렘.html">호프셀렘</a></li>
+            </ul>
+        </div>
+        <!--카트-->
+        <div id="mycart" class="mycart">
+            <a href="#" class="closebtnC" onclick='closeC()'>x</a>
+            <p id="CART">Your Cart</p>
+            <div class="cart_ex" id="cart">
+                <div class="cart_ex_ig">
+                    <img src="images/tt/12 아이비4.png" width='119px'>
+                </div>
+                <div class="cart_ex_ex">
+                    <p id="C_NAME">아이비</p>
+                    <p id="C_PRICE">9900원</p>
+                    <form class="C_number">
+                        <input type=button class="C_countp" value="-" onClick="javascript:this.form.amount.value--;">
+                        <input type=button class="C_countp" name=amount value=1>
+                        <input type=button class="C_countp" value="+" onClick="javascript:this.form.amount.value++;">
+                    </form>
+                </div>
+                <div class="removeC">
+                    <div id="remove">remove</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section class="main">
+        <div class="product">
+            <div class="up">
+                <!--이름 설명-->
+                <div class="name">
+                    <h1>아이비</h1>
+                    <hr>
+                    <P>난이도 ★☆☆<br>
+                        학명: Headera helix <br>
+                        아이비는 기르기가 쉽고 수경재배가 가능하며 번식이 잘 되는 식물이에요. 덩굴성이라서 줄기를 늘어지게 하면 보기에도 좋답니다.
+                    </P>
+                </div>
+                <!--가격 카트-->
+                <div class="sell">
+                    <h2>99000원</h2>
+                    <div class="number">
+                        <input type='button' class="countp" onclick='count("minus")' value='-' />
+                        <button class="countp" id='result'>0</button>
+                        <input type='button' class="countp" onclick='count("plus")' value='+' />
+                    </div>
+                    <button class="button_cart">카트에 담기</button>
+                </div>
+            </div>
+            <!--특성 설명-->
+            <div class="down">
+                <div class="left">
+                    <dt>Origin</dt>
+                    <dd>아이비는 유럽, 스칸디나비아지역에서 왔어요.</dd>
+                    <dt>Humidity</dt>
+                    <dd>아이비는 실내 평균 습도에서도 잘 견디지만 다소 높은 습도에서 더 잘 자라요.</dd>
+                    <img src="images/tt/12 아이비2.png" width="293px">
+                    <dt>Efficacy</dt>
+                    <dd>NASA 선정 공기정화 식물 6위로 포름알데히드를 제거하는 능력이 뛰어나요. </dd>
+                </div>
+                <div class="right">
+                    <dt>Watering</dt>
+                    <dd>주 1-2회 정도, 흙 표면부터 3cm까지 마르면 듬뿍 주세요.</dd>
+                    <img src="images/tt/12 아이비3.png" width="293px">
+                    <dt>Light</dt>
+                    <dd>아이비는 양지에서 음지까지 다양한 빛 조건에서 키울 수 있어요. 그중에서 2~3시간 이상의 밝은 간접광에서 제일 잘 자랍니다.</dd>
+                    <dt>Temperature</dt>
+                    <dd>아이비는 더위에 약해요. 차가운 바람이나 여름의 더위는 피해 주세요.</dd>
+                    <img src="images/tt/12 아이비4.png" width="293px">
+                </div>
+            </div>
+        </div>
+        <!--상품 이미지-->
+        <div class="image">
+            <img src="images/trans/12_아이비.png" alt="아이비" width="300px">
+        </div>
+
+
+        <!--배경이미지-->
+        <div class="bgi">
+            <div class="b0">
+                <img src="images/name_b.png" width='260px'>
+            </div>
+            <div class="b1">
+                <img src="images/pr_1.png" width='560px'>
+            </div>
+            <div class="b2">
+                <img src="images/pr_2.png" width='350px'>
+            </div>
+        </div>
+
+        <div class="b3">
+            <img src="images/pr_3.png" width='380px'>
+        </div>
+    </section>
+
+    <!--탑 버튼-->
+    <div class="top">
+        <a href="#TOP" class="t_button">∧</a>
+    </div>
+
+    <!--푸터-->
+    <footer class="footer">
+        <div class="footer_CS_center">
+            <P>CS center</P>
+            <p id="CS_b"><br></p>
+            <P id="CS_number">070-6554-6532</P>
+            <P id="CS_hour">Am 9:30~ Pm 5:30</P>
+
+        </div>
+        <div class="footer_Contact">
+            <P>Contact</P>
+            <p id="CS_b"><br></p>
+            <P id="Contact">coplant@naver.com</P>
+            <P id="Contact">coplant@gmail.com</P>
+        </div>
+        <div class="footer_Contact">
+            <P>Instagram</P>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="java.js"></script>
+</body>
+
+</html>

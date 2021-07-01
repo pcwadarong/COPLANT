@@ -1,0 +1,95 @@
+*{
+  font-family: 'Noto Serif KR';
+  }
+  
+  .main{
+  background-color:#F3E9D7;
+  left: 0px;
+  height:3200px;
+  width: 100%;
+  position:relative;
+  }
+  
+  .list{
+  display:flex;
+  flex-direction:row;
+  }
+  .checklist h1{
+  padding:50px 0px 10px 30px;
+  font-family: 'Cardo', serif;
+  font-size: 48px;
+  }
+  
+  legend{
+  padding: 10px 0px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 24px;
+  }
+  
+  fieldset{
+  border:none;
+  border-bottom: 2px;
+  border-color:#ADA28D;
+  padding: 0px 30px 15px;
+  }
+  fieldset label{
+  cursor: pointer;
+  font-size: 24px;
+  flex-flow: column nowrap;
+  }
+  
+  input[type='radio']{
+  display: none;
+  cursor: pointer;
+  border-radius: 0%;
+  background:#E8D5B5;
+  }
+  
+  input +label em{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right:5px;
+  background-color:#E8D5B5;
+  }
+  
+  input:checked +label em{
+  background-color:#BEA06E;
+  }
+  
+  .checklist{
+  width:300px;
+  display:flex;
+  flex-direction:column;
+  background-color:transparent;
+  }
+  .products{
+  width:75vw;
+  display:flex;
+  flex-direction:row;
+  margin: 100px;
+  text-align: center;
+  justify-content: center;
+  }
+  .products img{
+  margin: 70px 50px 0px;
+  }
+  
+  .products p{
+  padding: 3px 0px 10px;
+  font-weight: bold;
+  font-size: 24px;
+  flex-wrap: nowrap;
+  }
+  .line1{
+  display:flex;
+  align-items:top;
+  flex-flow: column nowrap;
+  }
+  .line2{
+  display:flex;
+  margin: 220px 0px 0px;
+  align-items: top;
+  flex-flow: column nowrap;
+  }

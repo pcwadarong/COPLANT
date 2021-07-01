@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="1normalize.css">
+    <link rel="stylesheet" href="product.css">
+    <title>아비스</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <!--로딩화면-->
+    <div id="loading">
+        <img src="images/loading.gif" alt="loading" width="50px">
+    </div>
+
+    <header a name="TOP">
+        <!--네비게이션 바-->
+        <nav class="navbar">
+            <div class="navbar_menu">
+                <span class="openmenu" onclick='openNav()'> ☰</span>
+            </div>
+
+            <div class="navbar_logo">
+                <a href="index.html"><img src="images/logo.png" alt="logo" width="120px"></a>
+            </div>
+
+            <ul class="navbar_links">
+                <li><span class="openC" onclick='openC()'>Cart</span>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+        <!--메뉴 바-->
+        <div id="mysidenav" class="sidenav">
+            <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+            <h3><a href="pro_list.html">Product</a></h3>
+            <ul>
+                <li><a href="디시디아.html">디시디아</a></li>
+                <li><a href="마오리소포라.html">마오리소포라</a></li>
+                <li><a href="몬스테라.html">몬스테라</a></li>
+                <li><a href="뱅갈고무나무.html">뱅갈고무나무</a></li>
+                <li><a href="스투키.html">스투키</a></li>
+                <li><a href="스파티필름.html">스파티필름</a></li>
+                <li><a href="아레카야자.html">아레카야자</a></li>
+                <li><a href="아비스.html">아비스</a></li>
+                <li><a href="아이비.html">아이비</a></li>
+                <li><a href="여인초.html">여인초</a></li>
+                <li><a href="틸란드시아.html">틸란드시아</a></li>
+                <li><a href="호프셀렘.html">호프셀렘</a></li>
+            </ul>
+        </div>
+        <!--카트-->
+        <div id="mycart" class="mycart">
+            <a href="#" class="closebtnC" onclick='closeC()'>x</a>
+            <p id="CART">Your Cart</p>
+            <div class="cart_ex" id="cart">
+                <div class="cart_ex_ig">
+                    <img src="images/tt/13 아비스 2.png" width='119px'>
+                </div>
+                <div class="cart_ex_ex">
+                    <p id="C_NAME">아비스</p>
+                    <p id="C_PRICE">3500원</p>
+                    <form class="C_number">
+                        <input type=button class="C_countp" value="-" onClick="javascript:this.form.amount.value--;">
+                        <input type=button class="C_countp" name=amount value=1>
+                        <input type=button class="C_countp" value="+" onClick="javascript:this.form.amount.value++;">
+                    </form>
+                </div>
+                <div class="removeC">
+                    <div id="remove">remove</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section class="main">
+        <div class="product">
+            <div class="up">
+                <!--이름 설명-->
+                <div class="name">
+                    <h1>아비스</h1>
+                    <hr>
+                    <P>난이도 ★☆☆<br>
+                        학명: Asplenium nidus 'avis' <br>
+                        넓고 큰 잎이 파초(바나나)와 닮아서 파초일엽이라고도 불리는 아비스는 공기 정화 능력, 미세먼지 흡착 능력이 좋아 인기가 많아요.
+                    </P>
+                </div>
+                <!--가격 카트-->
+                <div class="sell">
+                    <h2>3500원</h2>
+                    <div class="number">
+                        <input type='button' class="countp" onclick='count("minus")' value='-' />
+                        <button class="countp" id='result'>0</button>
+                        <input type='button' class="countp" onclick='count("plus")' value='+' />
+                    </div>
+                    <button class="button_cart">카트에 담기</button>
+                </div>
+            </div>
+            <!--특성 설명-->
+            <div class="down">
+                <div class="left">
+                    <dt>Origin</dt>
+                    <dd>아레카야자는 동아시아의 온대 지역에서 왔어요.</dd>
+                    <dt>Humidity</dt>
+                    <dd>덥고 습한 열대 기후를 좋아하는 아비스는 잎 주변을 다소 습하게 관리해주는 것이 좋습니다.</dd>
+                    <img src="images/tt/13 아비스 2.png" width="293px">
+                    <dt>Efficacy</dt>
+                    <dd>천연가습기라고 불릴 정도로 습도 조절에 강하고, 미세먼지를 흡착하고 실내 공기를 정화하는 능력이 뛰어나요.</dd>
+                </div>
+                <div class="right">
+                    <dt>Watering</dt>
+                    <dd>아비스는 촉촉한 환경을 선호해요. 식물 중앙에 물을 주면 잎에 물이 고여 썩을 수 있기 때문에 물은 식물에 주지 말고 흙에 주세요.</dd>
+                    <img src="images/tt/13 아비스 3.png" width="293px">
+                    <dt>Light</dt>
+                    <dd> 아비스는 나무 그늘 아래처럼 옅은 빛을 좋아하는 식물이에요. 하루 평균 2~4시간 이상의 간접적인 빛이 좋답니다..</dd>
+                    <dt>Temperature</dt>
+                    <dd>덥고 습한 열대 지역에서 자라온 아비스는 따뜻한 온도를 좋아해요.
+                    </dd>
+                    <img src="images/tt/13 아비스 4.png" width="293px">
+                </div>
+            </div>
+        </div>
+        <!--상품 이미지-->
+        <div class="image_디시디아">
+            <img src="images/trans/13_아비스.png" alt="아비스" width="500px">
+        </div>
+
+
+        <!--배경이미지-->
+        <div class="bgi">
+            <div class="b0">
+                <img src="images/name_b.png" width='260px'>
+            </div>
+            <div class="b1">
+                <img src="images/pr_1.png" width='560px'>
+            </div>
+            <div class="b2">
+                <img src="images/pr_2.png" width='350px'>
+            </div>
+        </div>
+
+        <div class="b3">
+            <img src="images/pr_3.png" width='380px'>
+        </div>
+    </section>
+
+    <!--탑 버튼-->
+    <div class="top">
+        <a href="#TOP" class="t_button">∧</a>
+    </div>
+
+    <!--푸터-->
+    <footer class="footer">
+        <div class="footer_CS_center">
+            <P>CS center</P>
+            <p id="CS_b"><br></p>
+            <P id="CS_number">070-6554-6532</P>
+            <P id="CS_hour">Am 9:30~ Pm 5:30</P>
+
+        </div>
+        <div class="footer_Contact">
+            <P>Contact</P>
+            <p id="CS_b"><br></p>
+            <P id="Contact">coplant@naver.com</P>
+            <P id="Contact">coplant@gmail.com</P>
+        </div>
+        <div class="footer_Contact">
+            <P>Instagram</P>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="java.js"></script>
+</body>
+
+</html>
