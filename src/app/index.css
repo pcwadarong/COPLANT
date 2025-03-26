@@ -1,0 +1,206 @@
+.main{
+    left:0px;
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content:center;
+    flex-flow:column nowrap;
+    position: relative;
+}
+
+/* 1 */
+.m1{
+    background-color:#F3E9D7;
+    width:100%;
+    height:1000px;
+}
+
+.m1_container{
+    display: flex;
+    justify-content:center;
+}
+
+.plants{
+    z-index: 97;
+    cursor: url(images/watering.png),auto;
+}
+
+@media(max-width:800px){
+    .plants>img{
+        width:80vw;
+    }
+    .pics{
+        top:0px;
+        transform: translate(30%,-55%);
+    }
+}
+
+/* 핑크벡터 */
+#pv{
+    position:absolute;
+    top:0px;
+    left: 0px;
+    z-index: 1;
+}
+
+/* 2 */
+.m2{
+    display:flex;
+    left:0px;
+    width:100%;
+    height: 1300px;
+    background-color:#E0B7A6;
+    position: relative;
+}
+
+.pics{
+    right: 110px;
+    position: absolute;
+    top: 83px;
+    z-index: 90;
+}
+
+.ad>img{
+    position: absolute;
+    left: 0px;
+    top: 426px;
+    z-index: 91;
+}
+
+.ad h1{
+    position: absolute;
+    font-family: 'Cardo', serif;
+    font-size: 36px;
+    left: 120px;
+    top: 600px;
+    z-index: 92;
+    white-space : nowrap; 
+
+}
+.ad p{
+    position: absolute;
+    font-family: 'Noto Serif KR';
+    font-size: 24px;
+    left: 150px;
+    top: 675px;
+    z-index: 92;
+    white-space : nowrap; 
+}
+.vr{
+    overflow: hidden;
+    position:absolute;
+    top:753px;
+    right:0px;
+    z-index: 2;
+}
+
+/* 3 */
+.m3{
+    height:1023px;
+    display:flex;
+    width:100%;
+    background-color:#F3E9D7;
+    position: relative;
+}
+
+.qb{
+    position: absolute;
+	top: 50%;
+	left: 50%;
+    transform:translate(-50%,-50%);
+    z-index: 2;
+    z-index: 96;
+}
+
+#q1{
+    position: absolute;
+    top:0px;
+    right:0px;
+    z-index: 95;
+}
+#q2{
+    position: absolute;
+    top:297px;
+    left:0px;
+    z-index: 94;
+}
+
+.qb h1{
+    font-family: 'Noto Serif KR';
+    font-size: 48px;
+    position: absolute;
+    text-align: center;
+	top: 30%;
+	left: 30%;
+    z-index: 98;
+    white-space : nowrap; 
+}
+
+#button{
+    display: flex;
+    justify-content:center;
+    position:absolute;
+    flex-direction:row;
+    width:100%;
+    top:590px;
+    transform: translate(-3%);
+    z-index: 97;
+}
+
+.button_{
+    background-color:#F3E9D7;
+    border: none;
+    padding: 13px 25px 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-family:'Noto Serif KR';
+    display: inline-block;
+    font-size: 18px;
+    margin: 20px 15px;
+    cursor: pointer;
+    border-radius:12px;
+}
+
+
+/* 배경 이미지 */
+/* 초록벡터 */
+.gv{
+    position:absolute;
+    top:423.5px;
+    right:0px;
+    z-index: 2;
+    float:right;
+}
+
+/* 담쟁이덩쿨그림오른쪽위 */
+.p1{
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index: 4;
+    float:right;
+    
+}
+/* 담쟁이덩쿨그림왼쪽 */
+.p2{
+    position:absolute;
+    top:514px;
+    left:0px;
+    z-index: 4;
+    float:left;
+}
+
+
+
+/* ---------- */
+.countp{
+    margin: 0px 3px 10px 0px;
+    font-size: 18px;
+    border-style: solid;
+    background-color: transparent;
+    border-width: 1px;
+    padding: 7px 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    z-index: 98;
+  }

@@ -1,0 +1,283 @@
+*{
+margin:0px;
+padding:0;
+box-sizing:border-box;
+list-style:none;
+}
+
+img {border: 0;}
+
+a{ text-decoration: none;
+    color: black;
+}
+
+/* 로딩화면 */
+#loading {
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+	position: fixed;
+	display: block;
+  opacity: 0.9;
+	background: #F7F2E8;
+	z-index: 999;
+	text-align: center;
+  transform:translate(-50%,-50%);
+}
+#loading > img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+  transform:translate(-50%,-50%);
+}
+
+/* 네비게이션 */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: #F7F2E8;
+    padding: 8px 12px;
+    z-index: 100;
+}
+
+.navbar_menu{
+    padding-left: 8px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    margin-top:0px;
+    cursor:pointer;
+    transition:0.5s ease-in-out;
+  
+}
+
+.navbar_logo{
+    transform: translate(50%);
+}
+
+.navbar_links{
+    display: flex;
+    align-items:center;
+    list-style: none;
+    font-family: 'Cardo', serif;
+    font-size: 20px;
+    padding-bottom: none;
+    padding: 8px;
+}
+.navbar_links li{
+    padding: 4px 8px;
+    align-items:center;
+}
+
+
+/* 사이드바 */
+.sidenav {
+    height:100%;
+    width: 350px;
+    position: fixed;
+    z-index:998;
+    top: 0;
+    left:-350px;
+    background-color: #ABB593;
+    overflow-x: hidden;
+    transition:0.5s ease-in-out;
+    padding: 60px;
+  }
+
+  .sidenav h3 {
+    font-family: 'Cardo', serif;
+    padding: 0px 0px 10px 0px;
+    text-decoration: none;
+    font-size: 30px;
+    display: block;
+  }
+
+  .sidenav>ul>li>a {
+    font-family: 'Noto Serif KR';
+    padding: 8px 0px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+  }
+  .sidenav a:hover {
+    color: white;
+  }
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+  }
+  .openmenu:hover {
+    color:#ABB593;
+    transition:0.5s ease-in-out;
+  }
+  .openmenu{
+    padding-left: 8px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    margin-top:0px;
+    cursor:pointer;
+    transition:0.5s ease-in-out;
+  }
+ 
+  /* 미디어쿼리 적용 */
+  @media screen and (max-height:450px) {
+    .sidenav {
+      padding-top:30px;
+    }
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
+
+/* 카트 */
+.mycart {
+  min-height:200px;
+  width: 400px;
+  position: fixed;
+  z-index:997;
+  top: 0;
+  right: -400px;
+  background-color: #ABB593;
+  overflow-x: hidden;
+  transition:0.5s ease-in-out;
+  padding: 40px;
+  justify-items: left;
+}
+
+#CART{
+  font-family: 'Cardo', serif;
+  padding: 0px 0px 20px 0px;
+  font-size: 36px;
+}
+
+.cart_ex{
+  display: flex;
+  flex-direction: row;
+  justify-items: left;
+}
+
+.cart_ex_ex{
+  margin:0px 0px 0px 20px;
+}
+
+.cart_ex_ex1{
+  font-family: 'Cardo', serif;
+  margin:0px 0px 0px 20px;
+  font-size: 20px;
+  color:#6A7564;
+}
+
+#C_NAME{
+  font-family: 'Noto Serif KR';
+  font-size: 24px;
+  font-weight: bold;
+  text-align:left;
+  white-space: nowrap;
+}
+
+#C_PRICE{
+  font-family: 'Noto Serif KR';
+  padding: 10px 0px;
+  font-size: 18px;
+}
+
+.C_countp{
+  margin: 0px;
+  font-size: 18px;
+  border-style: solid;
+  background-color: transparent;
+  border-width: 1px;
+  padding: 0px 7px 1px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+#remove{
+  padding: 90px 10px 0px;
+  font-size: 13px;
+  text-align:left;
+  align-self:flex-end;
+  cursor: pointer;
+  text-decoration: underline;
+
+}
+.closebtnC {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 36px !important;
+  padding: 0px 15px;
+}
+.openC:hover {
+  color:#ABB593;
+  transition:0.5s ease-in-out;
+}
+
+
+/* top */
+
+.t_button{
+  font-family: 'Kosugi Maru', sans-serif;
+  padding: 5px 7px 7px;
+  font-size: 30px;
+  border-radius: 50%;
+  color: #8AA38C;
+  background-color: #DBE2CB;
+  position:fixed;
+  bottom: 15px;
+  right: 15px;
+  display: inline-block;
+  }
+
+  /* 푸터 */
+
+.footer_CS_center{
+    white-space : nowrap;
+    text-align: left;
+    margin: 0px 30px 0px 0px;
+}
+#CS_number{
+  font-family: 'Noto Serif KR';
+  font-size: 24px;
+}
+
+#CS_b{
+    font-size:2px;
+}
+
+#CS_hour{
+    font-family: 'Noto Serif KR';
+    padding:0px;
+    font-size: 15px;
+}
+
+.footer_Contact{
+    margin: 0px 30px;
+    cursor: pointer;
+}
+
+#Contact{
+font-family: 'Noto Serif KR';
+font-size: 15px;
+cursor: pointer;
+}
+
+.footer{
+  position: relative;
+  min-height:208px;
+  display: flex;
+  width: 100%;
+  left:0px;
+  align-items:center;
+  background-color: #F7F2E8;
+  padding: 50px;
+  z-index: 98;
+  font-family: 'Cardo', serif;
+  font-size: 20px;
+  text-align:center;
+  }
