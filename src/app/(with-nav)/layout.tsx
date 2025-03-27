@@ -7,7 +7,7 @@ export default function NavLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="bg-apricot-200">
       <Nav />
       {children}
       <footer className="p-10 bg-apricot-100 flex gap-14">
