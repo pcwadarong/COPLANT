@@ -6,21 +6,20 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signUpAction, signInAction } from '@/actions/auth';
 import { validateSignInput } from '@/utils/validateSignInput';
-
-type ActionState = {
-  status: boolean;
-  error?: string;
-};
+import { ActionState } from '@/types';
 
 export function SignIn() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [touchedFields, setTouchedFields] = useState({ email: false, password: false });
-  const [authState, formAction, isPending] = useActionState<ActionState, FormData>(
-    signInAction,
-    null,
-  );
+  const [touchedFields, setTouchedFields] = useState({
+    email: false,
+    password: false,
+  });
+  const [authState, formAction, isPending] = useActionState<
+    ActionState,
+    FormData
+  >(signInAction, null);
 
   const isEmailValid = validateSignInput('email', email);
   const isPasswordValid = validateSignInput('password', password);
@@ -46,10 +45,13 @@ export function SignIn() {
 
       <label htmlFor="email">이메일 주소</label>
       {!isEmailValid && touchedFields.email && (
-        <span className="ml-4 text-sm text-red-600">유효한 이메일 주소를 입력하세요.</span>
+        <span className="ml-4 text-sm text-red-600">
+          유효한 이메일 주소를 입력하세요.
+        </span>
       )}
       <input
         id="email"
+        name="email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -57,7 +59,9 @@ export function SignIn() {
         autoComplete="email"
         required
         aria-invalid={!isEmailValid}
-        aria-describedby={!isEmailValid && touchedFields.email ? 'email-error' : undefined}
+        aria-describedby={
+          !isEmailValid && touchedFields.email ? 'email-error' : undefined
+        }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
@@ -69,6 +73,7 @@ export function SignIn() {
       )}
       <input
         id="password"
+        name="password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -76,7 +81,11 @@ export function SignIn() {
         autoComplete="current-password"
         required
         aria-invalid={!isPasswordValid}
-        aria-describedby={!isPasswordValid && touchedFields.password ? 'password-error' : undefined}
+        aria-describedby={
+          !isPasswordValid && touchedFields.password
+            ? 'password-error'
+            : undefined
+        }
         className="mt-2 mb-6 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
@@ -105,11 +114,14 @@ export function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [touchedFields, setTouchedFields] = useState({ email: false, password: false });
-  const [authState, formAction, isPending] = useActionState<ActionState, FormData>(
-    signUpAction,
-    null,
-  );
+  const [touchedFields, setTouchedFields] = useState({
+    email: false,
+    password: false,
+  });
+  const [authState, formAction, isPending] = useActionState<
+    ActionState,
+    FormData
+  >(signUpAction, null);
 
   const isEmailValid = validateSignInput('email', email);
   const isPasswordValid = validateSignInput('password', password);
@@ -137,28 +149,36 @@ export function SignUp() {
 
       <label htmlFor="newEmail">이메일 주소</label>
       {!isEmailValid && touchedFields.email && (
-        <span className="ml-4 text-sm text-red-600">유효한 이메일 주소를 입력하세요.</span>
+        <span className="ml-4 text-sm text-red-600">
+          유효한 이메일 주소를 입력하세요.
+        </span>
       )}
       <input
         required
         id="newEmail"
+        name="email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         onBlur={() => setTouchedFields((prev) => ({ ...prev, email: true }))}
         autoComplete="email"
         aria-invalid={!isEmailValid}
-        aria-describedby={!isEmailValid && touchedFields.email ? 'email-error' : undefined}
+        aria-describedby={
+          !isEmailValid && touchedFields.email ? 'email-error' : undefined
+        }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
       <label htmlFor="newPW">비밀번호</label>
       {!isPasswordValid && touchedFields.password && (
-        <span id="password-error" className="ml-4 text-sm text-red-600">비밀번호 형식을 확인해주세요.</span>
+        <span id="password-error" className="ml-4 text-sm text-red-600">
+          비밀번호 형식을 확인해주세요.
+        </span>
       )}
       <input
         required
         id="newPW"
+        name="password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -166,13 +186,19 @@ export function SignUp() {
         onBlur={() => setTouchedFields((prev) => ({ ...prev, password: true }))}
         autoComplete="new-password"
         aria-invalid={!isPasswordValid}
-        aria-describedby={!isPasswordValid && touchedFields.password ? 'password-error' : undefined}
+        aria-describedby={
+          !isPasswordValid && touchedFields.password
+            ? 'password-error'
+            : undefined
+        }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
       <label htmlFor="confirmPW">비밀번호 확인</label>
       {!doPasswordsMatch && passwordConfirm.length > 0 && (
-        <span id="confirm-error" className="ml-4 text-sm text-red-600">비밀번호가 일치하지 않습니다.</span>
+        <span id="confirm-error" className="ml-4 text-sm text-red-600">
+          비밀번호가 일치하지 않습니다.
+        </span>
       )}
       <input
         required

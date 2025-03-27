@@ -25,6 +25,7 @@ export default function SignPage() {
         alt=""
         width={600}
         height={160}
+        priority
         className="absolute bottom-0 left-0 min-w-[600px] z-0 pointer-events-none"
       />
     </section>
