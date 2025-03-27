@@ -1,8 +1,32 @@
-export default function signPage() {
+import Image from 'next/image';
+import { SignIn, SignUp } from './form';
+
+export default function SignPage() {
   return (
-    <div>
-      <div>sign in</div>
-      <div>sign up</div>
-    </div>
+    <section
+      className="relative flex flex-col md:flex-row md:justify-center gap-10 lg:gap-30 p-10 md:py-40 h-screen bg-apricot-400"
+      aria-labelledby="sign-page-heading"
+    >
+      <div className="max-w-xl md:w-xl z-10" aria-labelledby="login-heading">
+        <h1 id="login-heading" className="font-english text-4xl font-bold mb-6">
+          Login
+        </h1>
+        <SignIn />
+      </div>
+      <div className="max-w-xl md:w-xl z-10" aria-labelledby="signup-heading">
+        <h2 id="signup-heading" className="font-english text-4xl font-bold mb-6">
+          Create Account
+        </h2>
+        <SignUp />
+      </div>
+      <Image
+        src="/login.png"
+        aria-hidden="true"
+        alt=""
+        width={600}
+        height={160}
+        className="absolute bottom-0 left-0 min-w-[600px] z-0 pointer-events-none"
+      />
+    </section>
   );
 }

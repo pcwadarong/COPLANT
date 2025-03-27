@@ -18,8 +18,3 @@
   --color-apricot-500: #da9f87;
   --color-apricot-600: #a95851;
 }
-
-.english {
-  font-family: var(--font-dm-serif-text), var(--font-noto-serif-kr), serif;
-  margin-bottom: 4px;
-}
