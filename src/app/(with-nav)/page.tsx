@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <AnimatePresence mode="wait">
-      hi
+      <main className='bg-pink-200'></main>
     </AnimatePresence>
   );
 }

@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-black: #23261F;
+  --color-green-100: #E2E2CB;
+  --color-green-200: #DBE2CB;
+  --color-green-300: #CED7B9;
+  --color-green-400: #BEC6A9;
+  --color-green-500: #ABB593;
+  --color-apricot-100: #F3E9D7;
+  --color-apricot-200: #E8D5B5;
+  --color-apricot-300: #E0B7A6;
+  --color-apricot-400: #DA9F87;
+  --color-apricot-500: #A95851;
+} 
+
 :root {
   --font-heading: var(--font-dm-serif-text), var(--font-noto-serif-kr), serif;
   --font-body: var(--font-noto-serif-kr), serif;
@@ -9,6 +23,10 @@ body {
   font-family: var(--font-body);
 }
 
-h1, h2, .english-title {
+h1, h2, h3, .english-title {
   font-family: var(--font-heading);
+}
+
+.english-title {
+  margin-bottom: 4px;
 }
