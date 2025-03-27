@@ -1,32 +1,24 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
 
 @theme {
-  --color-black: #23261F;
-  --color-green-100: #E2E2CB;
-  --color-green-200: #DBE2CB;
-  --color-green-300: #CED7B9;
-  --color-green-400: #BEC6A9;
-  --color-green-500: #ABB593;
-  --color-apricot-100: #F3E9D7;
-  --color-apricot-200: #E8D5B5;
-  --color-apricot-300: #E0B7A6;
-  --color-apricot-400: #DA9F87;
-  --color-apricot-500: #A95851;
-} 
-
-:root {
-  --font-heading: var(--font-dm-serif-text), var(--font-noto-serif-kr), serif;
-  --font-body: var(--font-noto-serif-kr), serif;
+  --font-default: Noto Serif KR, sans-serif, ui-sans-serif;
+  --font-english: Dm Serif Text, Times, Noto Serif KR, sans-serif, ui-sans-serif;
+  --font-script: Great Vibes, cursive;
+  --color-black: #23261f;
+  --color-green-100: #e2e2cb;
+  --color-green-200: #dbe2cb;
+  --color-green-300: #ced7b9;
+  --color-green-400: #bec6a9;
+  --color-green-500: #abb593;
+  --color-apricot-100: #f3e9d7;
+  --color-apricot-200: #e8d5b5;
+  --color-apricot-300: #e0b7a6;
+  --color-apricot-400: #da9f87;
+  --color-apricot-500: #a95851;
 }
 
-body {
-  font-family: var(--font-body);
-}
-
-h1, h2, h3, .english-title {
-  font-family: var(--font-heading);
-}
-
-.english-title {
+.english {
+  font-family: var(--font-dm-serif-text), var(--font-noto-serif-kr), serif;
   margin-bottom: 4px;
 }
