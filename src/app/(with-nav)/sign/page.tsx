@@ -4,7 +4,7 @@ import { SignIn, SignUp } from './form';
 export default function SignPage() {
   return (
     <section
-      className="relative flex flex-col md:flex-row md:justify-center gap-10 lg:gap-30 p-10 md:py-40 h-screen bg-apricot-400"
+      className="relative flex flex-col md:flex-row md:justify-center gap-10 lg:gap-30 p-10 md:py-40 min-h-screen bg-apricot-400"
       aria-labelledby="sign-page-heading"
     >
       <div className="max-w-xl md:w-xl z-10" aria-labelledby="login-heading">
