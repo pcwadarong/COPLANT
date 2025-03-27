@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import MovingLeafSection from '@/components/movingLeafSection';
 
 export const metadata: Metadata = {
   title: 'CoPlant',
@@ -21,7 +22,7 @@ export default function Home() {
         height={1000}
       />
       <Image
-        src="/main-green1.png"
+        src="/main-green1.svg"
         alt="green shape"
         width={1200}
         height={1100}
@@ -31,14 +32,16 @@ export default function Home() {
       <section className="relative mt-40 flex items-center py-20 bg-apricot-400">
         <div className="relative z-40 flex-1 lg:flex-[1.5] xl:flex-1">
           <Image
-            src="/main-beige.png"
+            src="/main-beige.svg"
             alt="intro background shape"
             width={870}
             height={720}
             className="pr-6"
           />
-          <div className='absolute top-10 sm:top-30 md:top-50 lg:top-24 2xl:top-50 left-10'>
-            <p className="text-2xl sm:text-3xl font-bold mb-6">반려식물이 뭔가요?</p>
+          <div className="absolute top-10 sm:top-30 md:top-50 lg:top-24 2xl:top-50 left-10">
+            <p className="text-2xl sm:text-3xl font-bold mb-6">
+              반려식물이 뭔가요?
+            </p>
             <p className="leading-relaxed ml-6 mr-21 md:mr-48 lg:mr-21 2xl:max-w-[700px] break-keep">
               반려식물은 ‘사람이 정서적으로 의지하고자 가까이 두고 기르는
               식물’을 일컫는 말이에요. <br />
@@ -52,55 +55,21 @@ export default function Home() {
         </div>
         <div className="hidden lg:flex flex-1 mr-26 z-30 drop-shadow-sm justify-end">
           <Image
-            src="/main-card.png"
+            src="/main-card.svg"
             alt="card stack"
             width={750}
             height={720}
           />
         </div>
-      </section>
-
-      <section className="relative text-center pb-40">
         <Image
-          src="/main-leaf1.png"
-          alt="leaf"
-          width={900}
-          height={900}
-          className="relative left-0 top-[-120px] z-0"
-        />
-
-        <div className="relative z-10">
-          <Image
-            src="/main-green2.png"
-            alt="circle bg"
-            width={900}
-            height={900}
-            className="mx-auto"
-          />
-
-          <div className="absolute top-[45%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-20">
-            <p className="text-xl font-semibold mb-4">
-              나에게 맞는 반려식물 찾아보기
-            </p>
-            <div className="flex justify-center gap-4">
-              <button className="bg-white text-sm px-4 py-1 rounded shadow">
-                테스트하기
-              </button>
-              <button className="bg-white text-sm px-4 py-1 rounded shadow">
-                제품 보기
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <Image
-          src="/main-leaf2.png"
-          alt="leaf right"
-          width={900}
-          height={900}
-          className="relative bottom-[30%] right-0 z-0"
+          src="/main-pink1.svg"
+          alt="card stack"
+          width={450}
+          height={400}
+          className="hidden lg:block absolute bottom-0 right-0"
         />
       </section>
+      <MovingLeafSection />
     </main>
   );
 }

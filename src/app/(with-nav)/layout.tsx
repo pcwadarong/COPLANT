@@ -13,8 +13,8 @@ export default function NavLayout({
       <footer className="p-10 bg-apricot-100 flex gap-14">
         <div>
           <p className="font-english mb-2">CS center</p>
-          <p className="font-bold text-xl">070-xxxx-xxxx</p>
-          <p className="text-sm">AM 9:30 ~ PM 5:30</p>
+          <p className="font-bold text-xl">02-xxx-xxxx</p>
+          <p className="text-sm">9:30 ~ 17:30</p>
         </div>
         <div className="flex flex-col">
           <p className="font-english mb-2">Contact</p>
