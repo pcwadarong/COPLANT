@@ -1,25 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import NavAuth from './navAuth';
+import HamburgerMenu from './hamburger';
 
 export default function Nav() {
   return (
-    <div className="grid grid-cols-3 items-center p-4 bg-apricot-100">
-      <button className="justify-self-start">
-        <Image
-          src="/hamburger.svg"
-          alt="logo"
-          priority
-          width={50}
-          height={70}
-        />
-      </button>
+    <div className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100">
+      <HamburgerMenu />
 
       <Link href="/" className="justify-self-center">
-        <Image src="/logo.svg" alt="logo" priority width={120} height={70} />
+        <Image src="/logo.svg" alt="logo" priority width={100} height={70} />
       </Link>
 
-      <div className="flex justify-end gap-4 text-base/11 px-4">
+      <div className="flex justify-end gap-4 text-base/11">
         <div>Cart</div>
         <NavAuth />
       </div>

@@ -22,13 +22,15 @@ export default function NavAuth() {
     }
   }, [authState]);
 
-  if (loading) return null;
-
-  return user ? (
-    <button onClick={buttonAction} disabled={isPending}>
-      {isPending ? '로그아웃 중...' : 'Logout'}
-    </button>
-  ) : (
-    <Link href="/sign">Login</Link>
+  return (
+    <div className="w-[80px] text-end">
+      {loading ? (
+        'Loading'
+      ) : user ? (
+        <button onClick={buttonAction}>Logout</button>
+      ) : (
+        <Link href="/sign">Login</Link>
+      )}
+    </div>
   );
 }
