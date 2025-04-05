@@ -1,14 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import CustomCheckbox from './customCheckbox';
 import { validateSignInput } from '@/utils/validateSignInput';
-
-interface Props {
-  isOpen: boolean;
-}
 
 const SubscribeEmailForm = () => {
   const [email, setEmail] = useState('');
@@ -41,7 +38,8 @@ const SubscribeEmailForm = () => {
       <div className="relative w-full md:w-sm">
         <input
           type="email"
-          value={email}
+          id="subscribe-email"
+          name="email"
           placeholder="이메일 입력"
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched(true)}
@@ -63,7 +61,7 @@ const SubscribeEmailForm = () => {
   );
 };
 
-export default function Drawer({ isOpen }: Props) {
+export default function Drawer(isOpen: boolean) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -77,9 +75,10 @@ export default function Drawer({ isOpen }: Props) {
           <div className="size-fit flex flex-col-reverse md:flex-row gap-20">
             <div className="flex flex-col gap-10 justify-between">
               <div>
-                <p className="text-2xl font-bold mb-4">Contact With Us</p>
+                <h2 id="subscribe-form" className="text-2xl font-bold mb-4">Contact With Us</h2>
                 <SubscribeEmailForm />
               </div>
+
               <ul className="space-y-8 font-english text-2xl font-bold">
                 <li>
                   <Link
