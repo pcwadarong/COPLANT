@@ -1,41 +1,44 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useActionState } from 'react';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 import { signUpAction, signInAction } from '@/actions/auth';
 import { validateSignInput } from '@/utils/validateSignInput';
-import { ActionState } from '@/types';
 
 export function SignIn() {
   const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [touchedFields, setTouchedFields] = useState({
-    email: false,
-    password: false,
-  });
-  const [authState, formAction, isPending] = useActionState<
-    ActionState,
-    FormData
-  >(signInAction, null);
+  const [touched, setTouched] = useState({ email: false, password: false });
+  const [result, formAction, isPending] = useActionState(signInAction, null);
 
   const isEmailValid = validateSignInput('email', email);
   const isPasswordValid = validateSignInput('password', password);
   const isFormValid = isEmailValid && isPasswordValid;
 
   useEffect(() => {
-    if (authState) {
-      if (!authState.status) {
-        alert(authState.error);
-      } else {
-        setEmail('');
-        setPassword('');
-        router.push('/');
+    const handleAuthRedirect = async () => {
+      if (result) {
+        if (!result.status) {
+          alert(result.error);
+        } else {
+          await router.push('/');
+          setEmail('');
+          setPassword('');
+        }
       }
-    }
-  }, [authState, router]);
+    };
+
+    handleAuthRedirect();
+  }, [result, router]);
+
+  const handleBlur = (field: 'email' | 'password') => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
 
   return (
     <form action={formAction} noValidate aria-describedby="signin-form-desc">
@@ -44,8 +47,8 @@ export function SignIn() {
       </div>
 
       <label htmlFor="email">이메일 주소</label>
-      {!isEmailValid && touchedFields.email && (
-        <span className="ml-4 text-sm text-red-600">
+      {!isEmailValid && touched.email && (
+        <span id="email-error" className="ml-4 text-sm text-red-600">
           유효한 이메일 주소를 입력하세요.
         </span>
       )}
@@ -55,18 +58,18 @@ export function SignIn() {
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        onBlur={() => setTouchedFields((prev) => ({ ...prev, email: true }))}
+        onBlur={() => handleBlur('email')}
         autoComplete="email"
         required
         aria-invalid={!isEmailValid}
         aria-describedby={
-          !isEmailValid && touchedFields.email ? 'email-error' : undefined
+          !isEmailValid && touched.email ? 'email-error' : undefined
         }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
       <label htmlFor="password">비밀번호</label>
-      {!isPasswordValid && touchedFields.password && (
+      {!isPasswordValid && touched.password && (
         <span id="password-error" className="ml-4 text-sm text-red-600">
           비밀번호 형식을 확인해주세요.
         </span>
@@ -77,20 +80,23 @@ export function SignIn() {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        onBlur={() => setTouchedFields((prev) => ({ ...prev, password: true }))}
+        onBlur={() => handleBlur('password')}
         autoComplete="current-password"
         required
         aria-invalid={!isPasswordValid}
         aria-describedby={
-          !isPasswordValid && touchedFields.password
+          !isPasswordValid && touched.password
             ? 'password-error'
-            : undefined
+            : 'signin-form-desc'
         }
         className="mt-2 mb-6 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
       <div className="flex justify-between">
-        <Link href="sign/find-password" className="underline underline-offset-6">
+        <Link
+          href="sign/find-password"
+          className="underline underline-offset-6"
+        >
           Forgot Password?
         </Link>
         <button
@@ -111,17 +117,13 @@ export function SignIn() {
 
 export function SignUp() {
   const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [touchedFields, setTouchedFields] = useState({
-    email: false,
-    password: false,
-  });
-  const [authState, formAction, isPending] = useActionState<
-    ActionState,
-    FormData
-  >(signUpAction, null);
+  const [touched, setTouched] = useState({ email: false, password: false });
+
+  const [result, formAction, isPending] = useActionState(signUpAction, null);
 
   const isEmailValid = validateSignInput('email', email);
   const isPasswordValid = validateSignInput('password', password);
@@ -129,17 +131,25 @@ export function SignUp() {
   const isFormValid = isEmailValid && isPasswordValid && doPasswordsMatch;
 
   useEffect(() => {
-    if (authState) {
-      if (!authState.status) {
-        alert(authState.error);
-      } else {
-        setEmail('');
-        setPassword('');
-        setPasswordConfirm('');
-        router.push('/');
+    const handleAuthRedirect = async () => {
+      if (result) {
+        if (!result.status) {
+          alert(result.error);
+        } else {
+          await router.push('/');
+          setEmail('');
+          setPassword('');
+          setPasswordConfirm('');
+        }
       }
-    }
-  }, [authState, router]);
+    };
+
+    handleAuthRedirect();
+  }, [result, router]);
+
+  const handleBlur = (field: 'email' | 'password') => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
 
   return (
     <form action={formAction} noValidate aria-describedby="signup-form-desc">
@@ -148,48 +158,48 @@ export function SignUp() {
       </div>
 
       <label htmlFor="newEmail">이메일 주소</label>
-      {!isEmailValid && touchedFields.email && (
-        <span className="ml-4 text-sm text-red-600">
+      {!isEmailValid && touched.email && (
+        <span id="email-error" className="ml-4 text-sm text-red-600">
           유효한 이메일 주소를 입력하세요.
         </span>
       )}
       <input
-        required
         id="newEmail"
         name="email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        onBlur={() => setTouchedFields((prev) => ({ ...prev, email: true }))}
+        onBlur={() => handleBlur('email')}
         autoComplete="email"
+        required
         aria-invalid={!isEmailValid}
         aria-describedby={
-          !isEmailValid && touchedFields.email ? 'email-error' : undefined
+          !isEmailValid && touched.email ? 'email-error' : undefined
         }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
       <label htmlFor="newPW">비밀번호</label>
-      {!isPasswordValid && touchedFields.password && (
+      {!isPasswordValid && touched.password && (
         <span id="password-error" className="ml-4 text-sm text-red-600">
           비밀번호 형식을 확인해주세요.
         </span>
       )}
       <input
-        required
         id="newPW"
         name="password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="영문, 숫자, 특수문자 포함 8~20자"
-        onBlur={() => setTouchedFields((prev) => ({ ...prev, password: true }))}
+        onBlur={() => handleBlur('password')}
         autoComplete="new-password"
+        required
         aria-invalid={!isPasswordValid}
         aria-describedby={
-          !isPasswordValid && touchedFields.password
+          !isPasswordValid && touched.password
             ? 'password-error'
-            : undefined
+            : 'signup-form-desc'
         }
         className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
@@ -201,14 +211,16 @@ export function SignUp() {
         </span>
       )}
       <input
-        required
         id="confirmPW"
         type="password"
         value={passwordConfirm}
         onChange={(e) => setPasswordConfirm(e.target.value)}
         autoComplete="new-password"
+        required
         aria-invalid={!doPasswordsMatch}
-        aria-describedby={!doPasswordsMatch ? 'confirm-error' : undefined}
+        aria-describedby={
+          !doPasswordsMatch ? 'confirm-error' : 'signup-form-desc'
+        }
         className="mt-2 mb-6 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
       />
 
