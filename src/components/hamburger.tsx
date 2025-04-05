@@ -94,7 +94,7 @@ export default function HamburgerMenu() {
       <button
         aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
         onClick={() => setIsOpen(!isOpen)}
-        className="justify-self-start z-50"
+        className="justify-self-start z-60"
       >
         <MenuButton isOpen={isOpen} />
       </button>

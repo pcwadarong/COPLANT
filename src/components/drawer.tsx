@@ -24,20 +24,33 @@ const SubscribeEmailForm = () => {
   };
 
   return (
-    <div>
-      <input
-        className="mb-4 mr-2"
-        type="checkbox"
-        id="agree"
-        checked={agreed}
-        onChange={(e) => setAgreed(e.target.checked)}
-      />
-      <label
-        htmlFor="agree"
-        className={`font-medium ${!agreed && touched ? 'text-red-600' : ''}`}
-      >
-        개인정보 수집에 동의합니다.
-      </label>
+    <>
+      <div className='flex gap-2'>
+        <input
+          id="agree"
+          type="checkbox"
+          checked={agreed}
+          onChange={(e) => setAgreed(e.target.checked)}
+          className={`
+        appearance-none w-5 h-5 rounded-sm cursor-pointer
+        border-2 border-gray-400  
+        checked:border-black
+        checked:bg-[url(/checkmark.svg)]
+        checked:bg-no-repeat
+        checked:bg-center
+        checked:bg-[length:100%_100%]
+        transition-all
+    `}
+        />
+        <label
+          htmlFor="agree"
+          className={`text-sm font-medium select-none ${
+            !agreed && touched ? 'text-red-600' : ''
+          }`}
+        >
+          개인정보 수집에 동의합니다.
+        </label>
+      </div>
 
       <div className="relative w-full max-w-xs">
         <input
@@ -47,7 +60,7 @@ const SubscribeEmailForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched(true)}
           className={`border-b-2 w-full py-2 focus:outline-none bg-transparent transition-colors
-          ${!isEmailValid && touched ? 'border-red-500' : 'border-black'}
+          ${!isEmailValid && touched ? 'border-red-600' : 'border-black'}
         `}
         />
         <button
@@ -60,7 +73,7 @@ const SubscribeEmailForm = () => {
           →
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -69,7 +82,7 @@ export default function Drawer({ isOpen }: Props) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-green-500 z-40 p-6"
+          className="fixed inset-0 bg-green-500 z-50 p-6"
           initial={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           exit={{ clipPath: 'inset(0% 100% 100% 0%)' }}
