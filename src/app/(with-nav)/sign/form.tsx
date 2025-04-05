@@ -90,7 +90,7 @@ export function SignIn() {
       />
 
       <div className="flex justify-between">
-        <Link href="/find-password" className="underline underline-offset-6">
+        <Link href="sign/find-password" className="underline underline-offset-6">
           Forgot Password?
         </Link>
         <button
