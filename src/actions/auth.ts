@@ -2,6 +2,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { auth } from '../../firebaseConfig';
@@ -67,6 +68,32 @@ export async function signOutAction() {
     return {
       status: false,
       error: `로그아웃에 실패했습니다: ${(err as Error).message}`,
+    };
+  }
+}
+
+export async function resetPWAction(_: any, formData: FormData) {
+  const email = formData.get('email') as string | null;
+
+  if (!email)
+    return {
+      status: false,
+      error: '이메일을 입력해주세요.',
+    };
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { status: true, error: '' };
+  } catch (err) {
+    if (err instanceof FirebaseError) {
+      return {
+        status: false,
+        error: `Firebase 비밀번호 재설정 오류: ${err.code}`,
+      };
+    }
+    return {
+      status: false,
+      error: `이메일 전송에 실패했습니다: ${(err as Error).message}`,
     };
   }
 }
