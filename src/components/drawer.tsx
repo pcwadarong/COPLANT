@@ -1,7 +1,9 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import CustomCheckbox from './customCheckbox';
 import { validateSignInput } from '@/utils/validateSignInput';
 
 interface Props {
@@ -25,34 +27,18 @@ const SubscribeEmailForm = () => {
 
   return (
     <>
-      <div className='flex gap-2'>
-        <input
-          id="agree"
-          type="checkbox"
-          checked={agreed}
-          onChange={(e) => setAgreed(e.target.checked)}
-          className={`
-        appearance-none w-5 h-5 rounded-sm cursor-pointer
-        border-2 border-gray-400  
-        checked:border-black
-        checked:bg-[url(/checkmark.svg)]
-        checked:bg-no-repeat
-        checked:bg-center
-        checked:bg-[length:100%_100%]
-        transition-all
-    `}
-        />
-        <label
-          htmlFor="agree"
-          className={`text-sm font-medium select-none ${
-            !agreed && touched ? 'text-red-600' : ''
-          }`}
-        >
-          개인정보 수집에 동의합니다.
-        </label>
-      </div>
+      <CustomCheckbox
+        id="agree"
+        label="개인정보 수집에 동의합니다."
+        checked={agreed}
+        onChange={(e) => setAgreed(e.target.checked)}
+        width={20}
+        height={20}
+        borderCheckedColor={'green'}
+        className={`${!agreed && touched ? 'text-red-600' : ''}`}
+      />
 
-      <div className="relative w-full max-w-xs">
+      <div className="relative w-full md:w-sm">
         <input
           type="email"
           value={email}
@@ -82,25 +68,42 @@ export default function Drawer({ isOpen }: Props) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-green-500 z-50 p-6"
+          className="fixed inset-0 bg-green-500 z-50 p-6 flex justify-center items-center"
           initial={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           exit={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
-          <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 justify-between items-center text-black">
-            <div className="flex-1 text-left">
-              <p className="text-2xl font-bold mb-2">Contact With Us</p>
-              <SubscribeEmailForm />
-              <div className="mt-10 space-y-2">
-                <p className="text-xl font-bold">Instagram</p>
-                <p className="text-xl font-bold">CS Center</p>
+          <div className="size-fit flex flex-col-reverse md:flex-row gap-20">
+            <div className="flex flex-col gap-10 justify-between">
+              <div>
+                <p className="text-2xl font-bold mb-4">Contact With Us</p>
+                <SubscribeEmailForm />
               </div>
+              <ul className="space-y-8 font-english text-2xl font-bold">
+                <li>
+                  <Link
+                    href="https://www.facebook.com"
+                    aria-label="Facebook 페이지로 이동"
+                  >
+                    Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://instagram.com"
+                    aria-label="Instagram 페이지로 이동"
+                  >
+                    Instagram
+                  </Link>
+                </li>
+              </ul>
             </div>
 
-            <div className="flex-1 text-left">
+            <div>
               <h2 className="text-2xl font-bold mb-4">Product</h2>
               <ul className="space-y-1 text-lg leading-relaxed">
+                {/* 여기 판매상품 목록 가져와서 정렬할 필요 있음. 대신 한 ul에 최대 10개까지*/}
                 <li>여인초</li>
                 <li>아레카야자</li>
                 <li>스투키</li>
