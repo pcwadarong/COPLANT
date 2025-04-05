@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export default function NavAuth() {
   const { user, loading } = useAuth();
-  const [authState, buttonAction, isPending] = useActionState<ActionState>(
+  const [authState, buttonAction] = useActionState<ActionState>(
     signOutAction,
     null,
   );
