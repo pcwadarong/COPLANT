@@ -98,7 +98,7 @@ export default function HamburgerMenu() {
       >
         <MenuButton isOpen={isOpen} />
       </button>
-      <Drawer isOpen={isOpen} />
+      <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}/>
     </>
   );
 }

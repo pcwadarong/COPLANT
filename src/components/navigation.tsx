@@ -5,7 +5,7 @@ import HamburgerMenu from './hamburger';
 
 export default function Nav() {
   return (
-    <div className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100">
+    <nav className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100">
       <HamburgerMenu />
 
       <Link href="/" className="justify-self-center">
@@ -16,6 +16,6 @@ export default function Nav() {
         <div>Cart</div>
         <NavAuth />
       </div>
-    </div>
+    </nav>
   );
 }

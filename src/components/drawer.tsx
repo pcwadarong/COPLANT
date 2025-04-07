@@ -7,6 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CustomCheckbox from './customCheckbox';
 import { validateSignInput } from '@/utils/validateSignInput';
 
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 const SubscribeEmailForm = () => {
   const [email, setEmail] = useState('');
   const [agreed, setAgreed] = useState(false);
@@ -61,7 +66,7 @@ const SubscribeEmailForm = () => {
   );
 };
 
-export default function Drawer(isOpen: boolean) {
+export default function Drawer({ isOpen, onClose }: Props) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -72,8 +77,9 @@ export default function Drawer(isOpen: boolean) {
           exit={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
+
           <div className="size-fit flex flex-col-reverse md:flex-row gap-20">
-            <div className="flex flex-col gap-10 justify-between">
+            <section className="flex flex-col gap-10 justify-between">
               <div>
                 <h2 id="subscribe-form" className="text-2xl font-bold mb-4">Contact With Us</h2>
                 <SubscribeEmailForm />
@@ -97,21 +103,23 @@ export default function Drawer(isOpen: boolean) {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </section>
 
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Product</h2>
+            <section>
+              <h2 className="text-2xl font-bold mb-4">
+                <Link href="/product-list" onClick={onClose}>
+                  Product
+                </Link></h2>
               <ul className="space-y-1 text-lg leading-relaxed">
-                {/* 여기 판매상품 목록 가져와서 정렬할 필요 있음. 대신 한 ul에 최대 10개까지*/}
-                <li>여인초</li>
-                <li>아레카야자</li>
-                <li>스투키</li>
-                <li>몬스테라</li>
-                <li>호프셀렘</li>
-                <li>백갈고무나무</li>
-                <li>스파티필름</li>
+                {/* map으로 수정 예정 */}
+                {/* <li><Link href={`/product/${id}`}></Link>{title}</li> */}
+                <li>
+                  <Link href={`/product/arencia`} onClick={onClose}>
+                    아렌시아
+                  </Link>
+                </li>
               </ul>
-            </div>
+            </section>
           </div>
         </motion.div>
       )}
