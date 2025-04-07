@@ -34,8 +34,6 @@ const SubscribeEmailForm = () => {
         label="개인정보 수집에 동의합니다."
         checked={agreed}
         onChange={(e) => setAgreed(e.target.checked)}
-        width={20}
-        height={20}
         borderCheckedColor={'green'}
         className={`${!agreed && touched ? 'text-red-600' : ''}`}
       />
@@ -77,11 +75,12 @@ export default function Drawer({ isOpen, onClose }: Props) {
           exit={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
-
           <div className="size-fit flex flex-col-reverse md:flex-row gap-20">
             <section className="flex flex-col gap-10 justify-between">
               <div>
-                <h2 id="subscribe-form" className="text-2xl font-bold mb-4">Contact With Us</h2>
+                <h2 id="subscribe-form" className="text-2xl font-bold mb-4">
+                  Contact With Us
+                </h2>
                 <SubscribeEmailForm />
               </div>
 
@@ -106,11 +105,11 @@ export default function Drawer({ isOpen, onClose }: Props) {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">
-                <Link href="/product-list" onClick={onClose}>
-                  Product
-                </Link></h2>
+              <h2 className="text-2xl font-bold mb-4">Product</h2>
               <ul className="space-y-1 text-lg leading-relaxed">
+                <Link href="/product-list" onClick={onClose}>
+                  전체 보기
+                </Link>
                 {/* map으로 수정 예정 */}
                 {/* <li><Link href={`/product/${id}`}></Link>{title}</li> */}
                 <li>
