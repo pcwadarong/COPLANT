@@ -1,19 +1,33 @@
 import { Suspense } from 'react';
 import Filter from '@/components/filter';
 import SearchBar from '@/components/searchBar';
-import plantData from './../../../../plant.json';
+// import plantData from './../../../../plant.json';
+import { getProductList } from '@/actions/get-product';
+import { ProductProperties } from '@/types';
 
 export default async function ListPage({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
-  const { q } = await searchParams;
-  //const rawList = await getProductList();
-  const rawList = plantData;
+  // const rawList = plantData;
+  let rawList: ProductProperties[] = [];
+
+  try {
+    rawList = await getProductList();
+  } catch (error) {
+    return (
+      <div className="p-10 text-red-600">
+        오류 발생: {(error as Error).message}
+      </div>
+    );
+  }
+
+  const resolvedParams = await searchParams;
+  const { q } = resolvedParams;
 
   const activeFilters: Record<string, string[]> = {};
-  Object.entries(searchParams).forEach(([key, value]) => {
+  Object.entries(resolvedParams).forEach(([key, value]) => {
     if (key !== 'q' && value) {
       activeFilters[key] = value.split(',');
     }
