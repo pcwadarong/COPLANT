@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { options } from '@/app/constants/filterOptions';
 import CustomCheckbox from '@/components/customCheckbox';
 
-export function Filter() {
+export default function Filter() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -28,24 +28,38 @@ export function Filter() {
     return selected.includes(value);
   };
 
+  const resetFilter = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    Object.keys(options).forEach((key) => params.delete(key));
+    router.push(`?${params.toString()}`);
+  };
+
   return (
-    <form>
-      {Object.entries(options).map(([category, items]) => (
-        <fieldset key={category} className="border-b-[1px]">
-          <legend>{category}</legend>
-          {items.map(({ label, value }) => (
-            <CustomCheckbox
-              key={label}
-              id={value}
-              label={label}
-              bgColor="yellow"
-              bgCheckedColor="green"
-              checked={isChecked(category, value)}
-              onChange={() => handleCheckboxChange(category, value)}
-            />
-          ))}
-        </fieldset>
-      ))}
-    </form>
+    <>
+      <button
+        className="text-sm underline underline-offset-4 mb-5"
+        onClick={resetFilter}
+      >
+        필터 초기화
+      </button>
+      <form>
+        {Object.entries(options).map(([category, { legend, items }]) => (
+          <fieldset key={category} className="border-b-[1px]">
+            <legend className="font-bold">{legend}</legend>
+            {items.map(({ label, value }) => (
+              <CustomCheckbox
+                key={label}
+                id={value}
+                label={label}
+                bgColor="yellow"
+                bgCheckedColor="green"
+                checked={isChecked(category, value)}
+                onChange={() => handleCheckboxChange(category, value)}
+              />
+            ))}
+          </fieldset>
+        ))}
+      </form>
+    </>
   );
 }

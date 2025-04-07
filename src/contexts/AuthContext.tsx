@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../../firebaseConfig'; // firebase.ts에서 export한 auth
+import { auth } from '../lib/firebaseConfig'; // firebase.ts에서 export한 auth
 
 type AuthContextType = {
   user: User | null;

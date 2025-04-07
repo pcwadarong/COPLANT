@@ -15,8 +15,9 @@ export default function SearchBar() {
   }, [q]);
 
   const onSubmit = () => {
-    if (!query || q === query) return;
-    router.push(`/product-list?q=${query}`);
+    if (!query) router.replace(`/product-list`);
+    else if (q === query) return;
+    else router.replace(`/product-list?q=${query}`);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -26,7 +27,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className='flex justify-center mt-10 mb-10'>
+    <div className="flex justify-center mt-10 mb-10">
       <input
         type="search"
         value={query}
