@@ -2,10 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Link from 'next/link';
 import { validateSignInput } from '@/utils/validateSignInput';
 
 interface Props {
   isOpen: boolean;
+  onClose: () => void;
 }
 
 const SubscribeEmailForm = () => {
@@ -64,7 +66,7 @@ const SubscribeEmailForm = () => {
   );
 };
 
-export default function Drawer({ isOpen }: Props) {
+export default function Drawer({ isOpen, onClose }: Props) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -86,15 +88,19 @@ export default function Drawer({ isOpen }: Props) {
             </div>
 
             <div className="flex-1 text-left">
-              <h2 className="text-2xl font-bold mb-4">Product</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                <Link href="/product-list" onClick={onClose}>
+                  Product
+                </Link>
+              </h2>
               <ul className="space-y-1 text-lg leading-relaxed">
-                <li>여인초</li>
-                <li>아레카야자</li>
-                <li>스투키</li>
-                <li>몬스테라</li>
-                <li>호프셀렘</li>
-                <li>백갈고무나무</li>
-                <li>스파티필름</li>
+                {/* map으로 수정 예정 */}
+                {/* <li><Link href={`/product/${id}`}></Link>{title}</li> */}
+                <li>
+                  <Link href={`/product/arencia`} onClick={onClose}>
+                    아렌시아
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
