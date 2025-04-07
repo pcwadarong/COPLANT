@@ -43,14 +43,24 @@ export default function NavLayout({
             coplant@gmail.com
           </a>
         </div>
-        <div className="flex flex-col gap-2 font-english">
-          <Link href="https://www.facebook.com" aria-label="Facebook 페이지로 이동">
-            Facebook
-          </Link>
-          <Link href="https://instagram.com" aria-label="Instagram 페이지로 이동">
-            Instagram
-          </Link>
-        </div>
+        <ul className="flex flex-col gap-2 font-english">
+          <li>
+            <Link
+              href="https://www.facebook.com"
+              aria-label="Facebook 페이지로 이동"
+            >
+              Facebook
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://instagram.com"
+              aria-label="Instagram 페이지로 이동"
+            >
+              Instagram
+            </Link>
+          </li>
+        </ul>
       </footer>
     </div>
   );
