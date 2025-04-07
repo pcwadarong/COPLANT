@@ -78,16 +78,16 @@ export default function Drawer({ isOpen, onClose }: Props) {
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
           <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 justify-between items-center text-black">
-            <div className="flex-1 text-left">
+            <div className="flex-1">
               <p className="text-2xl font-bold mb-2">Contact With Us</p>
               <SubscribeEmailForm />
-              <div className="mt-10 space-y-2">
-                <p className="text-xl font-bold">Instagram</p>
-                <p className="text-xl font-bold">CS Center</p>
+              <div className="mt-10 space-y-2 text-xl font-bold">
+                <p>Instagram</p>
+                <p>CS Center</p>
               </div>
             </div>
 
-            <div className="flex-1 text-left">
+            <div className="flex-1">
               <h2 className="text-2xl font-bold mb-4">
                 <Link href="/product-list" onClick={onClose}>
                   Product
