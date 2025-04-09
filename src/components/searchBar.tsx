@@ -15,9 +15,9 @@ export default function SearchBar() {
   }, [q]);
 
   const onSubmit = () => {
-    if (!query) router.replace(`/product-list`);
+    if (!query) router.replace(`/product`);
     else if (q === query) return;
-    else router.replace(`/product-list?q=${query}`);
+    else router.replace(`/product?q=${query}`);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

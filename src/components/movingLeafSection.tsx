@@ -77,7 +77,7 @@ export default function MovingLeafSection() {
             </Link>
             <Link
               className="px-4 py-2 rounded-md shadow bg-apricot-200"
-              href="/product-list"
+              href="/product"
               aria-label="반려식물 제품 보러 가기"
             >
               제품 보기

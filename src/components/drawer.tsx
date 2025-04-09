@@ -107,7 +107,7 @@ export default function Drawer({ isOpen, onClose }: Props) {
             <section>
               <h2 className="text-2xl font-bold mb-4">Product</h2>
               <ul className="space-y-1 text-lg leading-relaxed">
-                <Link href="/product-list" onClick={onClose}>
+                <Link href="/product" onClick={onClose}>
                   전체 보기
                 </Link>
                 {/* map으로 수정 예정 */}

@@ -3,10 +3,11 @@ export type ActionState = {
   error?: string;
 };
 
-export interface ProductProperties {
+
+export interface ProductLightProperties {
   id?: string;
+  name: string;
   description: string;
-  efficacy: string;
   filters: {
     difficulty: number;
     efficacy: string;
@@ -15,12 +16,15 @@ export interface ProductProperties {
     size: string;
     water: string;
   };
+}
+
+export interface ProductProperties extends ProductLightProperties{
+  scientificName: string;
+  price: number;
+  origin: string;
+  efficacy: string;
   humidity: string;
   light: string;
-  name: string;
-  origin: string;
-  price: number;
-  scientificName: string;
 }
 
 export interface FilterState {

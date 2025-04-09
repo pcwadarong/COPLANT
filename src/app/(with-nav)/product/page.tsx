@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import Filter from '@/components/filter';
 import SearchBar from '@/components/searchBar';
 // import plantData from './../../../../plant.json';
-import { getProductList } from '@/actions/get-product';
-import { ProductProperties } from '@/types';
+import { getProductList } from '@/api/get-product';
+import { ProductLightProperties } from '@/types';
 
 export default async function ListPage({
   searchParams,
@@ -11,7 +11,7 @@ export default async function ListPage({
   searchParams: Promise<{ q?: string }>;
 }) {
   // const rawList = plantData;
-  let rawList: ProductProperties[] = [];
+  let rawList: ProductLightProperties[] = [];
 
   try {
     rawList = await getProductList();
@@ -76,3 +76,5 @@ export default async function ListPage({
     </>
   );
 }
+
+export const dynamic = 'force-static';

@@ -1,8 +1,8 @@
 import { adminFirestore } from '@/lib/firebase-admin';
 import { FirebaseError } from 'firebase/app';
-import { ProductProperties } from '@/types';
+import { ProductLightProperties } from '@/types';
 
-export async function getProductList(): Promise<ProductProperties[]> {
+export async function getProductList(): Promise<ProductLightProperties[]> {
   try {
     const snap = await adminFirestore.collection('plants').get();
 
@@ -11,10 +11,12 @@ export async function getProductList(): Promise<ProductProperties[]> {
     }
 
     const plants = snap.docs.map((doc) => {
-      const data = doc.data() as ProductProperties;
+      const data = doc.data() as ProductLightProperties;
       return {
         id: doc.id,
-        ...data,
+        name: data.name,
+        filters: data.filters,
+        description: data.description,
       };
     });
 
