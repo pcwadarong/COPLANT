@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { useAuth } from '@/contexts/AuthContext';
 import NavAuth from './navAuth';
 import HamburgerMenu from './hamburger';
 
 export default function Nav() {
+  const { isAdmin } = useAuth();
+
   return (
     <nav className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100">
       <HamburgerMenu />
@@ -15,6 +19,7 @@ export default function Nav() {
       <div className="flex justify-end gap-4 text-base/11">
         <div>Cart</div>
         <NavAuth />
+        {isAdmin && <Link href="/admin">Admin</Link>}
       </div>
     </nav>
   );

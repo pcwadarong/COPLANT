@@ -3,6 +3,11 @@ export type ActionState = {
   error?: string;
 };
 
+export interface ProductImageURLs {
+  list: string;
+  cover: string;
+  detail: string[];
+}
 
 export interface ProductLightProperties {
   id?: string;
@@ -16,6 +21,7 @@ export interface ProductLightProperties {
     size: string;
     water: string;
   };
+  imageUrls: ProductImageURLs;
 }
 
 export interface ProductProperties extends ProductLightProperties{
