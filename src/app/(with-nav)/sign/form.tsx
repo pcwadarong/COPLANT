@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import { signUpAction, signInAction } from '@/actions/auth';
-import { validateSignInput } from '@/utils/validateSignInput';
+import { validateSignInput } from '@/lib/utils/validateSignInput';
 
 export function SignIn() {
   const router = useRouter();

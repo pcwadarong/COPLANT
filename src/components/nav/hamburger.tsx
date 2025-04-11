@@ -2,7 +2,7 @@
 
 import { motion, Transition, SVGMotionProps } from 'framer-motion';
 import { useState } from 'react';
-import Drawer from '../drawer';
+import Drawer from './drawer';
 import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 interface Props {

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import CustomCheckbox from './common/customCheckbox';
-import { validateSignInput } from '@/utils/validateSignInput';
+import CustomCheckbox from '../common/customCheckbox';
+import { validateSignInput } from '@/lib/utils/validateSignInput';
 
 interface Props {
   isOpen: boolean;

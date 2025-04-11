@@ -30,7 +30,7 @@ export default function AdminProductListItem({
   };
 
   return (
-    <li className="mb-4">
+    <li className="mb-4 flex justify-between">
       <h3 className="text-lg font-semibold">{name}</h3>
       <div className="mt-2 flex gap-2">
         <button

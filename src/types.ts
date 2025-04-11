@@ -12,8 +12,9 @@ export interface ProductImageURLs {
 export interface ProductLightProperties {
   id?: string;
   name: string;
-  description: string;
-  filters: {
+  price?: number;
+  description?: string;
+  filters?: {
     difficulty: number;
     efficacy: string;
     feature: string;
@@ -26,7 +27,6 @@ export interface ProductLightProperties {
 
 export interface ProductProperties extends ProductLightProperties{
   scientificName: string;
-  price: number;
   origin: string;
   efficacy: string;
   humidity: string;
