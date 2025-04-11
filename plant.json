@@ -1,0 +1,293 @@
+[
+  {
+    "id": "benghalensis",
+    "name": "벵갈 고무나무",
+    "scientificName": "Ficus benghalensis",
+    "price": 36000,
+    "description": "밝은 빛을 좋아하고 고무나무류 중에서도 건조에 강해 관리가 어렵지 않습니다. 여러 색이 섞인 잎이 매력적인 식물입니다.",
+    "efficacy": "공기정화식물로 폼알데하이드를 제거하는 능력이 뛰어납니다. 악취 제거에도 효과적입니다.",
+    "humidity": "평균 실내 습도에서 무리 없이 잘 적응하지만 높은 습도를 더 좋아합니다.",
+    "light": "빛을 좋아하며 하루 평균 2~3시간 이상의 간접적인 햇빛이 필요합니다.",
+    "origin": "열대 및 아열대의 인도, 말레이시아 등 다양한 지역이 원산지입니다.",
+    "temperature": "기온이 따뜻한 지역에서 자라는 열대 식물입니다. 평균 실내 온도에서 무난하게 잘 자라며 따뜻한 온도를 더 선호합니다.",
+    "watering": "상대적으로 건조한 흙에서도 잘 견디는 식물입니다. 잦은 물 주기로 인한 뿌리 과습에 주의해야 합니다.",
+    "tags": [
+      "초보추천",
+      "튼튼함",
+      "잎을 감상하는",
+      "잎이 두꺼운",
+      "목대 있는",
+      "선물용",
+      "낮은조도"
+    ],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun, partialShade",
+      "water": "week",
+      "size": "m, l",
+      "efficacy": "purify, dust, humidify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "Hedera",
+    "name": "아이비 (헤데라)",
+    "scientificName": "Hedera helix",
+    "price": 9900,
+    "description": "기르기 쉽고 수경재배가 가능하며 번식이 잘 되는 식물입니다. 덩굴성이라 줄기를 늘어뜨려 키우면 보기에도 좋습니다.",
+    "warning": "독성이 있어 반려동물과 어린아이가 있다면 주의해야 합니다.",
+    "humidity": "실내 평균 습도에서도 잘 견디지만 다소 높은 습도에서 더 잘 자랍니다.",
+    "light": "양지에서 음지까지 다양한 빛 조건에서 키울 수 있으며, 2~3시간 이상의 밝은 간접광에서 가장 잘 자랍니다.",
+    "origin": "유럽, 스칸디나비아 지역이 원산지입니다.",
+    "temperature": "더위에 약하므로 차가운 바람이나 여름의 더위는 피해야 합니다.",
+    "watering": "주 1~2회 정도, 흙 표면부터 3cm까지 마르면 듬뿍 주는 것이 좋습니다.",
+    "tags": [
+      "초보추천",
+      "무늬가 있는",
+      "잎이 두꺼운",
+      "잎을 감상하는",
+      "선물용"
+    ],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun, partialShade, shade",
+      "water": "week",
+      "size": "s",
+      "efficacy": "purify, dust, humidify",
+      "feature": "water, vine"
+    }
+  },
+  {
+    "id": "monstera",
+    "name": "몬스테라 델리시오사",
+    "scientificName": "Monstera deliciosa",
+    "price": 17800,
+    "description": "감각적인 식물로 NASA가 선정한 대기 오염 물질을 줄이는 데 효과적인 식물로 손꼽힙니다.",
+    "efficacy": "공기 정화 효과가 있어 실내에서 키우기 좋습니다.",
+    "humidity": "보통 실내 습도에 잘 적응하지만, 건조한 것보다는 습한 환경을 더 좋아합니다.",
+    "light": "밝은 간접광을 좋아하며, 직접적인 햇빛보다 반음지 환경이 적합합니다.",
+    "origin": "열대 아메리카 지역이 원산지입니다.",
+    "temperature": "18~27℃의 따뜻한 환경에서 잘 자라며, 겨울철 저온에는 주의가 필요합니다.",
+    "watering": "흙의 윗부분이 마른 후 물을 충분히 주는 것이 좋습니다. 과습은 피해야 합니다.",
+    "tags": [
+      "초보추천",
+      "잎을 감상하는",
+      "선물용",
+      "하트모양 잎",
+      "잎이 두꺼운"
+    ],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun, partialShade",
+      "water": "week",
+      "size": "m, l",
+      "efficacy": "purify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "sophora",
+    "name": "마오리 소포라",
+    "scientificName": "Sophora prostrata 'Little Bab",
+    "price": 17800,
+    "description": "감각적인 모양의 가지와 오밀조밀 귀여운 잎의 매력으로 최근 인기가 많은 마오리 시리즈 중 하나입니다. 귀여운 생김새와는 다르게 매우 강인한 식물입니다.",
+    "warning": "독성이 있으므로 반려동물과 어린아이가 있다면 조심해야 합니다.",
+    "humidity": "평균 실내 습도에서 잘 자라며, 가끔 잎에 분무해주면 더 건강하게 키울 수 있습니다.",
+    "light": "커튼에 가려진 밝고 은은한 햇빛을 좋아하며, 하루 평균 4시간 이상의 간접적인 햇빛이 필요합니다.",
+    "origin": "뉴질랜드가 원산지입니다.",
+    "temperature": "자연에서 다양한 환경과 온도에 적응하며 살 수 있습니다. 추위보다 뜨거운 온도에 더 민감한 편입니다.",
+    "watering": "물을 좋아하지만 뿌리 과습에는 취약하므로 물 주기에 주의가 필요합니다.",
+    "tags": ["초보추천", "잎을 감상하는", "목대있는"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun",
+      "water": "week",
+      "size": "s",
+      "efficacy": "purify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "spathiphyllum",
+    "name": "스파티필름",
+    "scientificName": "Spathiphyllum sp",
+    "price": 9000,
+    "description": "공기 정화 능력이 뛰어나며, 빛이 적은 환경에서도 잘 자라고 아름다운 흰색 꽃을 피우는 식물입니다.",
+    "efficacy": "공기 중의 유해 물질을 제거하는 능력이 뛰어나며, 실내 공기 정화에 효과적입니다.",
+    "humidity": "높은 습도를 선호하지만 일반적인 실내 습도에서도 잘 자랍니다. 잎 끝이 갈색으로 변하면 습도를 높여주는 것이 좋습니다.",
+    "light": "밝은 간접광을 선호하며, 낮은 조도에서도 잘 자랍니다. 직사광선은 피하는 것이 좋습니다.",
+    "origin": "콜롬비아와 베네수엘라 등 중남미 지역이 원산지입니다.",
+    "temperature": "18~27℃의 온도를 선호하며, 13℃ 이하의 추운 온도는 피해야 합니다.",
+    "watering": "흙의 윗부분이 건조해졌을 때 물을 주는 것이 좋습니다. 과도한 수분은 뿌리 부패를 유발할 수 있으므로 주의해야 합니다.",
+    "tags": ["초보추천", "잎을 감상하는", "선물용", "잎이 두꺼운"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialShade",
+      "water": "week",
+      "size": "",
+      "efficacy": "purify, humidify",
+      "feature": "bloom"
+    }
+  },
+  {
+    "id": "tillandsia",
+    "name": "수염 틸란드시아",
+    "scientificName": "Tillandsia usneoides",
+    "price": 8000,
+    "description": "관리가 쉽고 미세먼지를 흡수하는 능력이 뛰어납니다. 행잉 식물로 인테리어에 활용도가 높습니다.",
+    "efficacy": "미세먼지를 흡착하여 공기 청정 효과가 있습니다.",
+    "humidity": "높은 습도를 선호하며, 50% 이상의 습도가 적절합니다.",
+    "light": "밝은 간접광을 선호하며, 직사광선은 피해야 합니다.",
+    "origin": "아메리카 대륙 중남부의 사막 지역이 원산지입니다.",
+    "temperature": "18~24℃의 포근한 온도에서 잘 자라며, 추위에 약합니다.",
+    "watering": "주 1~2회 분무기로 충분히 적셔주거나, 물에 30분 정도 담가 놓는 것이 좋습니다.",
+    "tags": ["초보추천"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialShade",
+      "water": "week",
+      "size": "s",
+      "efficacy": "purify, dust",
+      "feature": "air"
+    }
+  },
+  {
+    "id": "avis",
+    "name": "아비스",
+    "scientificName": "Asplenium nidus 'avis'",
+    "price": 3500,
+    "description": "넓고 큰 잎이 파초(바나나)와 닮아 '파초일엽'이라고도 불리며, 공기 정화와 미세먼지 흡착 능력이 뛰어나 인기가 많습니다.",
+    "efficacy": "천연 가습기로 불릴 정도로 습도 조절에 강하며, 미세먼지를 흡착하여 실내 공기 정화에 효과적입니다.",
+    "humidity": "덥고 습한 열대 기후를 좋아하며, 잎 주변을 다소 습하게 관리해주는 것이 좋습니다.",
+    "light": "나무 그늘 아래처럼 옅은 빛을 좋아하며, 하루 평균 2~4시간 이상의 간접적인 빛이 적절합니다.",
+    "origin": "동아시아의 온대 지역이 원산지입니다.",
+    "temperature": "덥고 습한 열대 지역에서 자라 따뜻한 온도를 좋아합니다.",
+    "watering": "촉촉한 환경을 선호하며, 물은 흙에 직접 주는 것이 좋습니다.",
+    "tags": ["초보추천"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialShade",
+      "water": "week",
+      "size": "s",
+      "efficacy": "purify, humidify, dust",
+      "feature": ""
+    }
+  },
+  {
+    "id": "cylindrica",
+    "name": "스투키",
+    "scientificName": "Sansevieria cylindrica",
+    "price": 11900,
+    "description": "강한 생존력으로 식물 초보자에게 많이 추천되는 식물입니다. 국내에서 유통되는 스투키는 대부분 '실린드리카'라는 식물로, 비슷하게 생겼지만 성장 속도가 빠른 편입니다.",
+    "efficacy": "공기 정화 능력이 있으며, 밤에 산소를 배출하여 침실에 적합합니다.",
+    "humidity": "일반적인 실내 습도에 잘 적응하지만, 건조한 환경에서도 잘 견딥니다.",
+    "light": "밝은 간접광을 선호하지만, 낮은 조도에서도 잘 자랍니다. 직사광선은 피하는 것이 좋습니다.",
+    "origin": "아프리카 앙골라 지역이 원산지입니다.",
+    "temperature": "16~27℃의 온도를 선호하며, 13℃ 이하의 추운 온도는 피해야 합니다.",
+    "watering": "흙이 완전히 건조된 후 물을 주는 것이 좋습니다. 과도한 수분은 뿌리 부패를 유발할 수 있으므로 주의해야 합니다.",
+    "tags": ["초보추천", "건조한 환경", "밤에 산소배출"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialShade",
+      "water": "rare",
+      "size": "s,m",
+      "efficacy": "purify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "dischidia-apple",
+    "name": "디시디아 애플",
+    "scientificName": "Dischidia oiantha 'Apple Leaf'",
+    "price": 15000,
+    "description": "착생식물로 흙 없이도 키울 수 있으며, 공중에 걸어두면 인테리어 효과가 뛰어나 인기가 높습니다.",
+    "efficacy": "공기 정화 효과가 있어 실내에서 키우기 좋습니다.",
+    "humidity": "적당히 따뜻한 날씨를 좋아하며, 공기 중 수분은 40~70% 정도가 적당합니다.",
+    "light": "밝은 간접광을 좋아하며, 직사광선 아래에서는 잎이 탈 수 있으므로 주의해야 합니다.",
+    "origin": "아열대 기후의 동남아시아가 원산지입니다.",
+    "temperature": "포근한 온도에서 무난하게 잘 자라며, 18~24℃에서 가장 잘 성장합니다.",
+    "watering": "잎 전체에 분무하거나, 물에 30분 정도 담가두는 방식으로 물을 주는 것이 좋습니다.",
+    "tags": ["초보추천", "빛이 적어도 되는", "물이 적어도 되는"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun",
+      "water": "week",
+      "size": "s",
+      "efficacy": "purify",
+      "feature": "water, air"
+    }
+  },
+  {
+    "id": "lutescens",
+    "name": "아레카 야자",
+    "scientificName": "Chrysalidocarpus lutescens",
+    "price": 9000,
+    "description": "NASA가 지정한 실내 공기 정화식물 1위로, 관리가 쉽고 시원한 잎이 열대 분위기를 자아내 실내 식물로 인기가 많습니다.",
+    "efficacy": "모든 유해 화학물질 제거 능력이 뛰어나며, 하루에 약 1L의 수분을 방출하여 가습기 효과도 있습니다.",
+    "humidity": "건조한 공기에 약하며, 공기 중 수분은 40~70% 정도가 적절합니다.",
+    "light": "반양지 또는 반음지를 선호하며, 직사광선을 피하고 밝은 간접광 아래에서 키우는 것이 좋습니다.",
+    "origin": "마다가스카르가 원산지입니다.",
+    "temperature": "추위에 약하므로 10℃ 이상을 유지해야 하며, 18~24℃에서 잘 자랍니다.",
+    "watering": "물을 좋아하여 주 1~2회 정도 주는 것이 좋습니다.",
+    "tags": [
+      "초보추천",
+      "잎을 감상하는",
+      "선물용",
+      "낮은 조도",
+      "반려동물에게 안전한",
+      "잎이 두꺼운"
+    ],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun, partialShade",
+      "water": "week",
+      "size": "l",
+      "efficacy": "purify, humidify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "nicolai",
+    "name": "여인초",
+    "scientificName": "Strelitzia nicolai",
+    "price": 150000,
+    "description": "싱그러운 넓은 잎과 강한 생명력으로 실내 인테리어용 식물로 인기가 많습니다. 극락조와 비슷한 외형이므로 혼동하지 않도록 주의해야 합니다.",
+    "efficacy": "공기 정화 효과와 함께 가습 기능이 있습니다.",
+    "humidity": "건조한 공기에 약하며, 통풍에 주의해야 합니다.",
+    "light": "반양지 또는 반음지를 좋아하며, 강한 직사광선은 피하는 것이 좋습니다.",
+    "origin": "마다가스카르가 원산지입니다.",
+    "temperature": "추위에 약하므로 10℃ 이상을 유지해야 하며, 18~25℃에서 잘 자랍니다.",
+    "watering": "겉흙이 말랐을 때 듬뿍 주고, 물을 준 후 충분히 환기해주는 것이 좋습니다.",
+    "tags": ["잎을감상하는", "선물용", "낮은조도", "잎이두꺼운"],
+    "filters": {
+      "difficulty": 1,
+      "light": "partialSun, partialShade",
+      "water": "week",
+      "size": "m, l",
+      "efficacy": "purify, humidify",
+      "feature": ""
+    }
+  },
+  {
+    "id": "selloum",
+    "name": "호프셀렘",
+    "scientificName": "Philodendron selloum",
+    "price": 35000,
+    "description": "두껍고 광택 있는 독특한 잎 모양 덕분에 실내 인테리어에 자주 활용되는 식물입니다.",
+    "efficacy": "공기 정화 능력이 있으며, 실내 습도 조절에도 강한 필로덴드론 계열입니다.",
+    "humidity": "높은 습도를 선호하며, 실내 습도는 50~70%로 유지하는 것이 좋습니다. 습도가 낮을 경우 가습기를 사용하거나 식물 주변에 물을 담은 접시를 놓아 습도를 높일 수 있습니다.",
+    "light": "밝은 간접광을 선호하며, 직사광선은 피하는 것이 좋습니다. 실내에서는 창가 근처의 밝은 장소에 두는 것이 적합합니다.",
+    "origin": "브라질, 파라과이 등 남아메리카 지역이 원산지입니다.",
+    "temperature": "18~27℃의 따뜻한 환경에서 잘 자라며, 10℃ 이하의 저온은 피하는 것이 좋습니다.",
+    "watering": "흙의 윗부분 2~3cm가 건조해졌을 때 충분히 물을 주는 것이 좋습니다. 과도한 수분은 뿌리 부패를 유발할 수 있으므로 주의해야 합니다.",
+    "tags": ["초보추천", "선물용", "잎을 감상하는", "잎이 두꺼운"],
+    "filters": {
+      "difficulty": 2,
+      "light": "partialShade",
+      "water": "week",
+      "size": "m",
+      "efficacy": "purify, humidify",
+      "feature": ""
+    }
+  }
+]
