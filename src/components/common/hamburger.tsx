@@ -2,7 +2,7 @@
 
 import { motion, Transition, SVGMotionProps } from 'framer-motion';
 import { useState } from 'react';
-import Drawer from './drawer';
+import Drawer from '../drawer';
 import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 interface Props {
@@ -98,7 +98,7 @@ export default function HamburgerMenu() {
       >
         <MenuButton isOpen={isOpen} />
       </button>
-      <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}/>
+      <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }

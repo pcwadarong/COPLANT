@@ -2,21 +2,22 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
 import { SignIn, SignUp } from './form';
 
 export default function SignPage() {
   const { user, loading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      notFound();
+    if (!loading && user) {
+      router.replace('/');
     }
-  }, [user, loading]);
+  }, [user, loading, router]);
 
-  if (loading || !user) return <div>로딩중입니다...</div>;
+  if (loading && !user) return <div>로딩중입니다...</div>;
 
   return (
     <main

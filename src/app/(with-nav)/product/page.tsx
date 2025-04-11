@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import Filter from '@/components/filter';
-import SearchBar from '@/components/searchBar';
+import SearchBar from '@/components/common/searchBar';
 // import plantData from './../../../../plant.json';
-import { getProductList } from '@/api/get-product';
+import { getProductList } from '@/lib/firebase/product/get';
 import { ProductLightProperties } from '@/types';
 
 export default async function ListPage({
@@ -67,9 +67,11 @@ export default async function ListPage({
         </aside>
         <section>
           <Suspense fallback={<div>loading..</div>}>
-            {filteredList.map((item) => (
-              <div key={item.id}>{item.name}</div>
-            ))}
+            <ul>
+              {filteredList.map((item) => (
+                <li key={item.id}>{item.name}</li>
+              ))}
+            </ul>
           </Suspense>
         </section>
       </main>

@@ -1,9 +1,11 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { useAuth } from '@/contexts/AuthContext';
 import NavAuth from './navAuth';
-import HamburgerMenu from './hamburger';
+import HamburgerMenu from '../common/hamburger';
 
 export default function Nav() {
   const { isAdmin } = useAuth();

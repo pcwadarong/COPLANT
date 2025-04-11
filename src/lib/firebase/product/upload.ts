@@ -1,9 +1,12 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
-import { storage, firestore } from '@/lib/firebaseConfig';
+import { storage, firestore } from '@/lib/firebase/firebaseConfig';
 import imageCompression from 'browser-image-compression';
 
-export default async function uploadProductImages(productId: string, files: File[]) {
+export async function uploadProductImages(
+  productId: string,
+  files: File[],
+) {
   const types = ['list', 'cover', 'detail1', 'detail2', 'detail3'];
   const urls: Record<string, string> = {};
 
@@ -24,7 +27,6 @@ export default async function uploadProductImages(productId: string, files: File
     }),
   );
 
-  // Firestore에 연결
   const docRef = doc(firestore, 'products', productId);
   await setDoc(
     docRef,

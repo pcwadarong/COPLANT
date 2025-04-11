@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { options } from '@/app/constants/filterOptions';
-import CustomCheckbox from '@/components/customCheckbox';
+import CustomCheckbox from '@/components/common/customCheckbox';
 
 export default function Filter() {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { adminFirestore } from '@/lib/firebase-admin';
+import { adminFirestore } from '@/lib/firebase/firebaseAdminConfig';
 import { FirebaseError } from 'firebase/app';
 import { ProductLightProperties } from '@/types';
 

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../lib/firebaseConfig'; // firebase.ts에서 export한 auth
+import { auth } from '../lib/firebase/firebaseConfig'; // firebase.ts에서 export한 auth
 
 type AuthContextType = {
   user: User | null;
@@ -10,7 +10,7 @@ type AuthContextType = {
   isAdmin: boolean;
 };
 
-const ADMIN_UIDS = ['admin@coplant.com'];
+const ADMIN_UIDS = ['nxwr9fTLAXM3uX68o479wDPAkuM2'];
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
     return () => unsubscribe(); // 구독 해제
   }, []);
-
+  
   return (
     <AuthContext.Provider value={{ user, loading, isAdmin }}>
       {children}

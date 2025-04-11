@@ -5,7 +5,7 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
-import { auth } from '../lib/firebaseConfig';
+import { auth } from '../lib/firebase/firebaseConfig';
 
 export async function signUpAction(_: any, formData: FormData) {
   const email = formData.get('email') as string | null;

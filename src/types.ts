@@ -21,7 +21,7 @@ export interface ProductLightProperties {
     size: string;
     water: string;
   };
-  imageUrls: ProductImageURLs;
+  
 }
 
 export interface ProductProperties extends ProductLightProperties{
