@@ -9,20 +9,26 @@ export interface ProductImageURLs {
   detail: string[];
 }
 
+type MultiSelectFilter = {
+  light: string[];
+  size: string[];
+  efficacy: string[];
+  feature: string[];
+};
+
+type SingleSelectFilter = {
+  difficulty: string;
+  water: string;
+};
+
+export type FilterState = MultiSelectFilter & SingleSelectFilter;
+
 export interface ProductLightProperties {
-  id?: string;
+  id: string;
   name: string;
   price?: number;
   description?: string;
-  filters?: {
-    difficulty: number;
-    efficacy: string;
-    feature: string;
-    light: string;
-    size: string;
-    water: string;
-  };
-  
+  filters?: FilterState;
 }
 
 export interface ProductProperties extends ProductLightProperties{
@@ -31,13 +37,6 @@ export interface ProductProperties extends ProductLightProperties{
   efficacy: string;
   humidity: string;
   light: string;
+  tags: string[];
 }
 
-export interface FilterState {
-  difficulty: string[];
-  light: string[];
-  water: string[];
-  size: string[];
-  efficacy: string[];
-  feature: string[];
-}

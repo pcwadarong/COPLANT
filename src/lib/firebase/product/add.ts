@@ -1,12 +1,16 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { storage, firestore } from '@/lib/firebase/firebaseConfig';
+
 import imageCompression from 'browser-image-compression';
 
-export async function uploadProductImages(
-  productId: string,
-  files: File[],
-) {
+import { ProductProperties } from '@/types';
+
+export async function addProduct(product: ProductProperties) {
+  await setDoc(doc(firestore, 'plants', product.id), product);
+}
+
+export async function uploadProductImages(productId: string, files: File[]) {
   const types = ['list', 'cover', 'detail1', 'detail2', 'detail3'];
   const urls: Record<string, string> = {};
 
@@ -27,16 +31,9 @@ export async function uploadProductImages(
     }),
   );
 
-  const docRef = doc(firestore, 'products', productId);
-  await setDoc(
-    docRef,
-    {
-      imageUrls: {
-        list: urls.list,
-        cover: urls.cover,
-        detail: [urls.detail1, urls.detail2, urls.detail3],
-      },
-    },
-    { merge: true },
-  );
+  return {
+    list: urls.list,
+    cover: urls.cover,
+    detail: [urls.detail1, urls.detail2, urls.detail3],
+  };
 }
