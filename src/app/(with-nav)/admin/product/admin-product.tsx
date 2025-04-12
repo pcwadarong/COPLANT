@@ -34,12 +34,12 @@ export default function AdminProductListItem({
     <li className="flex text-sm items-center">
       <span className="flex-8 p-3">{name}</span>
       <span className="flex-1 p-3 text-center border-x">
-        {price}
+        {price!.toLocaleString('ko-KR')}
       </span>
       <div className="flex-1 flex justify-center gap-2 p-3">
         <button
           type="button"
-          onClick={() => router.push(`/admin/products/${id}/edit`)}
+          onClick={() => router.push(`/admin/product/${id}/edit`)}
           className="text-green-900 hover:underline"
           aria-label={`${name} 수정`}
         >
