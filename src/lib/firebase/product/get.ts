@@ -17,6 +17,7 @@ export async function getProductList(): Promise<ProductLightProperties[]> {
         name: data.name,
         filters: data.filters,
         description: data.description,
+        price: data.price,
       };
     });
 

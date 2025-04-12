@@ -10,6 +10,7 @@ import { ProductLightProperties } from '@/types';
 export default function AdminProductListItem({
   id,
   name,
+  price,
 }: ProductLightProperties) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
@@ -30,12 +31,16 @@ export default function AdminProductListItem({
   };
 
   return (
-    <li className="mb-4 flex justify-between">
-      <h3 className="text-lg font-semibold">{name}</h3>
-      <div className="mt-2 flex gap-2">
+    <li className="flex text-sm items-center">
+      <span className="flex-8 p-3">{name}</span>
+      <span className="flex-1 p-3 text-center border-x">
+        {price}
+      </span>
+      <div className="flex-1 flex justify-center gap-2 p-3">
         <button
           type="button"
           onClick={() => router.push(`/admin/products/${id}/edit`)}
+          className="text-green-900 hover:underline"
           aria-label={`${name} 수정`}
         >
           수정
@@ -44,6 +49,7 @@ export default function AdminProductListItem({
           type="button"
           onClick={handleDeleteClick}
           disabled={deleting}
+          className="text-apricot-600 hover:underline"
           aria-label={`${name} 삭제`}
         >
           {deleting ? '삭제 중...' : '삭제'}
