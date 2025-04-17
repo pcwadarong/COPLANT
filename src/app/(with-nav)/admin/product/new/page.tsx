@@ -106,9 +106,9 @@ export default function AdminPage() {
       <h1 className="text-xl font-bold">신제품 등록</h1>
 
       <ProductFormFields form={form} onChange={handleInputChange} />
-      <hr className='border border-gray-400'/>
+      <hr className='border border-stone-400'/>
       <FilterSelector filters={form.filters ?? defaultFilters} onChange={handleFilterChange} />
-      <hr className='border border-gray-400'/>
+      <hr className='border border-stone-400'/>
       <TagSelector
         selectedTags={form.tags}
         onToggleTag={handleTagToggle}
@@ -120,7 +120,7 @@ export default function AdminPage() {
         type="submit"
         disabled={!isFormValid || isPending}
         className={` rounded p-2 mt-6 ${
-          !isFormValid || isPending ? 'bg-gray-300' : 'bg-apricot-300'
+          !isFormValid || isPending ? 'bg-stone-300' : 'bg-apricot-300'
         }`}
       >
         {isPending ? '처리 중...' : '제출하기'}

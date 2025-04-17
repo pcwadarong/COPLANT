@@ -34,7 +34,7 @@ export default function TagSelector({
             key={tag}
             type="button"
             onClick={() => onToggleTag(tag)}
-            className={`px-2 py-1 rounded border border-gray-400 cursor-pointer hover:bg-gray-400/20 ${
+            className={`px-2 py-1 rounded border border-stone-400 cursor-pointer hover:bg-stone-400/20 ${
               selectedTags.includes(tag) ? 'hidden' : 'inline-block'
             }`}
             aria-label={`태그 ${tag} ${
@@ -54,7 +54,7 @@ export default function TagSelector({
           onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
           placeholder="태그 추가"
           aria-label="사용자 정의 태그 입력"
-          className="border p-2 rounded border-gray-400 flex-1"
+          className="border p-2 rounded border-stone-400 flex-1"
         />
         <button
           type="button"
@@ -69,18 +69,17 @@ export default function TagSelector({
         {selectedTags.map((tag) => (
           <span
             key={tag}
-            className="flex px-3 py-1 items-center gap-1 bg-green-300 border border-gray-300 rounded-full text-sm"
+            className="flex px-3 py-1 items-center gap-1 bg-green-300 border border-stone-300 rounded-full text-sm"
           >
             {tag}
             <button
               type="button"
               onClick={() => onDeleteTag(tag)}
               aria-label={`${tag} 삭제`}
-              className="ml-1 text-gray-500 hover:text-red-600 hover:cursor-pointer"
+              className="ml-1 text-stone-500 hover:text-red-600 hover:cursor-pointer"
             >
               &times;
             </button>
-            <span className="sr-only">삭제</span>
           </span>
         ))}
       </div>

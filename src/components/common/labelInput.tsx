@@ -28,7 +28,7 @@ export function LabeledInput({
         onChange={onChange}
         required={required}
         aria-label={aria || label}
-        className="flex-1 border rounded p-2 border-gray-400"
+        className="flex-1 border rounded p-2 border-stone-400"
       />
     </div>
   );
@@ -64,7 +64,7 @@ export function LabeledTextarea({
         onChange={onChange}
         required={required}
         aria-label={aria || label}
-        className="flex-1 border rounded p-2 border-gray-400"
+        className="flex-1 border rounded p-2 border-stone-400"
       />
     </div>
   );
