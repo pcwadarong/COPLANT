@@ -4,8 +4,12 @@ import { useEffect, useState } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { LabeledInput, LabeledTextarea } from '@/components/common/labelInput';
+import CustomCheckbox from '@/components/common/customCheckbox';
+
 import addProductAction from '@/actions/add-product';
 import { options } from '@/app/constants/filterOptions';
+import { presetTags } from '@/app/constants/presetTags';
 import { ProductProperties, FilterState } from '@/types';
 
 const defaultFilters: FilterState = {
@@ -16,20 +20,6 @@ const defaultFilters: FilterState = {
   efficacy: [],
   feature: [],
 };
-
-const presetTags = [
-  '초보추천',
-  '잎을 감상하는',
-  '선물용',
-  '낮은 조도',
-  '반려동물에게 안전한',
-  '잎이 두꺼운',
-  '목대 있는',
-  '튼튼함',
-  '빛이 적어도 되는',
-  '물이 적어도 되는',
-  '하트모양 잎',
-];
 
 export default function AdminPage() {
   const router = useRouter();
@@ -57,11 +47,9 @@ export default function AdminPage() {
   useEffect(() => {
     if (result) {
       if (!result.status) alert(result.error);
-      else {
-        router.push('/admin/product');
-      }
+      else router.push('/admin/product');
     }
-  }, [result]);
+  }, [result, router]);
 
   const handleInputChange =
     (field: keyof ProductProperties) =>
@@ -100,7 +88,7 @@ export default function AdminPage() {
     setForm((prev) => {
       const set = new Set(prev.tags);
       if (set.has(tag)) set.delete(tag);
-        else set.add(tag);
+      else set.add(tag);
       return { ...prev, tags: Array.from(set) };
     });
   };
@@ -116,87 +104,100 @@ export default function AdminPage() {
     form.name && form.scientificName && form.price && form.description;
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form
+      action={formAction}
+      className="gap-4 max-w-3xl flex flex-col m-auto my-10 px-4"
+    >
       <h1 className="text-xl font-bold">신제품 등록</h1>
 
-      <input
-        placeholder="상품명"
+      <LabeledInput
+        id="name"
+        label="상품명"
         value={form.name}
         onChange={handleInputChange('name')}
         required
       />
-      <textarea
-        placeholder="설명"
+      <LabeledInput
+        id="scientificName"
+        label="학명"
+        value={form.scientificName}
+        onChange={handleInputChange('scientificName')}
+      />
+      <LabeledTextarea
+        id="description"
+        label="상품 설명"
         value={form.description}
         onChange={handleInputChange('description')}
         required
       />
-      <input
-        placeholder="가격"
-        type="number"
+      <LabeledInput
+        id="price"
+        label="상품 가격"
         value={form.price}
         onChange={handleInputChange('price')}
+        type="number"
       />
-
-      <input
-        placeholder="학명"
-        value={form.scientificName}
-        onChange={handleInputChange('scientificName')}
-      />
-      <textarea
-        placeholder="원산지"
+      <LabeledTextarea
+        id="origin"
+        label="원산지"
         value={form.origin}
         onChange={handleInputChange('origin')}
       />
-      <textarea
-        placeholder="효능"
+      <LabeledTextarea
+        id="efficacy"
+        label="효능"
         value={form.efficacy}
         onChange={handleInputChange('efficacy')}
       />
-      <textarea
-        placeholder="습도"
+      <LabeledTextarea
+        id="humidity"
+        label="습도"
         value={form.humidity}
         onChange={handleInputChange('humidity')}
       />
-      <textarea
-        placeholder="빛"
+      <LabeledTextarea
+        id="light"
+        label="빛"
         value={form.light}
         onChange={handleInputChange('light')}
       />
 
       <fieldset>
-        <legend>필터</legend>
+        <legend className="font-bold text-lg">필터</legend>
         {Object.entries(options).map(([key, { legend, items }]) => {
           const isMulti = Array.isArray(
             defaultFilters[key as keyof FilterState],
           );
           return (
-            <div key={key}>
+            <div key={key} className="my-2">
               <p>{legend}</p>
-              {items.map(({ label, value }) => (
-                <label key={value}>
-                  <input
-                    type={isMulti ? 'checkbox' : 'radio'}
-                    name={key}
-                    value={value}
-                    checked={
-                      isMulti
-                        ? form.filters?.[key as keyof FilterState]?.includes(
-                            value,
-                          )
-                        : form.filters?.[key as keyof FilterState] === value
-                    }
-                    onChange={() =>
-                      handleFilterChange(
-                        key as keyof FilterState,
-                        value,
-                        isMulti,
-                      )
-                    }
-                  />
-                  {label}
-                </label>
-              ))}
+              <div className="flex flex-wrap gap-4">
+                {items.map(({ label, value }) => (
+                  <label key={value} className="flex items-center gap-1">
+                    <input
+                      type={isMulti ? 'checkbox' : 'radio'}
+                      name={key}
+                      value={value}
+                      checked={
+                        isMulti
+                          ? form.filters?.[key as keyof FilterState]?.includes(
+                              value,
+                            )
+                          : form.filters?.[key as keyof FilterState] === value
+                      }
+                      onChange={() =>
+                        handleFilterChange(
+                          key as keyof FilterState,
+                          value,
+                          isMulti,
+                        )
+                      }
+                      aria-label={`${legend} - ${label}`}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
             </div>
           );
         })}
@@ -213,6 +214,9 @@ export default function AdminPage() {
               className={`px-2 py-1 rounded border ${
                 form.tags.includes(tag) ? 'bg-green-200' : 'bg-gray-100'
               }`}
+              aria-label={`태그 ${tag} ${
+                form.tags.includes(tag) ? '삭제' : '추가'
+              }`}
             >
               {tag}
             </button>
@@ -224,6 +228,8 @@ export default function AdminPage() {
             value={customTag}
             onChange={(e) => setCustomTag(e.target.value)}
             placeholder="태그 추가"
+            aria-label="사용자 정의 태그 입력"
+            className="border p-2 rounded border-gray-400"
           />
           <button type="button" onClick={handleCustomTagAdd}>
             추가
@@ -231,7 +237,13 @@ export default function AdminPage() {
         </div>
       </fieldset>
 
-      <button type="submit" disabled={!isFormValid || isPending}>
+      <button
+        type="submit"
+        disabled={!isFormValid || isPending}
+        className={` rounded p-2 ${
+          !isFormValid || isPending ? 'bg-gray-300' : 'bg-apricot-300'
+        }`}
+      >
         {isPending ? '처리 중...' : '제출하기'}
       </button>
     </form>

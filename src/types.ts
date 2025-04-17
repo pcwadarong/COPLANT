@@ -34,7 +34,8 @@ export interface ProductLightProperties {
 export interface ProductProperties extends ProductLightProperties{
   scientificName: string;
   origin: string;
-  efficacy: string;
+  warning?: string;
+  efficacy?: string;
   humidity: string;
   light: string;
   tags: string[];
