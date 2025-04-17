@@ -4,6 +4,8 @@ import { clsx } from 'clsx';
 
 interface CustomRadioProps {
   id: string;
+  name: string;
+  value?: string;
   label: string;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,6 +23,8 @@ interface CustomRadioProps {
 
 const CustomRadio: React.FC<CustomRadioProps> = ({
   id,
+  name,
+  value,
   label,
   checked,
   onChange,
@@ -45,6 +49,8 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
     >
       <input
         id={id}
+        name={name}
+        value={value}
         type="radio"
         checked={checked}
         onChange={onChange}

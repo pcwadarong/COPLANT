@@ -23,6 +23,7 @@ export function LabeledInput({
       </label>
       <input
         id={id}
+        name={id}
         type={type}
         value={value}
         onChange={onChange}
@@ -59,6 +60,7 @@ export function LabeledTextarea({
       </label>
       <textarea
         id={id}
+        name={id}
         value={value}
         placeholder={placeholder}
         onChange={onChange}

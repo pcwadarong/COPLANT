@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import FilterSelector from './filterSelector';
-import ProductFormFields from './formField';
-import TagSelector from './tagSelector';
+import FilterSelector from '../../../../../components/admin/filterSelector';
+import ProductFormFields from '../../../../../components/admin/formField';
+import ImageUploader from '../../../../../components/admin/ImageUploader';
+import TagSelector from '../../../../../components/admin/tagSelector';
 
 import addProductAction from '@/actions/add-product';
-import { ProductProperties, FilterState } from '@/types';
+import { ProductFormState, FilterState } from '@/types';
 
 const defaultFilters: FilterState = {
   difficulty: '',
@@ -23,21 +24,30 @@ const defaultFilters: FilterState = {
 export default function AdminPage() {
   const router = useRouter();
 
-  const [form, setForm] = useState<ProductProperties>({
+  const [form, setForm] = useState<ProductFormState>({
     id: '',
     name: '',
     price: 0,
     description: '',
     scientificName: '',
     origin: '',
+    warning: '',
     efficacy: '',
     humidity: '',
     light: '',
+    images: {
+      list: undefined,
+      cover: undefined,
+      details: [],
+    },
     filters: defaultFilters,
     tags: [],
   });
 
-  const [result, formAction, isPending] = useActionState(addProductAction, null);
+  const [result, formAction, isPending] = useActionState(
+    addProductAction,
+    null,
+  );
 
   useEffect(() => {
     if (result) {
@@ -46,7 +56,8 @@ export default function AdminPage() {
     }
   }, [result, router]);
 
-  const handleInputChange = (field: keyof ProductProperties) =>
+  const handleInputChange =
+    (field: keyof ProductFormState) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const value = e.target.value;
       const id =
@@ -60,10 +71,25 @@ export default function AdminPage() {
       }));
     };
 
+  const handleImageChange = (
+    field: 'list' | 'cover' | 'details',
+    files: FileList | null,
+  ) => {
+    if (!files) return;
+
+    setForm((prev) => ({
+      ...prev,
+      images: {
+        ...prev.images,
+        [field]: field === 'details' ? Array.from(files) : files[0],
+      },
+    }));
+  };
+
   const handleFilterChange = (
     key: keyof FilterState,
     value: string,
-    isMulti: boolean
+    isMulti: boolean,
   ) => {
     setForm((prev) => {
       const current = prev.filters ?? defaultFilters;
@@ -106,9 +132,14 @@ export default function AdminPage() {
       <h1 className="text-xl font-bold">신제품 등록</h1>
 
       <ProductFormFields form={form} onChange={handleInputChange} />
-      <hr className='border border-stone-400'/>
-      <FilterSelector filters={form.filters ?? defaultFilters} onChange={handleFilterChange} />
-      <hr className='border border-stone-400'/>
+      <hr className="border border-stone-400" />
+      <ImageUploader onChange={handleImageChange} />
+      <hr className="border border-stone-400" />
+      <FilterSelector
+        filters={form.filters ?? defaultFilters}
+        onChange={handleFilterChange}
+      />
+      <hr className="border border-stone-400" />
       <TagSelector
         selectedTags={form.tags}
         onToggleTag={handleTagToggle}

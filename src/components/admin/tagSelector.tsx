@@ -66,7 +66,7 @@ export default function TagSelector({
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {selectedTags.map((tag) => (
+        {selectedTags.map((tag, idx) => (
           <span
             key={tag}
             className="flex px-3 py-1 items-center gap-1 bg-green-300 border border-stone-300 rounded-full text-sm"
@@ -80,6 +80,7 @@ export default function TagSelector({
             >
               &times;
             </button>
+            <input key={idx} type="hidden" name="tags" value={tag} />
           </span>
         ))}
       </div>

@@ -1,10 +1,10 @@
-import { ProductProperties } from '@/types';
+import { ProductFormState } from '@/types';
 import { LabeledInput, LabeledTextarea } from '@/components/common/labelInput';
 
 interface Props {
-  form: ProductProperties;
+  form: ProductFormState;
   onChange: (
-    field: keyof ProductProperties,
+    field: keyof ProductFormState,
   ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 

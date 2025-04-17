@@ -4,6 +4,8 @@ import { clsx } from 'clsx';
 
 interface CustomCheckboxProps {
   id: string;
+  name?: string;
+  value?: string;
   label: string;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,6 +23,8 @@ interface CustomCheckboxProps {
 
 const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   id,
+  name,
+  value,
   label,
   checked,
   onChange,
@@ -35,7 +39,6 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   labelSize = 'text-sm',
   disabled = false,
 }) => {
-
   return (
     <label
       htmlFor={id}
@@ -46,6 +49,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
     >
       <input
         id={id}
+        name={name}
+        value={value}
         type="checkbox"
         checked={checked}
         onChange={onChange}

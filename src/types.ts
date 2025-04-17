@@ -23,7 +23,7 @@ type SingleSelectFilter = {
 
 export type FilterState = MultiSelectFilter & SingleSelectFilter;
 
-export interface ProductLightProperties {
+export interface ProductPreview {
   id: string;
   name: string;
   price?: number;
@@ -31,7 +31,13 @@ export interface ProductLightProperties {
   filters?: FilterState;
 }
 
-export interface ProductProperties extends ProductLightProperties{
+export interface ProductImageURLs {
+  list: string;
+  cover: string;
+  detail: string[];
+}
+
+export interface ProductProperties extends ProductPreview {
   scientificName: string;
   origin: string;
   warning?: string;
@@ -39,5 +45,13 @@ export interface ProductProperties extends ProductLightProperties{
   humidity: string;
   light: string;
   tags: string[];
+  imageUrls: ProductImageURLs;
 }
 
+export interface ProductFormState extends Omit<ProductProperties, 'imageUrls'> {
+  images: {
+    list?: File;
+    cover?: File;
+    details: File[];
+  };
+}

@@ -33,6 +33,9 @@ export default function FilterSelector({
             <div className="flex flex-wrap gap-4">
               {items.map(({ label, value }) => {
                 const inputId = `filter-${key}-${value}`;
+                const inputName = `filter${
+                  key.charAt(0).toUpperCase() + key.slice(1)
+                }`;
                 const isChecked = isMulti
                   ? filters?.[key as keyof FilterState]?.includes(value)
                   : filters?.[key as keyof FilterState] === value;
@@ -44,6 +47,8 @@ export default function FilterSelector({
                   <CustomCheckbox
                     key={value}
                     id={inputId}
+                    name={inputName}
+                    value={value}
                     label={label}
                     checked={isChecked}
                     onChange={handleChange}
@@ -52,6 +57,8 @@ export default function FilterSelector({
                   <CustomRadio
                     key={value}
                     id={inputId}
+                    name={inputName}
+                    value={value}
                     label={label}
                     checked={isChecked}
                     onChange={handleChange}
