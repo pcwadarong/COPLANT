@@ -38,6 +38,7 @@ export function LabeledTextarea({
   id,
   label,
   value,
+  placeholder,
   onChange,
   required = false,
   aria,
@@ -45,6 +46,7 @@ export function LabeledTextarea({
   id: string;
   label: string;
   value: string | undefined;
+  placeholder?: string | undefined;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
   aria?: string;
@@ -58,6 +60,7 @@ export function LabeledTextarea({
       <textarea
         id={id}
         value={value}
+        placeholder={placeholder}
         onChange={onChange}
         required={required}
         aria-label={aria || label}
