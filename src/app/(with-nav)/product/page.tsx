@@ -6,7 +6,7 @@ import Filter from './filter';
 // import plantData from './../../../../plant.json';
 import { getActiveFilters, getFilteredList } from '@/lib/utils/filters';
 import { getProductList } from '@/lib/firebase/product/get';
-import { ProductLightProperties } from '@/types';
+import { ProductPreview } from '@/types';
 
 export const dynamic = 'force-static';
 
@@ -17,7 +17,7 @@ export default async function ListPage({
 }) {
   // const rawList = plantData;
   try {
-    const rawList: ProductLightProperties[] = await getProductList();
+    const rawList: ProductPreview[] = await getProductList();
     const resolvedParams = await searchParams;
     const { q = '' } = resolvedParams;
     const activeFilters = getActiveFilters(resolvedParams);

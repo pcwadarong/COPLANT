@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { useAuth } from '@/contexts/AuthContext';
-import NavAuth from './navAuth';
+import NavAuth from './nav-auth';
 import HamburgerMenu from './hamburger';
 
 export default function Nav() {

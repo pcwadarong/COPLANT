@@ -2,11 +2,11 @@ import { getProductList } from '@/lib/firebase/product/get';
 import AdminProductListItem from './admin-product';
 import AddProductButton from './add-product-button';
 
-import { ProductLightProperties } from '@/types';
+import { ProductPreview } from '@/types';
 
 export default async function AdminProductListPage() {
   try {
-    const list: ProductLightProperties[] = await getProductList();
+    const list: ProductPreview[] = await getProductList();
 
     return (
       <section

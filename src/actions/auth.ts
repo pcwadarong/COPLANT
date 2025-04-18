@@ -1,10 +1,12 @@
+'use server';
+
 import {
   handleAuth,
   signOutWithFirebase,
   resetPasswordWithFirebase,
 } from '@/lib/firebase/auth';
 
-export async function signUpAction(_: any, formData: FormData) {
+export async function signUpAction(_: unknown, formData: FormData) {
   const email = formData.get('email') as string | null;
   const password = formData.get('password') as string | null;
 
@@ -18,7 +20,7 @@ export async function signUpAction(_: any, formData: FormData) {
   return await handleAuth('signup', email, password);
 }
 
-export async function signInAction(_: any, formData: FormData) {
+export async function signInAction(_: unknown, formData: FormData) {
   const email = formData.get('email') as string | null;
   const password = formData.get('password') as string | null;
 
@@ -36,7 +38,7 @@ export async function signOutAction() {
   return await signOutWithFirebase();
 }
 
-export async function resetPWAction(_: any, formData: FormData) {
+export async function resetPWAction(_: unknown, formData: FormData) {
   const email = formData.get('email') as string | null;
 
   if (!email) {

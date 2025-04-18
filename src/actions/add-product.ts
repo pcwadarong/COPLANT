@@ -1,6 +1,8 @@
+'use server';
+
 import { addProduct, uploadProductImages } from '@/lib/firebase/product/add';
 
-export default async function addProductAction(_: any, formData: FormData) {
+export default async function addProductAction(_: unknown, formData: FormData) {
   const id = (formData.get('id') ?? '') as string;
   const name = (formData.get('name') ?? '') as string;
   const scientificName = (formData.get('scientificName') ?? '') as string;

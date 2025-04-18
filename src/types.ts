@@ -23,9 +23,12 @@ type SingleSelectFilter = {
 
 export type FilterState = MultiSelectFilter & SingleSelectFilter;
 
-export interface ProductPreview {
+export interface ProductName {
   id: string;
   name: string;
+}
+
+export interface ProductPreview extends ProductName {
   price?: number;
   description?: string;
   filters?: FilterState;

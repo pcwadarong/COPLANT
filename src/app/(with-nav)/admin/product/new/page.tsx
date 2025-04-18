@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import FilterSelector from '../../../../../components/admin/filterSelector';
-import ProductFormFields from '../../../../../components/admin/formField';
-import ImageUploader from '../../../../../components/admin/ImageUploader';
-import TagSelector from '../../../../../components/admin/tagSelector';
+import FilterSelector from '../../../../../components/admin/filter-selector';
+import ProductFormFields from '../../../../../components/admin/form-field';
+import ImageUploader from '../../../../../components/admin/image-uploader';
+import TagSelector from '../../../../../components/admin/tag-selector';
 
 import addProductAction from '@/actions/add-product';
 import { ProductFormState, FilterState } from '@/types';

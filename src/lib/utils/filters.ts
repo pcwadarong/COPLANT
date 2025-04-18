@@ -1,4 +1,4 @@
-import { ProductLightProperties } from '@/types';
+import { ProductPreview } from '@/types';
 
 export function getActiveFilters(params: Record<string, string | undefined>) {
   const filters: Record<string, string[]> = {};
@@ -13,7 +13,7 @@ export function getActiveFilters(params: Record<string, string | undefined>) {
 }
 
 export function getFilteredList(
-  list: ProductLightProperties[],
+  list: ProductPreview[],
   query: string,
   filters: Record<string, string[]>,
 ) {

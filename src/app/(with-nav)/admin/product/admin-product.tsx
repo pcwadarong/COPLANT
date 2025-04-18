@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 
 import deleteProduct from '@/lib/firebase/product/delete';
 
-import { ProductLightProperties } from '@/types';
+import { ProductPreview } from '@/types';
 
 export default function AdminProductListItem({
   id,
   name,
   price,
-}: ProductLightProperties) {
+}: ProductPreview) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
 

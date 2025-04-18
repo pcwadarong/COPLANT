@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import CustomCheckbox from '../common/customCheckbox';
+
+import { ProductName } from '@/types';
+import { fetchProductNamesOnServer } from '@/actions/get-product';
 import { validateSignInput } from '@/lib/utils/validateSignInput';
 
 interface Props {
@@ -65,6 +68,12 @@ const SubscribeEmailForm = () => {
 };
 
 export default function Drawer({ isOpen, onClose }: Props) {
+  const [products, setProducts] = useState<ProductName[]>([]);
+
+  useEffect(() => {
+    fetchProductNamesOnServer().then(setProducts);
+  }, []);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -110,13 +119,12 @@ export default function Drawer({ isOpen, onClose }: Props) {
                 <Link href="/product" onClick={onClose}>
                   전체 보기
                 </Link>
-                {/* map으로 수정 예정 */}
-                {/* <li><Link href={`/product/${id}`}></Link>{title}</li> */}
-                <li>
-                  <Link href={`/product/arencia`} onClick={onClose}>
-                    아렌시아
-                  </Link>
-                </li>
+                {products.map((item) => (
+                  <li key={item.id}>
+                    <Link href={`/product/${item.id}`}></Link>
+                    {item.name}
+                  </li>
+                ))}
               </ul>
             </section>
           </div>

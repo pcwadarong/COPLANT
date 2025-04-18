@@ -6,7 +6,7 @@ export default async function deleteProduct(id: string) {
   if (!id)
     return {
       status: false,
-      error: '삭제할 리뷰가 없습니다.',
+      error: '삭제할 상품이 없습니다.',
     };
 
   try {
@@ -17,7 +17,7 @@ export default async function deleteProduct(id: string) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         secret: process.env.NEXT_PUBLIC_REVALIDATE_SECRET,
-        paths: ['/product', '/admin'],
+        paths: ['/(with-nav)','/product', '/admin'],
       }),
     });
 
