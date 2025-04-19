@@ -1,7 +1,7 @@
 import CustomCheckbox from '@/components/common/customCheckbox';
 import CustomRadio from '@/components/common/customRadio';
 
-import { options } from '@/app/constants/filterOptions';
+import { options } from '@/app/constants/filter-options';
 import { FilterState } from '@/types';
 
 interface FilterSelectorProps {

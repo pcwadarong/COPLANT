@@ -1,6 +1,6 @@
 import { adminFirestore } from '@/lib/firebase/firebaseAdminConfig';
 import { FirebaseError } from 'firebase/app';
-import { ProductPreview } from '@/types';
+import { ProductPreview, ProductProperties } from '@/types';
 
 export async function getProductList(): Promise<ProductPreview[]> {
   try {
@@ -47,6 +47,29 @@ export async function getProductName() {
     });
 
     return plants;
+  } catch (err) {
+    if (err instanceof FirebaseError) {
+      throw new Error(`Firebase loading error: ${err.code}`);
+    }
+    throw new Error(`Firebase loading failed: ${(err as Error).message}`);
+  }
+}
+
+export async function getProductDetail(id: string): Promise<ProductProperties> {
+  try {
+    const docRef = adminFirestore.collection('plants').doc(id);
+    const docSnap = await docRef.get();
+
+    if (!docSnap.exists) {
+      throw new Error(`상품이 존재하지 않습니다.`);
+    }
+
+    const data = docSnap.data() as ProductProperties;
+
+    return {
+      ...data,
+      id: docSnap.id,
+    };
   } catch (err) {
     if (err instanceof FirebaseError) {
       throw new Error(`Firebase loading error: ${err.code}`);

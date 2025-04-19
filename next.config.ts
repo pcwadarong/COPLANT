@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  images: { domains: ['firebase.google.com'] },
+  images: { domains: ['firebasestorage.googleapis.com'] },
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb',

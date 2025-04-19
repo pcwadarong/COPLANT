@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { presetTags } from '@/app/constants/presetTags';
+import { presetTags } from '@/app/constants/preset-tags';
 
 interface TagSelectorProps {
   selectedTags: string[];

@@ -3,24 +3,26 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { z } from 'zod';
 
 import CustomCheckbox from '../common/customCheckbox';
 
 import { ProductName } from '@/types';
 import { fetchProductNamesOnServer } from '@/actions/get-product';
-import { validateSignInput } from '@/lib/utils/validateSignInput';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const emailSchema = z.string().email({ message: '유효한 이메일을 입력해주세요.' });
+
 const SubscribeEmailForm = () => {
   const [email, setEmail] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [touched, setTouched] = useState(false);
 
-  const isEmailValid = validateSignInput('email', email);
+  const isEmailValid = emailSchema.safeParse(email).success;
   const isFormValid = isEmailValid && agreed;
 
   const onSubmitButton = () => {

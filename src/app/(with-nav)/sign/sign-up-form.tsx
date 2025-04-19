@@ -5,22 +5,54 @@ import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { signUpAction } from '@/actions/auth';
-import { validateSignInput } from '@/lib/utils/validateSignInput';
+import { signUpSchema } from '@/lib/validation/sign-schema';
 
 export function SignUp() {
   const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [touched, setTouched] = useState({ email: false, password: false });
-
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirmPassword: false,
+  });
   const [result, formAction, isPending] = useActionState(signUpAction, null);
 
-  const isEmailValid = validateSignInput('email', email);
-  const isPasswordValid = validateSignInput('password', password);
-  const doPasswordsMatch = password === passwordConfirm;
-  const isFormValid = isEmailValid && isPasswordValid && doPasswordsMatch;
+  const handleChange =
+    (field: keyof typeof formData) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  const handleBlur = (field: keyof typeof formData) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    const result = signUpSchema.safeParse(formData);
+    if (!result.success) {
+      const issue = result.error.issues.find((e) => e.path[0] === field);
+      if (issue) setErrors((prev) => ({ ...prev, [field]: issue.message }));
+    } else setErrors((prev) => ({ ...prev, [field]: '' }));
+  };
+
+  const isFormValid =
+    !errors.email &&
+    !errors.password &&
+    !errors.confirmPassword &&
+    formData.email &&
+    formData.password &&
+    formData.confirmPassword;
 
   useEffect(() => {
     const handleAuthRedirect = async () => {
@@ -29,9 +61,7 @@ export function SignUp() {
           alert(result.error);
         } else {
           await router.push('/');
-          setEmail('');
-          setPassword('');
-          setPasswordConfirm('');
+          setFormData({ email: '', password: '', confirmPassword: '' });
         }
       }
     };
@@ -39,87 +69,77 @@ export function SignUp() {
     handleAuthRedirect();
   }, [result, router]);
 
-  const handleBlur = (field: 'email' | 'password') => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
-  };
-
   return (
     <form action={formAction} noValidate aria-describedby="signup-form-desc">
       <div id="signup-form-desc" className="sr-only">
-        회원가입 폼입니다. 이메일, 비밀번호, 비밀번호 확인을 입력하세요.
+        회원가입 폼입니다. 이메일, 비밀번호, 비밀번호 확인란을 입력해주세요.
       </div>
 
-      <label htmlFor="newEmail">이메일 주소</label>
-      {!isEmailValid && touched.email && (
-        <span id="email-error" className="ml-4 text-sm text-red-600">
-          유효한 이메일 주소를 입력하세요.
-        </span>
-      )}
-      <input
-        id="newEmail"
-        name="email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onBlur={() => handleBlur('email')}
-        autoComplete="email"
-        required
-        aria-invalid={!isEmailValid}
-        aria-describedby={
-          !isEmailValid && touched.email ? 'email-error' : undefined
-        }
-        className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
-      />
-
-      <label htmlFor="newPW">비밀번호</label>
-      {!isPasswordValid && touched.password && (
-        <span id="password-error" className="ml-4 text-sm text-red-600">
-          비밀번호 형식을 확인해주세요.
-        </span>
-      )}
-      <input
-        id="newPW"
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="영문, 숫자, 특수문자 포함 8~20자"
-        onBlur={() => handleBlur('password')}
-        autoComplete="new-password"
-        required
-        aria-invalid={!isPasswordValid}
-        aria-describedby={
-          !isPasswordValid && touched.password
-            ? 'password-error'
-            : 'signup-form-desc'
-        }
-        className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
-      />
-
-      <label htmlFor="confirmPW">비밀번호 확인</label>
-      {!doPasswordsMatch && passwordConfirm.length > 0 && (
-        <span id="confirm-error" className="ml-4 text-sm text-red-600">
-          비밀번호가 일치하지 않습니다.
-        </span>
-      )}
-      <input
-        id="confirmPW"
-        type="password"
-        value={passwordConfirm}
-        onChange={(e) => setPasswordConfirm(e.target.value)}
-        autoComplete="new-password"
-        required
-        aria-invalid={!doPasswordsMatch}
-        aria-describedby={
-          !doPasswordsMatch ? 'confirm-error' : 'signup-form-desc'
-        }
-        className="mt-2 mb-6 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
-      />
+      {(['email', 'password', 'confirmPassword'] as const).map((field) => (
+        <div key={field} className="relative">
+          <label htmlFor={field}>
+            {field === 'email'
+              ? '이메일 주소'
+              : field === 'password'
+              ? '비밀번호'
+              : '비밀번호 확인'}
+          </label>
+          {errors[field] && touched[field] && (
+            <span id={`${field}-error`} className="ml-4 text-sm text-red-600">
+              {errors[field]}
+            </span>
+          )}
+          <input
+            id={field}
+            name={field}
+            type={
+              field === 'email'
+                ? 'email'
+                : showPassword[field]
+                ? 'text'
+                : 'password'
+            }
+            value={formData[field]}
+            onChange={handleChange(field)}
+            onBlur={() => handleBlur(field)}
+            autoComplete={field === 'email' ? 'email' : 'new-password'}
+            required
+            aria-invalid={!!errors[field]}
+            aria-describedby={
+              errors[field] && touched[field]
+                ? `${field}-error`
+                : 'signup-form-desc'
+            }
+            placeholder={
+              field === 'password'
+                ? '영문, 숫자, 특수문자 포함 8~20자'
+                : undefined
+            }
+            className={`mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide ${
+              field !== 'email' ? 'pr-15' : ''
+            }`}
+          />
+          {field !== 'email' && (
+            <button
+              type="button"
+              onClick={() =>
+                setShowPassword((prev) => ({
+                  ...prev,
+                  [field]: !prev[field],
+                }))
+              }
+              className="text-sm absolute right-3 bottom-6.5"
+            >
+              {showPassword[field] ? '숨기기' : '보기'}
+            </button>
+          )}
+        </div>
+      ))}
 
       <div className="flex justify-end">
         <button
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || isPending}
           className={`rounded-xl px-6 py-1.5 text-white bg-apricot-600 ${
             isFormValid
               ? 'cursor-pointer hover:shadow'

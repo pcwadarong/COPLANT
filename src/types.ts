@@ -3,20 +3,14 @@ export type ActionState = {
   error?: string;
 };
 
-export interface ProductImageURLs {
-  list: string;
-  cover: string;
-  detail: string[];
-}
-
-type MultiSelectFilter = {
+export type MultiSelectFilter = {
   light: string[];
   size: string[];
   efficacy: string[];
   feature: string[];
 };
 
-type SingleSelectFilter = {
+export type SingleSelectFilter = {
   difficulty: string;
   water: string;
 };
@@ -37,24 +31,34 @@ export interface ProductPreview extends ProductName {
 export interface ProductImageURLs {
   list: string;
   cover: string;
-  detail: string[];
+  details: string[];
+}
+
+export interface PartialProductImageURLs {
+  list?: string;
+  cover?: string;
+  details?: string[];
+}
+
+export interface PartialProductImageFiles {
+  list?: File;
+  cover?: File;
+  details: File[];
 }
 
 export interface ProductProperties extends ProductPreview {
   scientificName: string;
-  origin: string;
-  warning?: string;
   efficacy?: string;
+  warning?: string;
   humidity: string;
   light: string;
+  origin: string;
+  temperature: string;
+  watering: string;
   tags: string[];
   imageUrls: ProductImageURLs;
 }
 
 export interface ProductFormState extends Omit<ProductProperties, 'imageUrls'> {
-  images: {
-    list?: File;
-    cover?: File;
-    details: File[];
-  };
+  images: PartialProductImageFiles;
 }
