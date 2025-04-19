@@ -22,12 +22,6 @@ export interface ProductName {
   name: string;
 }
 
-export interface ProductPreview extends ProductName {
-  price?: number;
-  description?: string;
-  filters?: FilterState;
-}
-
 export interface ProductImageURLs {
   list: string;
   cover: string;
@@ -46,6 +40,13 @@ export interface PartialProductImageFiles {
   details: File[];
 }
 
+export interface ProductPreview extends ProductName {
+  price?: number;
+  description?: string;
+  filters?: FilterState;
+  imageUrls: ProductImageURLs;
+}
+
 export interface ProductProperties extends ProductPreview {
   scientificName: string;
   efficacy?: string;
@@ -56,7 +57,6 @@ export interface ProductProperties extends ProductPreview {
   temperature: string;
   watering: string;
   tags: string[];
-  imageUrls: ProductImageURLs;
 }
 
 export interface ProductFormState extends Omit<ProductProperties, 'imageUrls'> {

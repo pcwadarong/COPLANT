@@ -18,6 +18,7 @@ export async function getProductList(): Promise<ProductPreview[]> {
         filters: data.filters,
         description: data.description,
         price: data.price,
+        imageUrls: data.imageUrls,
       };
     });
 

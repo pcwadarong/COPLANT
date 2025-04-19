@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import SearchBar from '@/components/common/searchBar';
+import { ListItem } from './list-item';
 import Filter from './filter';
 
 // import plantData from './../../../../plant.json';
@@ -39,7 +40,7 @@ export default async function ListPage({
             <Suspense fallback={<div role="status">로딩 중...</div>}>
               <ul>
                 {filteredList.map((item) => (
-                  <li key={item.id}>{item.name}</li>
+                  <ListItem key={item.id} {...item} />
                 ))}
               </ul>
             </Suspense>
