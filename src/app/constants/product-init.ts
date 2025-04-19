@@ -19,6 +19,8 @@ export const initialProductFormState: ProductFormState = {
   warning: '',
   efficacy: '',
   humidity: '',
+  temperature: '',
+  watering: '',
   light: '',
   images: {
     list: undefined,

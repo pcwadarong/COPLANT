@@ -51,7 +51,7 @@ export function useProductForm(initialState: ProductFormState) {
 
   const handleImageChange = async (
     field: 'list' | 'cover' | 'details',
-    files: FileList | null,
+    files: File[] | null,
   ) => {
     if (!files) return;
 

@@ -7,9 +7,15 @@ interface Props {
   onChange: (
     field: keyof ProductFormState,
   ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  isEditMode?: boolean;
 }
 
-export default function ProductFormFields({ form, errors, onChange }: Props) {
+export default function ProductFormFields({
+  form,
+  errors,
+  onChange,
+  isEditMode,
+}: Props) {
   return (
     <>
       <LabeledInput
@@ -27,6 +33,7 @@ export default function ProductFormFields({ form, errors, onChange }: Props) {
         onChange={onChange('scientificName')}
         required
         error={errors.scientificName}
+        disabled={isEditMode}
       />
       <LabeledTextarea
         id="description"
@@ -84,6 +91,22 @@ export default function ProductFormFields({ form, errors, onChange }: Props) {
         onChange={onChange('light')}
         required
         error={errors.light}
+      />
+      <LabeledTextarea
+        id="temperature"
+        label="온도"
+        value={form.temperature}
+        onChange={onChange('temperature')}
+        required
+        error={errors.temperature}
+      />
+      <LabeledTextarea
+        id="watering"
+        label="물 주기"
+        value={form.watering}
+        onChange={onChange('watering')}
+        required
+        error={errors.watering}
       />
       <input type="hidden" name="id" value={form.id} />
     </>

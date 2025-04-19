@@ -4,16 +4,20 @@ import { useEffect } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import FilterSelector from '../../../../../components/admin/filter-selector';
-import ProductFormFields from '../../../../../components/admin/form-field';
-import ImageUploader from '../../../../../components/admin/image-uploader';
-import TagSelector from '../../../../../components/admin/tag-selector';
+import FilterSelector from '@/components/admin/filter-selector';
+import ProductFormFields from '@/components/admin/form-field';
+import ImageUploader from '@/components/admin/image-uploader';
+import TagSelector from '@/components/admin/tag-selector';
 
-import createProductAction from '@/actions/create-product';
-import { useProductForm } from '@/hooks/useAddProductForm';
-import { initialProductFormState } from '@/app/constants/product-init';
+import updateProductAction from '@/actions/update-product';
+import { useEditProductForm } from '@/hooks/useEditProductForm';
+import { ProductProperties } from '@/types';
 
-export default function CreateNewProductPage() {
+export default function EditProductPage({
+  product,
+}: {
+  product: ProductProperties;
+}) {
   const router = useRouter();
 
   const {
@@ -26,10 +30,10 @@ export default function CreateNewProductPage() {
     handleTagAdd,
     handleTagDelete,
     isFormValid,
-  } = useProductForm(initialProductFormState);
+  } = useEditProductForm(product);
 
   const [result, formAction, isPending] = useActionState(
-    createProductAction,
+    updateProductAction,
     null,
   );
 
@@ -45,15 +49,23 @@ export default function CreateNewProductPage() {
       action={formAction}
       className="gap-4 max-w-3xl flex flex-col m-auto my-10 px-4"
     >
-      <h1 className="text-xl font-bold">신제품 등록</h1>
+      <h1 className="text-xl font-bold">상품 수정</h1>
 
       <ProductFormFields
         form={form}
         errors={errors}
         onChange={handleInputChange}
+        isEditMode={true}
       />
       <hr className="border border-stone-400" />
-      <ImageUploader onChange={handleImageChange} />
+      <ImageUploader
+        onChange={(field, files) => {
+          if (!files) return;
+          const array = Array.from(files);
+          handleImageChange(field, array);
+        }}
+        defaultImages={product.imageUrls}
+      />
       <hr className="border border-stone-400" />
       <FilterSelector
         filters={form.filters as NonNullable<typeof form.filters>}
@@ -76,7 +88,7 @@ export default function CreateNewProductPage() {
             : 'bg-apricot-300 cursor-pointer'
         }`}
       >
-        {isPending ? '처리 중...' : '제출하기'}
+        {isPending ? '처리 중...' : '수정 완료'}
       </button>
     </form>
   );

@@ -31,6 +31,14 @@ export const productFields = z.object({
     .string({ required_error: '빛 정보를 입력해주세요.' })
     .min(1, '빛 정보를 입력해주세요.')
     .max(100, '빛 정보는 100자 이내여야 합니다.'),
+  temperature: z
+    .string({ required_error: '온도 정보를 입력해주세요.' })
+    .min(1, '온도 정보를 입력해주세요.')
+    .max(100, '온도 정보는 100자 이내여야 합니다.'),
+  watering: z
+    .string({ required_error: '물주기 정보를 입력해주세요.' })
+    .min(1, '물주기 정보를 입력해주세요.')
+    .max(100, '물주기 정보는 100자 이내여야 합니다.'),
   price: z.preprocess(
     (val) => Number(val),
     z

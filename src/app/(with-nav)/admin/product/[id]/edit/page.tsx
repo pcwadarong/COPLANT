@@ -1,8 +1,34 @@
-export default async function AdminPage({
+import { Suspense } from 'react';
+
+import EditProductPage from './edit-form';
+
+import { ProductProperties } from '@/types';
+import { getProductDetail } from '@/lib/firebase/product/get';
+
+export default async function EditProduct({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  return <div>{id} 제품 편집 페이지</div>;
+  try {
+    const { id } = await params;
+    const data: ProductProperties = await getProductDetail(id);
+
+    return (
+      <Suspense fallback={<div role="status">로딩 중...</div>}>
+        <EditProductPage product={data} />
+      </Suspense>
+    );
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : '알 수 없는 오류가 발생했습니다.';
+
+    return (
+      <div className="p-10 text-red-600" role="alert">
+        상품 정보를 불러오지 못했습니다: {message}
+      </div>
+    );
+  }
 }
