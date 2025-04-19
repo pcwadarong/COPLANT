@@ -35,17 +35,11 @@ export function SignIn() {
   const handleBlur = (field: Field) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
 
-    try {
-      signInSchema.parse(formData);
-      setErrors({ email: '', password: '' });
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        const issue = err.errors.find((e) => e.path[0] === field);
-        if (issue) {
-          setErrors((prev) => ({ ...prev, [field]: issue.message }));
-        }
-      }
-    }
+    const result = signInSchema.safeParse(formData);
+    if (!result.success) {
+      const issue = result.error.issues.find((e) => e.path[0] === field);
+      if (issue) setErrors((prev) => ({ ...prev, [field]: issue.message }));
+    } else setErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,7 +80,7 @@ export function SignIn() {
       aria-describedby="signin-form-desc"
     >
       <div id="signin-form-desc" className="sr-only">
-        로그인 폼입니다. 이메일과 비밀번호를 입력하세요.
+        로그인 폼입니다. 이메일과 비밀번호란을 입력해주세요.
       </div>
 
       {fields.map((field) => (
