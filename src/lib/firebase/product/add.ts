@@ -1,13 +1,11 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { doc, setDoc } from 'firebase/firestore';
-import { storage, firestore } from '@/lib/firebase/firebaseConfig';
-
-import imageCompression from 'browser-image-compression';
+import { storage } from '@/lib/firebase/firebaseConfig';
+import { adminFirestore } from '../firebaseAdminConfig';
 
 import { ProductProperties } from '@/types';
 
 export async function addProduct(product: ProductProperties) {
-  await setDoc(doc(firestore, 'plants', product.id), product);
+  await adminFirestore.collection('plants').doc(product.id).set(product);
 }
 
 export async function uploadProductImages(productId: string, files: File[]) {
@@ -19,13 +17,7 @@ export async function uploadProductImages(productId: string, files: File[]) {
       const path = `products/${productId}/${types[index]}.jpg`;
       const fileRef = ref(storage, path);
 
-      const compressed = await imageCompression(file, {
-        maxSizeMB: 0.5,
-        maxWidthOrHeight: 1024,
-        useWebWorker: true,
-      });
-
-      await uploadBytes(fileRef, compressed);
+      await uploadBytes(fileRef, file);
       const url = await getDownloadURL(fileRef);
       urls[types[index]] = url;
     }),

@@ -17,7 +17,12 @@ export async function handleAuth(
       await createUserWithEmailAndPassword(auth, email, password);
     } else {
       await signInWithEmailAndPassword(auth, email, password);
+      await auth.currentUser?.getIdToken(true);
     }
+    return {
+      status: true,
+      error: '',
+    };
   } catch (err) {
     const authType = type === 'signup' ? '회원가입' : '로그인';
     if (err instanceof FirebaseError) {

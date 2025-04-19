@@ -3,6 +3,7 @@ import { firestore } from '@/lib/firebase/firebaseConfig';
 import { FirebaseError } from 'firebase/app';
 
 export default async function deleteProduct(id: string) {
+
   if (!id)
     return {
       status: false,
@@ -17,7 +18,7 @@ export default async function deleteProduct(id: string) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         secret: process.env.NEXT_PUBLIC_REVALIDATE_SECRET,
-        paths: ['/(with-nav)','/product', '/admin'],
+        paths: ['/(with-nav)'],
       }),
     });
 

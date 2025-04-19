@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { addProduct, uploadProductImages } from '@/lib/firebase/product/add';
 
 export default async function addProductAction(_: unknown, formData: FormData) {
@@ -27,7 +28,7 @@ export default async function addProductAction(_: unknown, formData: FormData) {
   const details = formData.getAll('image-details') as File[];
   const images = [list, cover, ...details];
 
-  if (!name || !scientificName || !price || !origin || !images) {
+  if (!id || !name || !scientificName || !price || !origin) {
     return { status: false, error: '모든 필드를 입력해주세요.' };
   }
 
@@ -56,8 +57,10 @@ export default async function addProductAction(_: unknown, formData: FormData) {
       imageUrls,
     });
 
+    revalidatePath('/(with-nav)');
     return { status: true, error: '' };
   } catch (err) {
+    console.error('Add product failed:', err);
     return {
       status: false,
       error: (err as Error).message,

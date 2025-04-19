@@ -75,6 +75,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         onChange={onChange('light')}
         required
       />
+      <input type="hidden" name="id" value={form.id} />
     </>
   );
 }

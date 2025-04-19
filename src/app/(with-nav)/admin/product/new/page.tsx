@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import imageCompression from 'browser-image-compression';
+
 import FilterSelector from '../../../../../components/admin/filter-selector';
 import ProductFormFields from '../../../../../components/admin/form-field';
 import ImageUploader from '../../../../../components/admin/image-uploader';
@@ -51,6 +53,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (result) {
+      console.log(result);
       if (!result.status) alert(result.error);
       else router.push('/admin/product');
     }
@@ -71,20 +74,40 @@ export default function AdminPage() {
       }));
     };
 
-  const handleImageChange = (
+  const handleImageChange = async (
     field: 'list' | 'cover' | 'details',
     files: FileList | null,
   ) => {
     if (!files) return;
 
+    const options = {
+      maxSizeMB: 0.5,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
+
+    if (field === 'details') {
+    const compressedDetails = await Promise.all(
+      Array.from(files).map((file) => imageCompression(file, options))
+    );
     setForm((prev) => ({
       ...prev,
       images: {
         ...prev.images,
-        [field]: field === 'details' ? Array.from(files) : files[0],
+        details: compressedDetails,
       },
     }));
-  };
+  } else {
+    const compressed = await imageCompression(files[0], options);
+    setForm((prev) => ({
+      ...prev,
+      images: {
+        ...prev.images,
+        [field]: compressed,
+      },
+    }));
+  }
+};
 
   const handleFilterChange = (
     key: keyof FilterState,
@@ -122,8 +145,14 @@ export default function AdminPage() {
   };
 
   const isFormValid =
-    form.name && form.scientificName && form.price && form.description;
+    form.name &&
+    form.scientificName &&
+    form.price &&
+    form.description &&
+    form.humidity &&
+    form.light;
 
+   
   return (
     <form
       action={formAction}
@@ -151,7 +180,9 @@ export default function AdminPage() {
         type="submit"
         disabled={!isFormValid || isPending}
         className={` rounded p-2 mt-6 ${
-          !isFormValid || isPending ? 'bg-stone-300' : 'bg-apricot-300'
+          !isFormValid || isPending
+            ? 'bg-stone-300 cursor-not-allowed'
+            : 'bg-apricot-300 cursor-pointer'
         }`}
       >
         {isPending ? '처리 중...' : '제출하기'}

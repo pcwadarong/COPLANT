@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { notFound } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function AdminLayout({
@@ -9,13 +9,14 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const { user, loading, isAdmin } = useAuth();
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
-      notFound();
+      router.replace('/404');
     }
-  }, [user, loading, isAdmin]);
+  }, [user, loading, isAdmin, router]);
 
   if (loading || !user || !isAdmin) return null;
 

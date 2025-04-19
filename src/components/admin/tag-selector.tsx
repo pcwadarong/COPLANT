@@ -51,7 +51,12 @@ export default function TagSelector({
           type="text"
           value={customTag}
           onChange={(e) => setCustomTag(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleAddTag();
+            }
+          }}
           placeholder="태그 추가"
           aria-label="사용자 정의 태그 입력"
           className="border p-2 rounded border-stone-400 flex-1"

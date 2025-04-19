@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
-import { SignIn, SignUp } from './form';
+import { SignIn } from './sign-in-form';
+import { SignUp } from './sign-up-form';
 
 export default function SignPage() {
   const { user, loading } = useAuth();
