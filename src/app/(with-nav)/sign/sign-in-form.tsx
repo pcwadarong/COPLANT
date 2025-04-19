@@ -1,33 +1,73 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  handleAuth,
-} from '@/lib/firebase/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { handleAuth } from '@/lib/firebase/auth';
+import { signInSchema } from '@/lib/utils/signSchema';
+import { z } from 'zod';
 
-import { validateSignInput } from '@/lib/utils/validateSignInput';
+const fields = ['email', 'password'] as const;
+type Field = (typeof fields)[number];
 
 export function SignIn() {
   const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [touched, setTouched] = useState({ email: false, password: false });
+  const [formData, setFormData] = useState<Record<Field, string>>({
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState<Record<Field, string>>({
+    email: '',
+    password: '',
+  });
+  const [touched, setTouched] = useState<Record<Field, boolean>>({
+    email: false,
+    password: false,
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const isEmailValid = validateSignInput('email', email);
-  const isPasswordValid = validateSignInput('password', password);
-  const isFormValid = isEmailValid && isPasswordValid;
+  const handleChange =
+    (field: Field) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  const handleBlur = (field: Field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    try {
+      signInSchema.parse(formData);
+      setErrors({ email: '', password: '' });
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        const issue = err.errors.find((e) => e.path[0] === field);
+        if (issue) {
+          setErrors((prev) => ({ ...prev, [field]: issue.message }));
+        }
+      }
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid) return;
+
+    try {
+      signInSchema.parse(formData);
+      setErrors({ email: '', password: '' });
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        const fieldErrors = err.flatten().fieldErrors;
+        setErrors({
+          email: fieldErrors.email?.[0] || '',
+          password: fieldErrors.password?.[0] || '',
+        });
+        return;
+      }
+    }
 
     setIsSubmitting(true);
     try {
-      await handleAuth('signin', email, password);
+      await handleAuth('signin', formData.email, formData.password);
       router.refresh();
     } catch (err) {
       alert('로그인 실패: ' + (err as Error).message);
@@ -36,61 +76,65 @@ export function SignIn() {
     }
   };
 
-  const handleBlur = (field: 'email' | 'password') => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
-  };
+  const isFormValid =
+    !errors.email && !errors.password && formData.email && formData.password;
 
   return (
-    <form onSubmit={handleSubmit} noValidate aria-describedby="signin-form-desc">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      aria-describedby="signin-form-desc"
+    >
       <div id="signin-form-desc" className="sr-only">
         로그인 폼입니다. 이메일과 비밀번호를 입력하세요.
       </div>
 
-      <label htmlFor="email">이메일 주소</label>
-      {!isEmailValid && touched.email && (
-        <span id="email-error" className="ml-4 text-sm text-red-600">
-          유효한 이메일 주소를 입력하세요.
-        </span>
-      )}
-      <input
-        id="email"
-        name="email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onBlur={() => handleBlur('email')}
-        autoComplete="email"
-        required
-        aria-invalid={!isEmailValid}
-        aria-describedby={
-          !isEmailValid && touched.email ? 'email-error' : undefined
-        }
-        className="mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
-      />
-
-      <label htmlFor="password">비밀번호</label>
-      {!isPasswordValid && touched.password && (
-        <span id="password-error" className="ml-4 text-sm text-red-600">
-          비밀번호 형식을 확인해주세요.
-        </span>
-      )}
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        onBlur={() => handleBlur('password')}
-        autoComplete="current-password"
-        required
-        aria-invalid={!isPasswordValid}
-        aria-describedby={
-          !isPasswordValid && touched.password
-            ? 'password-error'
-            : 'signin-form-desc'
-        }
-        className="mt-2 mb-6 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide"
-      />
+      {fields.map((field) => (
+        <div key={field} className="relative">
+          <label htmlFor={field}>
+            {field === 'email' ? '이메일 주소' : '비밀번호'}
+          </label>
+          {errors[field] && touched[field] && (
+            <span id={`${field}-error`} className="ml-4 text-sm text-red-600">
+              {errors[field]}
+            </span>
+          )}
+          <input
+            id={field}
+            name={field}
+            type={
+              field === 'password'
+                ? showPassword
+                  ? 'text'
+                  : 'password'
+                : 'email'
+            }
+            value={formData[field]}
+            onChange={handleChange(field)}
+            onBlur={() => handleBlur(field)}
+            autoComplete={field === 'email' ? 'email' : 'current-password'}
+            required
+            aria-invalid={!!errors[field]}
+            aria-describedby={
+              errors[field] && touched[field]
+                ? `${field}-error`
+                : 'signin-form-desc'
+            }
+            className={`mt-2 mb-4 bg-apricot-500 rounded p-2 w-full max-w-xl text-base tracking-wide ${
+              field === 'password' ? 'pr-15' : ''
+            }`}
+          />
+          {field === 'password' && (
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="text-sm absolute right-3 bottom-6.5"
+            >
+              {showPassword ? '숨기기' : '보기'}
+            </button>
+          )}
+        </div>
+      ))}
 
       <div className="flex justify-between">
         <Link

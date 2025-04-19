@@ -5,7 +5,7 @@ import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { signUpAction } from '@/actions/auth';
-import { validateSignInput } from '@/lib/utils/validateSignInput';
+import { validateSignInput } from '@/lib/utils/signSchema';
 
 export function SignUp() {
   const router = useRouter();

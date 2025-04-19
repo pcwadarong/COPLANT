@@ -8,7 +8,7 @@ import CustomCheckbox from '../common/customCheckbox';
 
 import { ProductName } from '@/types';
 import { fetchProductNamesOnServer } from '@/actions/get-product';
-import { validateSignInput } from '@/lib/utils/validateSignInput';
+import { validateSignInput } from '@/lib/utils/signSchema';
 
 interface Props {
   isOpen: boolean;
