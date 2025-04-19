@@ -3,12 +3,13 @@ import { LabeledInput, LabeledTextarea } from '@/components/common/labelInput';
 
 interface Props {
   form: ProductFormState;
+  errors: Partial<Record<keyof ProductFormState, string>>;
   onChange: (
     field: keyof ProductFormState,
   ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export default function ProductFormFields({ form, onChange }: Props) {
+export default function ProductFormFields({ form, errors, onChange }: Props) {
   return (
     <>
       <LabeledInput
@@ -17,6 +18,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.name}
         onChange={onChange('name')}
         required
+        error={errors.name}
       />
       <LabeledInput
         id="scientificName"
@@ -24,6 +26,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.scientificName}
         onChange={onChange('scientificName')}
         required
+        error={errors.scientificName}
       />
       <LabeledTextarea
         id="description"
@@ -31,6 +34,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.description}
         onChange={onChange('description')}
         required
+        error={errors.description}
       />
       <LabeledInput
         id="price"
@@ -39,6 +43,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         onChange={onChange('price')}
         type="number"
         required
+        error={errors.price}
       />
       <LabeledTextarea
         id="origin"
@@ -46,6 +51,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.origin}
         onChange={onChange('origin')}
         required
+        error={errors.origin}
       />
       <LabeledTextarea
         id="efficacy"
@@ -53,6 +59,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         placeholder="효능과 주의사항 중 한 가지만 입력해주세요."
         value={form.efficacy}
         onChange={onChange('efficacy')}
+        error={errors.efficacy}
       />
       <LabeledTextarea
         id="warning"
@@ -60,6 +67,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.warning}
         placeholder="효능과 주의사항 중 한 가지만 입력해주세요."
         onChange={onChange('warning')}
+        error={errors.warning}
       />
       <LabeledTextarea
         id="humidity"
@@ -67,6 +75,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.humidity}
         onChange={onChange('humidity')}
         required
+        error={errors.humidity}
       />
       <LabeledTextarea
         id="light"
@@ -74,6 +83,7 @@ export default function ProductFormFields({ form, onChange }: Props) {
         value={form.light}
         onChange={onChange('light')}
         required
+        error={errors.light}
       />
       <input type="hidden" name="id" value={form.id} />
     </>

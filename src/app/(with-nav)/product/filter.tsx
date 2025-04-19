@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { options } from '@/app/constants/filterOptions';
+import { options } from '@/app/constants/filter-options';
 import CustomCheckbox from '@/components/common/customCheckbox';
 
 export default function Filter() {

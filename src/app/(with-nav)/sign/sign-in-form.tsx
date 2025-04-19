@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { handleAuth } from '@/lib/firebase/auth';
-import { signInSchema } from '@/lib/utils/signSchema';
+import { signInSchema } from '@/lib/validation/sign-schema';
 import { z } from 'zod';
 
 const fields = ['email', 'password'] as const;

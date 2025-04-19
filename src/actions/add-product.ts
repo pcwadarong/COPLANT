@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { addProduct, uploadProductImages } from '@/lib/firebase/product/add';
+import { serverProductFields } from '@/lib/validation/product-schema';
 
 export default async function addProductAction(_: unknown, formData: FormData) {
   const id = (formData.get('id') ?? '') as string;
@@ -28,32 +29,41 @@ export default async function addProductAction(_: unknown, formData: FormData) {
   const details = formData.getAll('image-details') as File[];
   const images = [list, cover, ...details];
 
-  if (!id || !name || !scientificName || !price || !origin) {
-    return { status: false, error: '모든 필드를 입력해주세요.' };
+  const baseData = {
+    id,
+    name,
+    scientificName,
+    price,
+    description,
+    origin,
+    warning,
+    efficacy,
+    humidity,
+    light,
+    tags,
+    filters: {
+      difficulty,
+      water,
+      light: filterLight,
+      size,
+      feature,
+      efficacy: filterEfficacy,
+    },
+  };
+
+  const parsed = serverProductFields.safeParse(baseData);
+  if (!parsed.success) {
+    return {
+      status: false,
+      error: parsed.error.issues[0]?.message ?? '유효성 검사 실패',
+    };
   }
 
   try {
     const imageUrls = await uploadProductImages(scientificName, images);
+
     await addProduct({
-      id,
-      name,
-      scientificName,
-      price,
-      description: description,
-      origin,
-      warning: warning ?? '',
-      efficacy: efficacy ?? '',
-      humidity: humidity,
-      light: light,
-      tags,
-      filters: {
-        difficulty,
-        water,
-        light: filterLight,
-        size,
-        feature,
-        efficacy: filterEfficacy,
-      },
+      ...parsed.data,
       imageUrls,
     });
 

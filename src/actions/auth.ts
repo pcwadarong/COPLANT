@@ -1,7 +1,7 @@
 'use server';
 
 import { handleAuth, resetPasswordWithFirebase } from '@/lib/firebase/auth';
-import { signUpSchema } from '@/lib/utils/signSchema';
+import { signUpSchema } from '@/lib/validation/sign-schema';
 
 export async function signUpAction(_: unknown, formData: FormData) {
   const email = formData.get('email') as string | null;

@@ -9,14 +9,14 @@ export interface ProductImageURLs {
   detail: string[];
 }
 
-type MultiSelectFilter = {
+export type MultiSelectFilter = {
   light: string[];
   size: string[];
   efficacy: string[];
   feature: string[];
 };
 
-type SingleSelectFilter = {
+export type SingleSelectFilter = {
   difficulty: string;
   water: string;
 };
