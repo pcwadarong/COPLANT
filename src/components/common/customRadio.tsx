@@ -2,23 +2,15 @@
 
 import { clsx } from 'clsx';
 
-interface CustomRadioProps {
-  id: string;
-  name: string;
-  value?: string;
+interface CustomRadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  width?: number;
-  height?: number;
   borderColor?: string;
   borderCheckedColor?: string;
   borderWidth?: number;
   bgColor?: string;
   bgCheckedColor?: string;
   labelSize?: string;
-  disabled?: boolean;
 }
 
 const CustomRadio: React.FC<CustomRadioProps> = ({
@@ -26,11 +18,9 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
   name,
   value,
   label,
-  checked,
+  checked = false,
   onChange,
   className = '',
-  width = 20,
-  height = 20,
   borderColor = 'gray',
   borderCheckedColor = 'black',
   borderWidth = 2,
@@ -38,6 +28,7 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
   bgCheckedColor = 'transparent',
   labelSize = 'text-sm',
   disabled = false,
+  ...props
 }) => {
   return (
     <label
@@ -58,16 +49,15 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
         className="sr-only peer"
         aria-checked={checked}
         aria-disabled={disabled}
+        {...props}
       />
       <div
         style={{
           borderColor: checked ? borderCheckedColor : borderColor,
           borderWidth,
           backgroundColor: checked ? bgCheckedColor : bgColor,
-          width,
-          height,
         }}
-        className="flex items-center justify-center rounded-full"
+        className="flex items-center justify-center rounded-full w-5 h-5"
         role="radio"
         aria-checked={checked}
         aria-labelledby={`${id}-label`}

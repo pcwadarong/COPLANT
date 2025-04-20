@@ -2,42 +2,32 @@
 
 import { clsx } from 'clsx';
 
-interface CustomCheckboxProps {
-  id: string;
-  name?: string;
-  value?: string;
+interface CustomCheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  width?: number;
-  height?: number;
   borderColor?: string;
   borderCheckedColor?: string;
   borderWidth?: number;
   bgColor?: string;
   bgCheckedColor?: string;
   labelSize?: string;
-  disabled?: boolean;
 }
 
 const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   id,
-  name,
-  value,
   label,
-  checked,
+  checked = false,
   onChange,
   className = '',
-  width = 20,
-  height = 20,
   borderColor = 'gray',
   borderCheckedColor = 'black',
   borderWidth = 2,
   bgColor = 'transparent',
   bgCheckedColor = 'transparent',
   labelSize = 'text-sm',
-  disabled = false,
+  disabled,
+  ...props
 }) => {
   return (
     <label
@@ -49,25 +39,22 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
     >
       <input
         id={id}
-        name={name}
-        value={value}
         type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
         className="sr-only peer"
         aria-checked={checked}
         aria-disabled={disabled}
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        {...props}
       />
       <div
         style={{
           borderColor: checked ? borderCheckedColor : borderColor,
           borderWidth,
           backgroundColor: checked ? bgCheckedColor : bgColor,
-          width,
-          height,
         }}
-        className="flex items-center justify-center rounded-sm"
+        className="flex items-center justify-center rounded-sm w-5 h-5"
         role="checkbox"
         aria-checked={checked}
         aria-labelledby={`${id}-label`}

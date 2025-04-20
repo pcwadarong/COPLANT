@@ -22,7 +22,7 @@ export default async function ListPage({
     return (
       <>
         <SearchBar />
-        <main className="min-h-screen p-6 flex">
+        <main className="min-h-screen p-6 flex mb-6">
           <aside className="w-fit pr-10">
             <h2 className="font-english font-bold text-3xl">Filter</h2>
             <Filter />

@@ -2,13 +2,19 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { ProductPreview } from '@/types';
 
 export const ListItem = (item: ProductPreview) => (
-  <li key={item.id}>
+  <motion.li
+    key={item.id}
+    whileHover={{ scale: 1.04 }}
+    whileTap={{ scale: 0.96 }}
+    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+  >
     <Link
       href={`product/${item.id}`}
-      className="flex flex-col items-center gap-4 font-bold"
+      className="flex flex-col items-center gap-4 p-4 font-bold"
     >
       <Image
         src={item.imageUrls.list}
@@ -16,7 +22,12 @@ export const ListItem = (item: ProductPreview) => (
         width={200}
         height={200}
       />
-      <p>{item.name}</p>
+      <motion.p
+        layoutId={`name-${item.id}`}
+        whileHover={{ color: '#9bb067' }}
+      >
+        {item.name}
+      </motion.p>
     </Link>
-  </li>
+  </motion.li>
 );

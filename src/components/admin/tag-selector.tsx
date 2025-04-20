@@ -59,12 +59,12 @@ export default function TagSelector({
           }}
           placeholder="태그 추가"
           aria-label="사용자 정의 태그 입력"
-          className="border p-2 rounded border-stone-400 flex-1"
+          className="border p-2 rounded-lg text-sm border-stone-400 flex-1"
         />
         <button
           type="button"
           onClick={handleAddTag}
-          className="px-3 py-2 rounded bg-apricot-300"
+          className="px-3 py-2 rounded bg-apricot-300 cursor-pointer"
         >
           추가
         </button>

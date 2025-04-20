@@ -8,6 +8,7 @@ import FilterSelector from '@/components/admin/filter-selector';
 import ProductFormFields from '@/components/admin/form-field';
 import ImageUploader from '@/components/admin/image-uploader';
 import TagSelector from '@/components/admin/tag-selector';
+import CustomButton from '@/components/common/button';
 
 import updateProductAction from '@/actions/update-product';
 import { useEditProductForm } from '@/hooks/useEditProductForm';
@@ -79,17 +80,9 @@ export default function EditProductPage({
         onDeleteTag={handleTagDelete}
       />
 
-      <button
-        type="submit"
-        disabled={!isFormValid || isPending}
-        className={` rounded p-2 mt-6 ${
-          !isFormValid || isPending
-            ? 'bg-stone-300 cursor-not-allowed'
-            : 'bg-apricot-300 cursor-pointer'
-        }`}
-      >
-        {isPending ? '처리 중...' : '수정 완료'}
-      </button>
+      <CustomButton type="submit" disabled={!isFormValid} isPending={isPending}>
+        수정하기
+      </CustomButton>
     </form>
   );
 }
