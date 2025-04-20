@@ -16,7 +16,7 @@ const Counter = memo(function Counter({ value, onChange }: CounterProps) {
   };
 
   return (
-    <div className="flex w-36 border rounded overflow-hidden text-center h-full">
+    <div className="flex w-36 border rounded overflow-hidden text-center text-sm h-full">
       <button
         type="button"
         onClick={decrease}

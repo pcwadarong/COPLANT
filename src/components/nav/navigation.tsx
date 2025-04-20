@@ -60,12 +60,15 @@ export default function Nav() {
     if (isMobile) return;
 
     closeTimeout.current = setTimeout(() => {
+      const target = e.relatedTarget;
+
       if (
         cartRef.current &&
-        (!e.relatedTarget || !cartRef.current.contains(e.relatedTarget as Node))
-      ) {
+        (!target ||
+          !(target instanceof Node) ||
+          !cartRef.current.contains(target))
+      )
         setIsCartOpen(false);
-      }
     }, 100);
   };
 
@@ -95,7 +98,7 @@ export default function Nav() {
               id="cart-popover"
               role="dialog"
               ref={cartRef}
-              className="absolute right-0 top-full mt-2 z-50 shadow-xl bg-white border rounded-md"
+              className="absolute right-0 top-full mt-2 z-50 shadow-xl"
               onMouseEnter={openCart}
               onMouseLeave={closeCart}
             >
