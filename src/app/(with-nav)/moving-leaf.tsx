@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import { motion, useAnimation, useInView } from 'framer-motion';
+
+import CustomButton from '@/components/common/button';
 
 export default function MovingLeafSection() {
+  const router = useRouter();
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: '-100px' });
 
@@ -68,20 +71,20 @@ export default function MovingLeafSection() {
             나에게 맞는 <br /> 반려식물 <br /> 찾아보기
           </p>
           <div className="flex justify-center gap-4">
-            <Link
-              className="px-4 py-2 rounded-md shadow bg-apricot-200"
-              href="/test"
+            <CustomButton
+              onClick={() => router.push('/test')}
+              className="bg-apricot-100"
               aria-label="반려식물 테스트하러 가기"
             >
               테스트하기
-            </Link>
-            <Link
-              className="px-4 py-2 rounded-md shadow bg-apricot-200"
-              href="/product"
+            </CustomButton>
+            <CustomButton
+              className="bg-apricot-100"
+              onClick={() => router.push('/product')}
               aria-label="반려식물 제품 보러 가기"
             >
               제품 보기
-            </Link>
+            </CustomButton>
           </div>
         </div>
       </div>

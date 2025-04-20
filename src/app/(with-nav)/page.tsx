@@ -27,6 +27,7 @@ export default function Home() {
         alt="main image"
         width={1200}
         height={1000}
+        priority
       />
       <Image
         src="/main-green1.svg"
