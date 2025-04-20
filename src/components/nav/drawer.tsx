@@ -125,8 +125,9 @@ export default function Drawer({ isOpen, onClose }: Props) {
                 </Link>
                 {products.map((item) => (
                   <li key={item.id}>
-                    <Link href={`/product/${item.id}`}></Link>
-                    {item.name}
+                    <Link href={`/product/${item.id}`} onClick={onClose}>
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
