@@ -1,4 +1,7 @@
 import { Suspense } from 'react';
+import FloatingImage from './floating-image';
+import ProductMainSection from './main-section';
+
 import { getProductDetail } from '@/lib/firebase/product/get';
 import { ProductProperties } from '@/types';
 
@@ -13,7 +16,10 @@ export default async function ProductDetail({
 
     return (
       <Suspense fallback={<div role="status">로딩 중...</div>}>
-        {data.name}
+        <main className="relative bg-green-200">
+          <FloatingImage />
+          <ProductMainSection data={data} />
+        </main>
       </Suspense>
     );
   } catch (error) {
