@@ -43,7 +43,7 @@ export default function ProductMainSection({
             ))}
           </div>
 
-          <CartAction price={data.price} isMobile />
+          <CartAction price={data.price} data={data} isMobile />
         </div>
 
         <div className="h-82 hidden sm:block"></div>
@@ -75,7 +75,7 @@ export default function ProductMainSection({
 
       {/* Right Column */}
       <div className="max-w-72 z-10">
-        <CartAction price={data.price} />
+        <CartAction price={data.price} data={data} />
         <div className="h-72 hidden sm:block"></div>
         <InfoBlock title="Watering" content={data.watering} />
         <Image
