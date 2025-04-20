@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import SearchBar from '@/components/common/searchbar';
+import SearchBar from '@/components/common/searchBar';
 import { ListItem } from './list-item';
 import Filter from './filter';
 
