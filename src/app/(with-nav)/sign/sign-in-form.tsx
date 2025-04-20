@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { z } from 'zod';
+
+import CustomButton from '@/components/common/button';
+
 import { handleAuth } from '@/lib/firebase/auth';
 import { signInSchema } from '@/lib/validation/sign-schema';
-import { z } from 'zod';
 
 const fields = ['email', 'password'] as const;
 type Field = (typeof fields)[number];
@@ -24,7 +27,7 @@ export function SignIn() {
     email: false,
     password: false,
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange =
@@ -59,14 +62,14 @@ export function SignIn() {
       }
     }
 
-    setIsSubmitting(true);
+    setIsPending(true);
     try {
       await handleAuth('signin', formData.email, formData.password);
       router.refresh();
     } catch (err) {
       alert('로그인 실패: ' + (err as Error).message);
     } finally {
-      setIsSubmitting(false);
+      setIsPending(false);
     }
   };
 
@@ -137,17 +140,13 @@ export function SignIn() {
         >
           Forgot Password?
         </Link>
-        <button
-          type="submit"
-          disabled={!isFormValid || isSubmitting}
-          className={`rounded-xl px-6 py-1.5 text-white bg-apricot-600 ${
-            isFormValid
-              ? 'cursor-pointer hover:shadow'
-              : 'cursor-not-allowed opacity-60'
-          }`}
+        <CustomButton
+          isPending={isPending}
+          disabled={!isFormValid}
+          className={isFormValid ? 'bg-apricot-600 text-white' : ''}
         >
-          {isSubmitting ? '처리 중...' : '로그인'}
-        </button>
+          로그인
+        </CustomButton>
       </div>
     </form>
   );

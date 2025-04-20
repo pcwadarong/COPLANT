@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { z } from 'zod';
 
-import CustomCheckbox from '../common/customCheckbox';
+import CustomCheckbox from '../common/checkbox';
 
 import { ProductName } from '@/types';
 import { fetchProductNamesOnServer } from '@/actions/get-product';
@@ -15,7 +15,9 @@ interface Props {
   onClose: () => void;
 }
 
-const emailSchema = z.string().email({ message: '유효한 이메일을 입력해주세요.' });
+const emailSchema = z
+  .string()
+  .email({ message: '유효한 이메일을 입력해주세요.' });
 
 const SubscribeEmailForm = () => {
   const [email, setEmail] = useState('');

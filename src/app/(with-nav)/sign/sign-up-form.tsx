@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useActionState } from 'react';
+import { useEffect, useState, useActionState } from 'react';
 import { useRouter } from 'next/navigation';
+
+import CustomButton from '@/components/common/button';
 
 import { signUpAction } from '@/actions/auth';
 import { signUpSchema } from '@/lib/validation/sign-schema';
@@ -137,17 +138,13 @@ export function SignUp() {
       ))}
 
       <div className="flex justify-end">
-        <button
-          type="submit"
-          disabled={!isFormValid || isPending}
-          className={`rounded-xl px-6 py-1.5 text-white bg-apricot-600 ${
-            isFormValid
-              ? 'cursor-pointer hover:shadow'
-              : 'cursor-not-allowed opacity-60'
-          }`}
+        <CustomButton
+          isPending={isPending}
+          disabled={!isFormValid}
+          className={isFormValid ? 'bg-apricot-600 text-white' : ''}
         >
-          {isPending ? '처리 중...' : '회원가입'}
-        </button>
+          회원가입
+        </CustomButton>
       </div>
     </form>
   );

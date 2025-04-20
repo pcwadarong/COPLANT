@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import FilterSelector from '../../../../../components/admin/filter-selector';
-import ProductFormFields from '../../../../../components/admin/form-field';
-import ImageUploader from '../../../../../components/admin/image-uploader';
-import TagSelector from '../../../../../components/admin/tag-selector';
+import FilterSelector from '@/components/admin/filter-selector';
+import ProductFormFields from '@/components/admin/form-field';
+import ImageUploader from '@/components/admin/image-uploader';
+import TagSelector from '@/components/admin/tag-selector';
+import CustomButton from '@/components/common/button';
 
 import createProductAction from '@/actions/create-product';
 import { useProductForm } from '@/hooks/useAddProductForm';
@@ -67,17 +68,9 @@ export default function CreateNewProductPage() {
         onDeleteTag={handleTagDelete}
       />
 
-      <button
-        type="submit"
-        disabled={!isFormValid || isPending}
-        className={` rounded p-2 mt-6 ${
-          !isFormValid || isPending
-            ? 'bg-stone-300 cursor-not-allowed'
-            : 'bg-apricot-300 cursor-pointer'
-        }`}
-      >
-        {isPending ? '처리 중...' : '제출하기'}
-      </button>
+      <CustomButton disabled={!isFormValid} isPending={isPending}>
+        제출하기
+      </CustomButton>
     </form>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FileInput } from '../common/fileInput';
+import { FileInput } from '../common/file-input';
 import { PartialProductImageURLs } from '@/types';
 
 interface ImageUploaderProps {

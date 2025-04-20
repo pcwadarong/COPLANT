@@ -2,42 +2,32 @@
 
 import { clsx } from 'clsx';
 
-interface CustomRadioProps {
-  id: string;
-  name: string;
-  value?: string;
+interface CustomCheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  width?: number;
-  height?: number;
   borderColor?: string;
   borderCheckedColor?: string;
   borderWidth?: number;
   bgColor?: string;
   bgCheckedColor?: string;
   labelSize?: string;
-  disabled?: boolean;
 }
 
-const CustomRadio: React.FC<CustomRadioProps> = ({
+const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   id,
-  name,
-  value,
   label,
-  checked,
+  checked = false,
   onChange,
   className = '',
-  width = 20,
-  height = 20,
   borderColor = 'gray',
   borderCheckedColor = 'black',
   borderWidth = 2,
   bgColor = 'transparent',
   bgCheckedColor = 'transparent',
   labelSize = 'text-sm',
-  disabled = false,
+  disabled,
+  ...props
 }) => {
   return (
     <label
@@ -49,35 +39,42 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
     >
       <input
         id={id}
-        name={name}
-        value={value}
-        type="radio"
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
+        type="checkbox"
         className="sr-only peer"
         aria-checked={checked}
         aria-disabled={disabled}
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        {...props}
       />
       <div
         style={{
           borderColor: checked ? borderCheckedColor : borderColor,
           borderWidth,
           backgroundColor: checked ? bgCheckedColor : bgColor,
-          width,
-          height,
         }}
-        className="flex items-center justify-center rounded-full"
-        role="radio"
+        className="flex items-center justify-center rounded-sm w-5 h-5"
+        role="checkbox"
         aria-checked={checked}
         aria-labelledby={`${id}-label`}
         tabIndex={0}
       >
         {checked && (
-          <div
-            style={{ backgroundColor: borderCheckedColor }}
-            className="w-2 h-2 rounded-full"
-          />
+          <svg
+            style={{ color: borderCheckedColor }}
+            className="w-3 h-3"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
         )}
       </div>
 
@@ -88,4 +85,4 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
   );
 };
 
-export default CustomRadio;
+export default CustomCheckbox;

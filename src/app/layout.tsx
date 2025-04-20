@@ -1,5 +1,6 @@
 import './globals.css';
 import { AuthProvider } from '@/contexts/AuthContext';
+import GoToTopButton from '@/components/common/go-to-top';
 
 export default function RootLayout({
   children,
@@ -10,6 +11,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className="antialiased font-default">
         <AuthProvider>{children}</AuthProvider>
+        <GoToTopButton />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { z } from 'zod';
 import imageCompression from 'browser-image-compression';
 
@@ -19,35 +19,40 @@ export function useProductForm(initialState: ProductFormState) {
     Partial<Record<keyof ProductFormState, string>>
   >({});
 
-  const handleInputChange =
+  const handleInputChange = useCallback(
     (field: keyof ProductFormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const value = e.target.value;
-      const updatedForm: ProductFormState = {
-        ...form,
-        [field]: value,
-        ...(field === 'scientificName' && {
-          id: value.toLowerCase().replace(/\s+/g, '-'),
-        }),
-      };
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const value = e.target.value;
 
-      setForm(updatedForm);
+        setForm((prev) => {
+          const updatedForm: ProductFormState = {
+            ...prev,
+            [field]: value,
+            ...(field === 'scientificName' && {
+              id: value.toLowerCase().replace(/\s+/g, '-'),
+            }),
+          };
 
-      if (field in productFields.shape) {
-        const typedField = field as keyof typeof productFields.shape;
-        const fieldSchema = z.object({
-          [typedField]: productFields.shape[typedField],
+          if (field in productFields.shape) {
+            const typedField = field as keyof typeof productFields.shape;
+            const fieldSchema = z.object({
+              [typedField]: productFields.shape[typedField],
+            });
+
+            const result = fieldSchema.safeParse({ [field]: value });
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              [field]: result.success
+                ? ''
+                : result.error.issues[0]?.message ?? '',
+            }));
+          }
+
+          return updatedForm;
         });
-
-        const result = fieldSchema.safeParse({ [field]: value });
-        if (!result.success) {
-          const issue = result.error.issues[0];
-          setErrors((prev) => ({ ...prev, [field]: issue?.message || '' }));
-        } else {
-          setErrors((prev) => ({ ...prev, [field]: '' }));
-        }
-      }
-    };
+      },
+    [],
+  );
 
   const handleImageChange = async (
     field: 'list' | 'cover' | 'details',
