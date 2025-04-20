@@ -4,27 +4,21 @@ import SearchBar from '@/components/common/searchBar';
 import { ListItem } from './list-item';
 import Filter from './filter';
 
-// import plantData from './../../../../plant.json';
 import { getActiveFilters, getFilteredList } from '@/lib/utils/filters';
 import { getProductList } from '@/lib/firebase/product/get';
 import { ProductPreview } from '@/types';
-
-export const dynamic = 'force-static';
 
 export default async function ListPage({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string; [key: string]: string | undefined }>;
 }) {
-  // const rawList = plantData;
   try {
     const rawList: ProductPreview[] = await getProductList();
     const resolvedParams = await searchParams;
     const { q = '' } = resolvedParams;
     const activeFilters = getActiveFilters(resolvedParams);
-
     const filteredList = getFilteredList(rawList, q, activeFilters);
-
     return (
       <>
         <SearchBar />
@@ -33,12 +27,15 @@ export default async function ListPage({
             <h2 className="font-english font-bold text-3xl">Filter</h2>
             <Filter />
           </aside>
-          <section aria-labelledby="result-heading">
+          <section
+            aria-labelledby="result-heading"
+            className="flex flex-1 justify-center"
+          >
             <h1 id="result-heading" className="sr-only">
               검색 결과
             </h1>
             <Suspense fallback={<div role="status">로딩 중...</div>}>
-              <ul>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-16">
                 {filteredList.map((item) => (
                   <ListItem key={item.id} {...item} />
                 ))}
