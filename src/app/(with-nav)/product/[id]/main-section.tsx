@@ -70,6 +70,7 @@ export default function ProductMainSection({
           width={280}
           height={280}
           className="sticky top-20 lg:w-[320px]"
+          priority
         />
       </div>
 

@@ -22,6 +22,10 @@ export interface ProductName {
   name: string;
 }
 
+export interface ProductToMatch extends ProductName {
+  filters?: FilterState;
+}
+
 export interface ProductImageURLs {
   list: string;
   cover: string;
@@ -57,8 +61,4 @@ export interface ProductProperties extends ProductPreview {
   temperature: string;
   watering: string;
   tags: string[];
-}
-
-export interface ProductFormState extends Omit<ProductProperties, 'imageUrls'> {
-  images: PartialProductImageFiles;
 }

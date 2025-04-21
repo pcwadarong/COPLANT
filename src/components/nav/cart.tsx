@@ -37,7 +37,7 @@ export default function Cart({ onClose }: { onClose: () => void }) {
   };
 
   const handleCheckout = () => {
-    alert('wow');
+    alert('주문이 완료되었습니다!');
   };
 
   const subtotal = cartItems.reduce(

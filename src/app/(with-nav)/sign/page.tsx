@@ -47,7 +47,7 @@ export default function SignPage() {
         <SignUp />
       </section>
       <Image
-        src="/login.png"
+        src="/login.svg"
         aria-hidden="true"
         alt=""
         width={600}
