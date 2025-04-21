@@ -1,68 +1,68 @@
 # 🌿 Coplant
 
-> No need to be a plant expert.\
-> Even beginners can easily find, explore, and choose plants intuitively.\
-> **Coplant** is a curated plant recommendation service designed for newcomers to plant care.
+> 식물에 대해 몰라도 괜찮아요.\
+> 초보자도 기르기 쉬운 식물을 쉽고 직관적으로 찾고, 추천받고, 알아가는 경험.\
+> **Coplant**는 식물 입문자를 위한 식물 큐레이팅 서비스입니다.
 
 ## 🌟 About
 
-**Coplant** is a web service that helps those unfamiliar with growing plants\
-get personalized plant recommendations and proceed to purchase,\
-through an intuitive quiz, filter system, and informative UI.
+**Coplant**는 식물 키우기에 익숙하지 않은 사람들을 위해\
+간편한 퀴즈, 필터, 설명 중심의 UI를 통해\
+자신에게 맞는 식물을 추천받고 구매로 이어지는 웹 서비스입니다.
 
-- 🧩 Quiz-based and preference-based filtering recommendations
-- 📝 Accessible and user-friendly product descriptions
-- 🛒 Add to cart and purchase flow
-- 📱 Responsive UI design
+- 🧩 퀴즈/선호 기반 필터링 추천
+- 📝 접근성 있는 상품 설명
+- 🛒 장바구니 담기 및 주문 유도
+- 📱 반응형 UI 디자인
 
-## ⚙️ Main Features
+## ⚙️ 주요 기능
 
-### 🌱 Product List Page
+### 🌱 상품 리스트 페이지
 
-- Search by name or conditions (light, temperature, humidity, watering needs, etc.)
-- Tag-based filtering (e.g., #beginner-friendly, #low-light)
-- Dynamic filters based on search results
+- 이름 또는 조건(광, 온도, 습도, 물주기 등) 기반 검색
+- 태그 기반 필터링 (`#초보추천`, `#빛이 적어도 되는` 등)
+- 검색 결과 기반 동적 필터 적용
 
-### 🌼 Product Detail Page
+### 🌼 상품 상세 페이지
 
-- Plant information including description, scientific name, difficulty, images
-- Quantity adjustment and add-to-cart functionality
-- Responsive and visually engaging layout
+- 식물 설명, 학명, 난이도, 이미지 정보 제공
+- 장바구니에 수량 조정 후 담기
+- 반응형 및 시각적으로 풍부한 레이아웃
 
-### 📩 Authentication Features
+### 📩 인증 기능
 
-- Integrated with Firebase Auth and Firebase Admin SDK
-- Login, sign up, logout, and password reset
+- Firebase Auth 및 Firebase Admin SDK 연동
+- 로그인, 회원가입, 로그아웃, 비밀번호 재설정 가능
 
-### 🧪 Quiz-based Recommendation
+### 🧪 테스트 기반 추천
 
-- Recommends the most suitable plant based on user preferences
-- Simple choices and beginner-friendly interface
+- 응답자의 선호도에 따라 가장 적합한 식물을 추천
+- 직관적인 선택지와 사용자 친화적 인터페이스 제공
 
-### 🛠️ Admin Dashboard
+### 🛠️ 관리자 페이지
 
-- Admin access control via Firebase Custom Claims
-- Product creation and editing features
+- Firebase Custom Claim을 통해 권한이 부여된 관리자만 접근 가능
+- 상품 추가 및 수정 기능 포함
 
-## 💪 Tech Stack
+## 💪 기술 스택
 
 ### 📆 Framework & Libraries
 
 - Next.js
 - React
 - Firebase / Firebase Admin SDK
-- Framer Motion (for interaction and animation)
-- Zod (for schema validation)
-- Tailwind CSS (for styling)
+- Framer Motion (인터렉션, 모션)
+- Zod (유효성 검증)
+- Tailwind CSS (스타일링)
 
 ### 🔧 Dev Tools
 
 - TypeScript
 - ESLint, Prettier
-- Vercel (for deployment)
+- Vercel (배포)
 - Git, GitHub
 
-## 📁 Folder Structure
+## 📁 주요 폴더 구조 예시
 
 ```bash
 /src
@@ -159,20 +159,21 @@ through an intuitive quiz, filter system, and informative UI.
   types.ts                 # 전역 타입 정의
 ```
 
-## ⏳ Development Timeline
+## ⏳ 개발 기간
 
-- **2021.06.21** : Initial HTML prototype and planning
-- **2025.03.26 ~ 2025.04.22** : Refactored with Next.js and TypeScript
+- **2021.06.21** : 디자인 및 기획, html 기반 초안 구현
+- **2025.03.26 ~ 2025.04.22** : Next.js, TS로 리팩토링
 
 ## 📸 Demo
 
-> Deployment link or images to be added later
+> 추후 이미지 또는 배포 링크 삽입 예정
 
-## 🔮 Future Plans
+## 🔮 향후 계획
 
-- 🧠 Enhanced personalized quiz system
-- 🌍 Consideration of i18n support for multiple languages
-- 🔎 Advanced filtering (e.g., room type, care difficulty)
-- 🧾 Integration with real payment and order system
-- 📦 Order history and delivery tracking
-- 💬 User review and rating features
+- 🧠 사용자 맞춤 추천 퀴즈 강화
+- 🌍 i18n 다국어 적용 고려
+- 🔎 고급 필터 조건 도입 (예: 공간 유형, 키우는 난이도 등)
+- 🧾 실제 주문 기능 연동
+- 📦 주문 내역 및 배송 조회 기능
+- 💬 사용자 리뷰 및 별점 시스템
+
