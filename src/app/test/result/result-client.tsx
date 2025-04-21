@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getBestMatchedProduct } from '@/lib/utils/get-matched-product';
 import { ProductPreview } from '@/types';
 import ResultProduct from './product';
+import CustomButton from '@/components/common/button';
 
 export default function TestResultClient({ data }: { data: ProductPreview[] }) {
   const searchParams = useSearchParams();
@@ -25,9 +26,11 @@ export default function TestResultClient({ data }: { data: ProductPreview[] }) {
 
   if (!result) {
     return (
-      <div>
+      <div className="w-full h-screen flex flex-col items-center justify-center">
         <h1>이런! 맞는 상품이 없습니다. 다시 시도해보세요.</h1>
-        <button onClick={() => (location.href = '/test')}>재시도하기</button>
+        <CustomButton onClick={() => (location.href = '/test')}>
+          재시도하기
+        </CustomButton>
       </div>
     );
   }
@@ -38,4 +41,3 @@ export default function TestResultClient({ data }: { data: ProductPreview[] }) {
     </div>
   );
 }
-          
