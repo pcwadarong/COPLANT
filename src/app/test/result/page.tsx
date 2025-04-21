@@ -1,7 +1,10 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
+
+import TestResultClient from './result-client';
+
 import { getProductList } from '@/lib/firebase/product/get';
 import { ProductPreview } from '@/types';
-import TestResultClient from './result-client';
 
 export default async function TestResultPage() {
   const data: ProductPreview[] = await getProductList();
@@ -16,7 +19,9 @@ export default async function TestResultPage() {
         className="object-cover z-0"
         priority
       />
-      <TestResultClient data={data} />
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <TestResultClient data={data} />
+      </Suspense>
     </div>
   );
 }

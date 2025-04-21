@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
+
 import SearchBar from '@/components/common/searchBar';
 import Filter from './filter';
 import { ListItem } from './list-item';
@@ -37,11 +39,15 @@ export default async function ListPage({
     const filteredList = getFilteredList(rawList, q, activeFilters);
     return (
       <>
-        <SearchBar />
+        <Suspense fallback={<div>검색바 로딩 중...</div>}>
+          <SearchBar />
+        </Suspense>
         <main className="min-h-screen p-6 flex mb-6">
           <aside className="w-fit pr-10">
             <h2 className="font-english font-bold text-3xl">Filter</h2>
-            <Filter />
+            <Suspense fallback={<div>필터 로딩 중...</div>}>
+              <Filter />
+            </Suspense>
           </aside>
           <section
             aria-labelledby="result-heading"
