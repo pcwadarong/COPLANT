@@ -1,11 +1,10 @@
-'use client';
-
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import CustomButton from '@/components/common/button';
+import { getProductList } from '@/lib/firebase/product/get';
+import { ProductPreview } from '@/types';
+import TestResultClient from './result-client';
 
-export default function TestResultPage() {
-  const router = useRouter();
+export default async function TestResultPage() {
+  const data: ProductPreview[] = await getProductList();
 
   return (
     <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden">
@@ -17,32 +16,7 @@ export default function TestResultPage() {
         className="object-cover z-0"
         priority
       />
-
-      <div className="relative z-10 flex flex-col items-center gap-8">
-        <Image
-          src="/test-main.svg"
-          alt="green shape"
-          aria-hidden="true"
-          width={600}
-          height={600}
-        />
-        <div className="flex gap-4">
-          <CustomButton
-            onClick={() => router.push('/test')}
-            className="bg-apricot-100"
-            aria-label="반려식물 테스트하러 가기"
-          >
-            테스트하기
-          </CustomButton>
-          <CustomButton
-            className="bg-apricot-100"
-            onClick={() => router.push('/product')}
-            aria-label="반려식물 제품 보러 가기"
-          >
-            제품 보기
-          </CustomButton>
-        </div>
-      </div>
+      <TestResultClient data={data} />
     </div>
   );
 }

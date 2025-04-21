@@ -54,13 +54,23 @@ export default function TestPage() {
   const onChange = (value: string) => {
     const key = current.key;
     const prevValues = answers[key] || [];
-    const isSelected = prevValues.includes(value);
 
+    if (value === 'none') { // 모든 option을 포함한다
+      const allOtherValues = current.options
+        .filter((opt) => opt.value !== 'none')
+        .map((opt) => opt.value);
+
+      setAnswers((prev) => ({
+        ...prev,
+        [key]: allOtherValues,
+      }));
+      return;
+    }
     setAnswers((prev) => ({
       ...prev,
-      [key]: isSelected
-        ? prevValues.filter((v) => v !== value)
-        : [...prevValues, value],
+      [key]: prevValues.includes(value) //이미 클릭된 선지라면
+        ? prevValues.filter((v) => v !== value) // 삭제하고 나머지만
+        : [...prevValues, value], // 해당 선지를 포함
     }));
   };
 
@@ -109,9 +119,13 @@ export default function TestPage() {
           </CustomButton>
         ) : (
           <CustomButton
-            onClick={() =>
-              selectedValues.length > 0 && router.push('/test/result')
-            }
+            onClick={() => {
+              router.push(
+                `/test/result?answers=${encodeURIComponent(
+                  JSON.stringify(answers),
+                )}`,
+              );
+            }}
             disabled={selectedValues.length === 0}
             className={`hover:bg-white text-black ${btnClickedColor} ${
               selectedValues.length === 0 && 'opacity-50 cursor-not-allowed'
