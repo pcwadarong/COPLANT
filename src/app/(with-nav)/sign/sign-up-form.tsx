@@ -8,6 +8,9 @@ import CustomButton from '@/components/common/button';
 import { signUpAction } from '@/actions/auth';
 import { signUpSchema } from '@/lib/validation/sign-schema';
 
+import { INITIAL_ACTION_STATE } from '@/app/constants/states';
+import { ActionState } from '@/types';
+
 export function SignUp() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -29,7 +32,10 @@ export function SignUp() {
     password: false,
     confirmPassword: false,
   });
-  const [result, formAction, isPending] = useActionState(signUpAction, null);
+  const [result, formAction, isPending] = useActionState<
+  ActionState,
+  FormData
+>(signUpAction, INITIAL_ACTION_STATE);
 
   const handleChange =
     (field: keyof typeof formData) =>

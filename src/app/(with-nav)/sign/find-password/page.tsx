@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import CustomButton from '@/components/common/button';
 
 import { resetPWAction } from '@/actions/auth';
+
+import { INITIAL_ACTION_STATE } from '@/app/constants/states';
 import { ActionState } from '@/types';
 
 export default function FindPW() {
@@ -15,7 +17,7 @@ export default function FindPW() {
   const [resetState, formAction, isPending] = useActionState<
     ActionState,
     FormData
-  >(resetPWAction, null);
+  >(resetPWAction, INITIAL_ACTION_STATE);
 
   useEffect(() => {
     if (!resetState) return;

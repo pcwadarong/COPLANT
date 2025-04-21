@@ -12,7 +12,9 @@ import CustomButton from '@/components/common/button';
 
 import updateProductAction from '@/actions/update-product';
 import { useEditProductForm } from '@/hooks/useEditProductForm';
-import { ProductProperties } from '@/types';
+
+import { INITIAL_ACTION_STATE } from '@/app/constants/states';
+import { ActionState, ProductProperties } from '@/types';
 
 export default function EditProductPage({
   product,
@@ -33,9 +35,9 @@ export default function EditProductPage({
     isFormValid,
   } = useEditProductForm(product);
 
-  const [result, formAction, isPending] = useActionState(
+  const [result, formAction, isPending] = useActionState<ActionState, FormData>(
     updateProductAction,
-    null,
+    INITIAL_ACTION_STATE,
   );
 
   useEffect(() => {

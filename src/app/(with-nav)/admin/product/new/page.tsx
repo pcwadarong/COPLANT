@@ -12,7 +12,10 @@ import CustomButton from '@/components/common/button';
 
 import createProductAction from '@/actions/create-product';
 import { useProductForm } from '@/hooks/useAddProductForm';
+
 import { initialProductFormState } from '@/app/constants/product-init';
+import { INITIAL_ACTION_STATE } from '@/app/constants/states';
+import { ActionState } from '@/types';
 
 export default function CreateNewProductPage() {
   const router = useRouter();
@@ -29,9 +32,9 @@ export default function CreateNewProductPage() {
     isFormValid,
   } = useProductForm(initialProductFormState);
 
-  const [result, formAction, isPending] = useActionState(
+  const [result, formAction, isPending] = useActionState<ActionState, FormData>(
     createProductAction,
-    null,
+    INITIAL_ACTION_STATE,
   );
 
   useEffect(() => {
