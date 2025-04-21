@@ -42,7 +42,7 @@ export default function MovingLeafSection() {
       </h2>
 
       <motion.div
-        className="absolute left-0 bottom-0 z-20"
+        className="absolute left-0 bottom-0 z-20 pointer-events-none"
         animate={leftLeafControls}
         initial={{ x: 0, opacity: 1 }}
         aria-hidden="true"
@@ -90,7 +90,7 @@ export default function MovingLeafSection() {
       </div>
 
       <motion.div
-        className="absolute top-0 right-0 z-20"
+        className="absolute top-0 right-0 z-20 pointer-events-none"
         animate={rightLeafControls}
         initial={{ x: 0, opacity: 1 }}
         aria-hidden="true"

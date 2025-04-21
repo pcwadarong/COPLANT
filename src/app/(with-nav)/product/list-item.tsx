@@ -16,16 +16,15 @@ export const ListItem = (item: ProductPreview) => (
       href={`product/${item.id}`}
       className="flex flex-col items-center gap-4 p-4 font-bold"
     >
-      <Image
-        src={item.imageUrls.list}
-        alt={item.name}
-        width={200}
-        height={200}
-      />
-      <motion.p
-        layoutId={`name-${item.id}`}
-        whileHover={{ color: '#9bb067' }}
-      >
+      <motion.div layoutId={`image-${item.id}`}>
+        <Image
+          src={item.imageUrls.list}
+          alt={item.name}
+          width={200}
+          height={200}
+        />
+      </motion.div>
+      <motion.p layoutId={`name-${item.id}`} whileHover={{ color: '#9bb067' }}>
         {item.name}
       </motion.p>
     </Link>

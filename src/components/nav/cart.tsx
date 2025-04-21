@@ -3,9 +3,8 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import Counter from '@/components/common/counter';
-import CustomButton from '@/components/common/button';
+import CustomButton from '../common/button';
 
 interface CartItem {
   id: string;
@@ -74,7 +73,10 @@ export default function Cart({ onClose }: { onClose: () => void }) {
           <ul className="space-y-4 max-h-[400px] overflow-y-auto">
             {cartItems.map((item) => (
               <li key={item.id} className="flex gap-4 items-center relative">
-                <Link href={`/product/${item.id}`}>
+                <Link
+                  href={`/product/${item.id}`}
+                  className="w-[70px] h-[70px] rounded overflow-hidden bg-gray-300"
+                >
                   <Image
                     src={item.imageUrl}
                     alt={item.name}

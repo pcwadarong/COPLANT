@@ -50,6 +50,7 @@ const SubscribeEmailForm = () => {
           type="email"
           id="subscribe-email"
           name="email"
+          value={email}
           placeholder="이메일 입력"
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched(true)}
@@ -61,7 +62,7 @@ const SubscribeEmailForm = () => {
           disabled={!isFormValid}
           onClick={onSubmitButton}
           className={`absolute right-0 bottom-2 text-xl transition-opacity ${
-            isFormValid ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
+            isFormValid ? 'opacity-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'
           }`}
         >
           →
