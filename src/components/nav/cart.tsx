@@ -50,7 +50,7 @@ export default function Cart({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="bg-yellow-50 shadow-lg p-6 w-[350px] "
+      className="bg-yellow-50 p-6 w-screen h-screen xs:w-[350px] xs:h-fit shadow-xl"
       aria-label="Shopping cart contents"
     >
       <div className="flex justify-between items-center mb-4">

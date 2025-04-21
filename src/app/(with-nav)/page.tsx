@@ -51,14 +51,14 @@ export default function Home() {
             height={720}
             className="pr-6"
           />
-          <div className="absolute top-10 sm:top-30 md:top-50 lg:top-24 2xl:top-50 left-10">
+          <div className="absolute top-7 xs:top-10 sm:top-30 md:top-50 lg:top-24 2xl:top-50 left-10">
             <p
               id="intro-heading"
-              className="text-2xl sm:text-3xl font-bold mb-6"
+              className="text-xl xs:text-2xl sm:text-3xl font-bold mb-3 xs:mb-6"
             >
               반려식물이 뭔가요?
             </p>
-            <p className="leading-relaxed ml-6 mr-21 md:mr-48 lg:mr-21 2xl:max-w-[700px] break-keep">
+            <p className="leading-relaxed text-sm xs:text-base -ml-6 mr-6 xs:ml-6 xs:mr-21 md:mr-48 lg:mr-21 2xl:max-w-[700px] break-keep">
               반려식물은 ‘사람이 정서적으로 의지하고자 가까이 두고 기르는
               식물’을 일컫는 말이에요. <br />
               이름을 붙여주고 보살피며 반려식물이 성장하는 모습을 지켜보는

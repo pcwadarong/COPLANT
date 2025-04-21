@@ -62,7 +62,9 @@ const SubscribeEmailForm = () => {
           disabled={!isFormValid}
           onClick={onSubmitButton}
           className={`absolute right-0 bottom-2 text-xl transition-opacity ${
-            isFormValid ? 'opacity-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+            isFormValid
+              ? 'opacity-100 cursor-pointer'
+              : 'opacity-50 cursor-not-allowed'
           }`}
         >
           →
@@ -83,7 +85,7 @@ export default function Drawer({ isOpen, onClose }: Props) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-green-500 z-50 p-6 flex justify-center items-center"
+          className="fixed inset-0 bg-green-500 z-50 px-6 py-10 overflow-y-auto max-h-screen flex justify-center md:items-center"
           initial={{ clipPath: 'inset(0% 100% 100% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           exit={{ clipPath: 'inset(0% 100% 100% 0%)' }}
@@ -98,7 +100,7 @@ export default function Drawer({ isOpen, onClose }: Props) {
                 <SubscribeEmailForm />
               </div>
 
-              <ul className="space-y-8 font-english text-2xl font-bold">
+              <ul className="font-english text-2xl font-bold flex gap-4 md:flex-col">
                 <li>
                   <Link
                     href="https://www.facebook.com"

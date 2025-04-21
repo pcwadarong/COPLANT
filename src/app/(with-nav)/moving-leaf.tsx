@@ -66,24 +66,24 @@ export default function MovingLeafSection() {
         >
           <p
             id="leaf-section-desc"
-            className="font-semibold mb-10 sm:mb-16 text-3xl/12 sm:text-5xl/16"
+            className="font-semibold mb-10 sm:mb-16 text-2xl/9 xs:text-3xl/12 sm:text-5xl/16"
           >
             나에게 맞는 <br /> 반려식물 <br /> 찾아보기
           </p>
           <div className="flex justify-center gap-4">
             <CustomButton
               onClick={() => router.push('/test')}
-              className="bg-apricot-100"
+              className="text-sm bg-apricot-100 whitespace-nowrap"
               aria-label="반려식물 테스트하러 가기"
             >
               테스트하기
             </CustomButton>
             <CustomButton
-              className="bg-apricot-100"
+              className="text-sm bg-apricot-100 whitespace-nowrap"
               onClick={() => router.push('/product')}
               aria-label="반려식물 제품 보러 가기"
             >
-              제품 보기
+              제품보기
             </CustomButton>
           </div>
         </div>

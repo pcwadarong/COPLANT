@@ -11,7 +11,7 @@ export default function NavLayout({
       <Nav />
       {children}
       <footer
-        className="p-10 bg-apricot-100 flex gap-14"
+        className="p-10 bg-apricot-100 flex flex-col xs:flex-row gap-4 xs:gap-14"
         aria-labelledby="footer-heading"
       >
         <p id="footer-heading" className="sr-only">
@@ -43,7 +43,7 @@ export default function NavLayout({
             coplant@gmail.com
           </a>
         </div>
-        <ul className="flex flex-col gap-2 font-english">
+        <ul className="flex xs:flex-col gap-2 font-english">
           <li>
             <Link
               href="https://www.facebook.com"

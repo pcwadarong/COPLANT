@@ -2,6 +2,7 @@
 @import 'tailwindcss';
 
 @theme {
+  --breakpoint-xs: 30rem;
   --font-default: Noto Serif KR, sans-serif, ui-sans-serif;
   --font-english: Dm Serif Text, Times, Noto Serif KR, sans-serif, ui-sans-serif;
   --font-script: Great Vibes, cursive;
@@ -11,7 +12,7 @@
   --color-green-300: #ced7b9;
   --color-green-400: #bec6a9;
   --color-green-500: #abb593;
-  --color-green-600: #8E9C77;
+  --color-green-600: #8e9c77;
   --color-apricot-100: #f7f2e8;
   --color-apricot-200: #f3e9d7;
   --color-apricot-300: #e8d5b5;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 import { options } from '@/app/constants/filter-options';
@@ -8,6 +8,8 @@ import CustomCheckbox from '@/components/common/checkbox';
 
 export default function Filter() {
   const router = useRouter();
+  const [isOpened, setIsOpen] = useState(true);
+
   // 1.
   const searchParams = useSearchParams();
 
@@ -59,10 +61,41 @@ export default function Filter() {
       >
         필터 초기화
       </button>
-      <form aria-label="식물 필터">
+      <button
+        className="ml-3 text-sm underline underline-offset-4 xs:hidden"
+        onClick={() => setIsOpen(!isOpened)}
+      >
+        {`필터 ${isOpened ? '닫기' : '열기'}`}
+      </button>
+      {isOpened && (
+        <form aria-label="식물 필터" className="mb-10 xs:hidden">
+          {Object.entries(options).map(([category, { legend, items }]) => (
+            <fieldset
+              key={category}
+              className="border-b flex flex-wrap xs:flex-col gap-2 py-3"
+            >
+              <legend className="font-bold pt-3">{legend}</legend>
+              {items.map(({ label, value }) => (
+                <CustomCheckbox
+                  key={label}
+                  id={value}
+                  label={label}
+                  checked={isChecked(category, value)}
+                  onChange={() => handleCheckboxChange(category, value)}
+                />
+              ))}
+            </fieldset>
+          ))}
+        </form>
+      )}
+
+      <form aria-label="식물 필터" className="mb-10 hidden xs:block">
         {Object.entries(options).map(([category, { legend, items }]) => (
-          <fieldset key={category} className="border-b pb-2">
-            <legend className="font-bold pt-2">{legend}</legend>
+          <fieldset
+            key={category}
+            className="border-b flex flex-wrap xs:flex-col gap-2 py-3"
+          >
+            <legend className="font-bold pt-3">{legend}</legend>
             {items.map(({ label, value }) => (
               <CustomCheckbox
                 key={label}
@@ -70,7 +103,6 @@ export default function Filter() {
                 label={label}
                 checked={isChecked(category, value)}
                 onChange={() => handleCheckboxChange(category, value)}
-                className="my-2"
               />
             ))}
           </fieldset>

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import Cart from './cart';
 import HamburgerMenu from './hamburger';
 
+import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import NavAuth from './nav-auth';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -17,6 +18,8 @@ export default function Nav() {
   const cartRef = useRef<HTMLDivElement | null>(null);
   const cartTriggerRef = useRef<HTMLDivElement | null>(null);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  UseLockBodyScroll(isCartOpen);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -74,17 +77,17 @@ export default function Nav() {
   };
 
   return (
-    <nav className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100 relative z-50">
+    <nav className="grid grid-cols-3 items-center py-2 px-4 bg-apricot-100 z-50">
       <HamburgerMenu />
 
       <Link href="/" className="justify-self-center">
         <Image src="/logo.svg" alt="logo" priority width={100} height={70} />
       </Link>
 
-      <div className="flex justify-end gap-4 text-base/11 relative">
+      <div className="flex justify-end gap-4 text-base/11">
         <div
           ref={cartTriggerRef}
-          className="relative"
+          className="xs:relative"
           onMouseEnter={() => !isMobile && openCart()}
           onMouseLeave={handleMouseLeave}
           onTouchStart={isMobile ? toggleCart : undefined}
@@ -99,7 +102,7 @@ export default function Nav() {
               id="cart-popover"
               role="dialog"
               ref={cartRef}
-              className="absolute right-0 top-full mt-2 z-50 shadow-xl"
+              className="absolute left-0 xs:left-auto xs:right-0 xs:top-full xs:mt-2 z-50"
               onMouseEnter={openCart}
               onMouseLeave={closeCart}
             >

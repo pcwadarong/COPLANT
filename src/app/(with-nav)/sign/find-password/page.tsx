@@ -23,7 +23,7 @@ export default function FindPW() {
     if (!resetState) return;
 
     if (!resetState.status) {
-      alert(resetState.error);
+      console.log(resetState.error);
       return;
     }
 
@@ -43,7 +43,7 @@ export default function FindPW() {
       <form
         action={formAction}
         aria-describedby="reset-password-desc"
-        className="space-y-3"
+        className="flex flex-col items-center gap-3"
       >
         <label htmlFor="email" className="sr-only">
           이메일

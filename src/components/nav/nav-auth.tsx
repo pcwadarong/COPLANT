@@ -16,15 +16,11 @@ export default function NavAuth() {
     }
   };
 
-  return (
-    <div className="w-[80px] text-end">
-      {loading ? (
-        'Loading'
-      ) : user ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <Link href="/sign">Login</Link>
-      )}
-    </div>
+  return loading ? (
+    <p>Loading</p>
+  ) : user ? (
+    <button onClick={handleLogout}>Logout</button>
+  ) : (
+    <Link href="/sign">Login</Link>
   );
 }

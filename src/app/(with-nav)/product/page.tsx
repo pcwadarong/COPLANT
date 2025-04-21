@@ -38,12 +38,12 @@ export default async function ListPage({
     const activeFilters = getActiveFilters(resolvedParams);
     const filteredList = getFilteredList(rawList, q, activeFilters);
     return (
-      <>
+      <div className="p-6">
         <Suspense fallback={<div>검색바 로딩 중...</div>}>
           <SearchBar />
         </Suspense>
-        <main className="min-h-screen p-6 flex mb-6">
-          <aside className="w-fit pr-10">
+        <main className="min-h-screen xs:p-6 flex flex-col xs:flex-row mb-6">
+          <aside className="xs:w-fit xs:pr-10">
             <h2 className="font-english font-bold text-3xl">Filter</h2>
             <Suspense fallback={<div>필터 로딩 중...</div>}>
               <Filter />
@@ -63,7 +63,7 @@ export default async function ListPage({
             </ul>
           </section>
         </main>
-      </>
+      </div>
     );
   } catch (error) {
     const message =

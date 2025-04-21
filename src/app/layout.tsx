@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="antialiased font-default">
+      <body className="antialiased font-default w-full h-screen overflow-hidden">
         <AuthProvider>{children}</AuthProvider>
         <GoToTopButton />
       </body>
