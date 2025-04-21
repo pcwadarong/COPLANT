@@ -32,10 +32,10 @@ export function SignUp() {
     password: false,
     confirmPassword: false,
   });
-  const [result, formAction, isPending] = useActionState<
-  ActionState,
-  FormData
->(signUpAction, INITIAL_ACTION_STATE);
+  const [result, formAction, isPending] = useActionState<ActionState, FormData>(
+    signUpAction,
+    INITIAL_ACTION_STATE,
+  );
 
   const handleChange =
     (field: keyof typeof formData) =>
@@ -65,7 +65,7 @@ export function SignUp() {
     const handleAuthRedirect = async () => {
       if (result) {
         if (!result.status) {
-          alert(result.error);
+          console.log(result.error);
         } else {
           await router.push('/');
           setFormData({ email: '', password: '', confirmPassword: '' });
