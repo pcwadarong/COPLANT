@@ -62,3 +62,7 @@ export interface ProductProperties extends ProductPreview {
   watering: string;
   tags: string[];
 }
+
+export interface ProductFormState extends Omit<ProductProperties, 'imageUrls'> {
+  images: PartialProductImageFiles;
+}

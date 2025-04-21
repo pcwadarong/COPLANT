@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
 import CustomButton from '@/components/common/button';
+
 import { ProductPreview } from '@/types';
 
 export default function ResultProduct(result: ProductPreview) {

@@ -7,8 +7,8 @@ import { z } from 'zod';
 
 import CustomCheckbox from '../common/checkbox';
 
-import { ProductName } from '@/types';
 import { fetchProductNamesOnServer } from '@/actions/get-product';
+import { ProductName } from '@/types';
 
 interface Props {
   isOpen: boolean;

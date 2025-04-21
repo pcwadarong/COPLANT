@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, Transition, SVGMotionProps } from 'framer-motion';
 import { useState } from 'react';
+import { motion, Transition, SVGMotionProps } from 'framer-motion';
+
 import Drawer from './drawer';
 import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 

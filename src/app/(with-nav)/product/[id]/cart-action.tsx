@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+
 import Counter from '@/components/common/counter';
 import CustomButton from '@/components/common/button';
+
 import { ProductProperties } from '@/types';
 
 export default function CartAction({
@@ -25,17 +27,22 @@ export default function CartAction({
       quantity,
     };
 
-    const existing = localStorage.getItem('cart');
-    const cart = existing ? JSON.parse(existing) : [];
+    const storedCartItemsJson = localStorage.getItem('cart');
+    const parsedCartItems = storedCartItemsJson
+      ? JSON.parse(storedCartItemsJson)
+      : [];
 
-    const existingIndex = cart.findIndex(
+    const itemIndex = parsedCartItems.findIndex(
       (item: Partial<ProductProperties>) => item.id === cartItem.id,
     );
 
-    if (existingIndex !== -1) cart[existingIndex].quantity += cartItem.quantity;
-    else cart.push(cartItem);
+    if (itemIndex !== -1) {
+      parsedCartItems[itemIndex].quantity += cartItem.quantity;
+    } else {
+      parsedCartItems.push(cartItem);
+    }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(parsedCartItems));
     alert('장바구니에 추가되었습니다!');
   }, [data, quantity]);
 
@@ -46,7 +53,10 @@ export default function CartAction({
         <Counter value={quantity} onChange={setQuantity} />
         <CustomButton
           onClick={handleAddToCart}
-          className={`bg-stone-800 text-white text-sm ${!isMobile && 'mt-4'}`}
+          aria-label="장바구니에 상품 담기"
+          className={`bg-stone-800 text-white text-sm ${
+            !isMobile ? 'mt-4' : ''
+          }`}
         >
           카트에 담기
         </CustomButton>

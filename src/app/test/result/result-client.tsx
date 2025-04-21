@@ -2,10 +2,13 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getBestMatchedProduct } from '@/lib/utils/get-matched-product';
-import { ProductPreview } from '@/types';
+
 import ResultProduct from './product';
 import CustomButton from '@/components/common/button';
+
+import { getBestMatchedProduct } from '@/lib/utils/get-matched-product';
+
+import { ProductPreview } from '@/types';
 
 export default function TestResultClient({ data }: { data: ProductPreview[] }) {
   const searchParams = useSearchParams();

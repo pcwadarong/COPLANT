@@ -21,6 +21,5 @@ export const adminFirestore = admin.firestore();
 //   }
 // };
 
-// const ADMIN_UIDS = 'nxwr9fTLAXM3uX68o479wDPAkuM2';
-
+// const ADMIN_UIDS = '';
 // setAdminRole(ADMIN_UIDS);

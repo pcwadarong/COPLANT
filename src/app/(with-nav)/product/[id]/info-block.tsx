@@ -1,15 +1,21 @@
 'use client';
 
-export default function InfoBlock({
-  title,
-  content,
-}: {
+type InfoBlockProps = {
   title: string;
   content: string;
-}) {
+};
+
+export default function InfoBlock({ title, content }: InfoBlockProps) {
   return (
-    <div className="space-y-2 mb-10">
-      <h2 className="font-bold text-3xl font-english">{title}</h2>
+    <div className="mb-10 space-y-2">
+      <div
+        role="heading"
+        aria-level={2}
+        className="text-3xl font-bold font-english"
+      >
+        {title}
+      </div>
+
       <p>{content}</p>
     </div>
   );

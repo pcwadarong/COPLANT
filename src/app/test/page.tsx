@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { questions } from '../constants/questions';
+
 import CustomButton from '@/components/common/button';
+
+import { questions } from '../constants/questions';
 
 const QuestionStep = ({
   title,

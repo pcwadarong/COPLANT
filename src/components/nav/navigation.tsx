@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import Cart from './cart';
 import HamburgerMenu from './hamburger';
+
 import NavAuth from './nav-auth';
 import { useAuth } from '@/contexts/AuthContext';
 

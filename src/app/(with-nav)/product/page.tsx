@@ -1,12 +1,28 @@
-import { Suspense } from 'react';
-
+import type { Metadata } from 'next';
 import SearchBar from '@/components/common/searchBar';
-import { ListItem } from './list-item';
 import Filter from './filter';
+import { ListItem } from './list-item';
 
-import { getActiveFilters, getFilteredList } from '@/lib/utils/filters';
 import { getProductList } from '@/lib/firebase/product/get';
+import { getActiveFilters, getFilteredList } from '@/lib/utils/filters';
+
 import { ProductPreview } from '@/types';
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}): Promise<Metadata> {
+  const { q } = await searchParams;
+  return {
+    title: `${q} : Coplant 상품 리스트 검색`,
+    description: '검색 결과입니다.',
+    openGraph: {
+      title: `${q} : Coplant 상품 리스트 검색`,
+      description: '한입 북스에서 다양한 도서들을 만나보세요.',
+    },
+  };
+}
 
 export default async function ListPage({
   searchParams,
@@ -34,13 +50,11 @@ export default async function ListPage({
             <h1 id="result-heading" className="sr-only">
               검색 결과
             </h1>
-            <Suspense fallback={<div role="status">로딩 중...</div>}>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-16">
-                {filteredList.map((item) => (
-                  <ListItem key={item.id} {...item} />
-                ))}
-              </ul>
-            </Suspense>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-16">
+              {filteredList.map((item) => (
+                <ListItem key={item.id} {...item} />
+              ))}
+            </ul>
           </section>
         </main>
       </>

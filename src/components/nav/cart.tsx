@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import Counter from '@/components/common/counter';
-import CustomButton from '../common/button';
+import CustomButton from '@/components/common/button';
 
 interface CartItem {
   id: string;
