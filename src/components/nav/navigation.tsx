@@ -31,11 +31,22 @@ export default function Nav() {
     if (!isCartOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
+      const cartEl = cartRef.current;
+      const triggerEl = cartTriggerRef.current;
+      
+      if (!cartEl || !triggerEl) return;
+
+      // Cart가 화면 전체를 덮고 있다면, 바깥 클릭 무시
+      const { width, height } = cartEl.getBoundingClientRect();
+      const coversFullScreen =
+        width >= window.innerWidth && height >= window.innerHeight;
+
+      if (coversFullScreen) return;
+
+      // 바깥 클릭 여부 확인
       if (
-        cartRef.current &&
-        !cartRef.current.contains(e.target as Node) &&
-        cartTriggerRef.current &&
-        !cartTriggerRef.current.contains(e.target as Node)
+        !cartEl.contains(e.target as Node) &&
+        !triggerEl.contains(e.target as Node)
       ) {
         setIsCartOpen(false);
       }
