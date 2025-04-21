@@ -55,7 +55,7 @@ export default function Nav() {
       // Cart가 화면 전체를 덮고 있다면, 바깥 클릭 무시
       const { width, height } = cartEl.getBoundingClientRect();
       const coversFullScreen =
-        width >= window.innerWidth && height >= window.innerHeight;
+        width >= window.innerWidth || height >= window.innerHeight;
 
       if (coversFullScreen) return;
 

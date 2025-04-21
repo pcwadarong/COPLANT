@@ -73,13 +73,13 @@ export default function MovingLeafSection() {
           <div className="flex justify-center gap-4">
             <CustomButton
               onClick={() => router.push('/test')}
-              className="text-sm bg-apricot-100 whitespace-nowrap"
+              className="text-sm xs:text-base bg-apricot-100 whitespace-nowrap"
               aria-label="반려식물 테스트하러 가기"
             >
               테스트하기
             </CustomButton>
             <CustomButton
-              className="text-sm bg-apricot-100 whitespace-nowrap"
+              className="text-sm xs:text-base bg-apricot-100 whitespace-nowrap"
               onClick={() => router.push('/product')}
               aria-label="반려식물 제품 보러 가기"
             >

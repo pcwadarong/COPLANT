@@ -34,13 +34,13 @@ export default function ResultProduct(result: ProductPreview) {
       <div className="mt-8 space-x-4">
         <CustomButton
           onClick={() => router.push('/')}
-          className="text-sm bg-apricot-100 whitespace-nowrap"
+          className="text-sm xs:text-base bg-apricot-100 whitespace-nowrap"
           aria-label="메인 홈으로 돌아가기"
         >
           돌아가기
         </CustomButton>
         <CustomButton
-          className="text-sm bg-apricot-100 whitespace-nowrap"
+          className="text-sm xs:text-base bg-apricot-100 whitespace-nowrap"
           onClick={() => router.push(`/product/${result.id}`)}
           aria-label="선택한 반려식물 제품 보러 가기"
         >
