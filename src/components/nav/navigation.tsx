@@ -4,91 +4,53 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
+import CartMobile from './cart-mobile';
 import Cart from './cart';
 import HamburgerMenu from './hamburger';
 
 import NavAuth from './nav-auth';
 import { useAuth } from '@/contexts/AuthContext';
+import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 export default function Nav() {
   const { isAdmin } = useAuth();
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isTouchedDevice, setIsTouchedDevice] = useState(false);
+  const [isMobileCartOpen, setIsMobileCartOpen] = useState(false);
+  const [isDesktopCartOpen, setIsDesktopCartOpen] = useState(false);
   const cartRef = useRef<HTMLDivElement | null>(null);
   const cartTriggerRef = useRef<HTMLDivElement | null>(null);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsMobile(window.matchMedia('(pointer: coarse)').matches);
-    }
+    const update = () => {
+      setIsTouchedDevice(window.matchMedia('(pointer: coarse)').matches);
+    };
+
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
-  useEffect(() => {
-    const cartEl = cartRef.current;
-    if (!isCartOpen || !cartEl) return;
-
-    // Cart가 화면 전체를 덮으면 스크롤 잠금
-    const { width, height } = cartEl.getBoundingClientRect();
-    const coversFullScreen =
-      width >= window.innerWidth && height >= window.innerHeight;
-
-    if (coversFullScreen) {
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [isCartOpen]);
-
-  useEffect(() => {
-    if (!isCartOpen) return;
-
-    const handleClickOutside = (e: MouseEvent) => {
-      const cartEl = cartRef.current;
-      const triggerEl = cartTriggerRef.current;
-
-      if (!cartEl || !triggerEl) return;
-
-      // Cart가 화면 전체를 덮고 있다면, 바깥 클릭 무시
-      const { width, height } = cartEl.getBoundingClientRect();
-      const coversFullScreen =
-        width >= window.innerWidth || height >= window.innerHeight;
-
-      if (coversFullScreen) return;
-
-      // 바깥 클릭 여부 확인
-      if (
-        !cartEl.contains(e.target as Node) &&
-        !triggerEl.contains(e.target as Node)
-      ) {
-        setIsCartOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isCartOpen]);
+  UseLockBodyScroll(isMobileCartOpen);
 
   const openCart = () => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
-    setIsCartOpen(true);
+    if (isTouchedDevice) setIsMobileCartOpen(true);
+    else setIsDesktopCartOpen(true);
   };
 
   const closeCart = () => {
-    setIsCartOpen(false);
+    if (isTouchedDevice) setIsMobileCartOpen(false);
+    else setIsDesktopCartOpen(false);
   };
 
-  const toggleCart = () => {
-    setIsCartOpen((prev) => !prev);
+  const toggleMobileCart = () => {
+    if (!isTouchedDevice) return;
+    setIsMobileCartOpen((prev) => !prev);
   };
 
   const handleMouseLeave = (e: React.MouseEvent) => {
-    if (isMobile) return;
+    if (isTouchedDevice) return;
 
     closeTimeout.current = setTimeout(() => {
       const target = e.relatedTarget;
@@ -98,8 +60,9 @@ export default function Nav() {
         (!target ||
           !(target instanceof Node) ||
           !cartRef.current.contains(target))
-      )
-        setIsCartOpen(false);
+      ) {
+        setIsDesktopCartOpen(false);
+      }
     }, 100);
   };
 
@@ -115,25 +78,38 @@ export default function Nav() {
         <div
           ref={cartTriggerRef}
           className="xs:relative"
-          onMouseEnter={() => !isMobile && openCart()}
+          onMouseEnter={() => !isTouchedDevice && openCart()}
           onMouseLeave={handleMouseLeave}
-          onTouchStart={isMobile ? toggleCart : undefined}
           aria-haspopup="dialog"
-          aria-expanded={isCartOpen}
+          aria-expanded={isMobileCartOpen || isDesktopCartOpen}
           aria-controls="cart-popover"
         >
-          <div className="cursor-pointer">Cart</div>
+          <div
+            className="cursor-pointer"
+            onClick={isTouchedDevice ? toggleMobileCart : undefined}
+          >
+            Cart
+          </div>
 
-          {isCartOpen && (
+          {isMobileCartOpen && (
             <div
-              id="cart-popover"
-              role="dialog"
+              className="fixed inset-0 z-50"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) closeCart();
+              }}
+            >
+              <CartMobile onClose={closeCart} />
+            </div>
+          )}
+
+          {isDesktopCartOpen && (
+            <div
+              className="absolute hidden xs:block left-0 xs:left-auto xs:right-0 xs:top-full xs:mt-2 z-50"
               ref={cartRef}
-              className="absolute left-0 xs:left-auto xs:right-0 xs:top-full xs:mt-2 z-50"
               onMouseEnter={openCart}
               onMouseLeave={closeCart}
             >
-              <Cart onClose={closeCart} />
+              <Cart />
             </div>
           )}
         </div>

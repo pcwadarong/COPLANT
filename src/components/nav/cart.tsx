@@ -14,7 +14,7 @@ interface CartItem {
   quantity: number;
 }
 
-export default function Cart({ onClose }: { onClose: () => void }) {
+export default function Cart() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -55,13 +55,6 @@ export default function Cart({ onClose }: { onClose: () => void }) {
     >
       <div className="flex justify-between items-center mb-4">
         <p className="text-xl font-semibold font-english">Your Cart</p>
-        <button
-          aria-label="Close cart"
-          onClick={onClose}
-          className="text-2xl font-bold hover:text-red-500 cursor-pointer"
-        >
-          &times;
-        </button>
       </div>
 
       {cartItems.length === 0 ? (

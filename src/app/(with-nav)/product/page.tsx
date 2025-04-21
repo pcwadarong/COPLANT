@@ -15,7 +15,8 @@ export async function generateMetadata({
 }: {
   searchParams: Promise<{ q?: string }>;
 }): Promise<Metadata> {
-  const { q } = await searchParams;
+  const resolvedParams = await searchParams;
+  const { q = '' } = resolvedParams;
   return {
     title: `${q} : Coplant 상품 리스트 검색`,
     description: '검색 결과입니다.',
