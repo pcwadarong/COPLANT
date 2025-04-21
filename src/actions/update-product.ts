@@ -99,6 +99,7 @@ export default async function updateProductAction(
       const prevValue = prevProduct[key as keyof ProductProperties];
 
       if (JSON.stringify(parsedValue) !== JSON.stringify(prevValue))
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         changedFields[key as keyof ProductProperties] = parsedValue as any;
     });
 
@@ -126,7 +127,7 @@ export default async function updateProductAction(
     revalidatePath('/admin', 'layout');
     revalidatePath(`/product/${id}`, 'page');
     revalidatePath('/product', 'page');
-    
+
     return { status: true, error: '' };
   } catch (err) {
     console.error('Update product failed:', err);
