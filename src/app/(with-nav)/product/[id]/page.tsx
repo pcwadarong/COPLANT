@@ -9,9 +9,10 @@ import { getProductDetail } from '@/lib/firebase/product/get';
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const data = await getProductDetail(params.id);
+  const { id } = await params;
+  const data = await getProductDetail(id);
 
   if (!data) {
     throw new Error('정보를 불러오지 못했습니다.');
@@ -33,9 +34,10 @@ export async function generateMetadata({
 export default async function ProductDetail({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const data = await getProductDetail(params.id);
+  const { id } = await params;
+  const data = await getProductDetail(id);
 
   if (!data) {
     return (
