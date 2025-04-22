@@ -24,7 +24,6 @@ export default function AdminProductListItem({
       router.refresh();
     } catch (err) {
       console.error(err);
-      alert('삭제 실패');
     } finally {
       setDeleting(false);
     }

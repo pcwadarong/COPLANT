@@ -42,7 +42,7 @@ export default function EditProductPage({
 
   useEffect(() => {
     if (result) {
-      if (!result.status) alert(result.error);
+      if (!result.status) console.log(result.error);
       else router.push('/admin/product');
     }
   }, [result, router]);
