@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 
+import { ProductProperties } from '@/types';
+
 import CartAction from './cart-action';
 import InfoBlock from './info-block';
-
-import { ProductProperties } from '@/types';
 
 export default function ProductMainSection({
   data,

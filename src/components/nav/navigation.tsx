@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-import CartMobile from './cart-mobile';
-import Cart from './cart';
-import HamburgerMenu from './hamburger';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import NavAuth from './nav-auth';
 import { useAuth } from '@/contexts/AuthContext';
 import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
+
+import Cart from './cart';
+import CartMobile from './cart-mobile';
+import HamburgerMenu from './hamburger';
+import NavAuth from './nav-auth';
 
 export default function Nav() {
   const { isAdmin } = useAuth();

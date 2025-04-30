@@ -7,7 +7,7 @@ interface CounterProps {
   onChange: (value: number) => void;
 }
 
-const Counter = memo(function Counter({ value, onChange }: CounterProps) {
+const Counter = memo(({ value, onChange }: CounterProps) => {
   const increase = () => onChange(value + 1);
   const decrease = () => onChange(Math.max(1, value - 1));
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

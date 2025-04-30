@@ -2,7 +2,7 @@ import admin from 'firebase-admin';
 
 if (!admin.apps.length) {
   const serviceAccount = JSON.parse(
-    Buffer.from(process.env.FIREBASE_ADMIN_KEY!, "base64").toString("utf-8")
+    Buffer.from(process.env.FIREBASE_ADMIN_KEY!, 'base64').toString('utf-8'),
   );
 
   admin.initializeApp({

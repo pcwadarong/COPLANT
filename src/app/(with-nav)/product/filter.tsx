@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useCallback, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useCallback, useMemo, useState } from 'react';
+
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { options } from '@/app/constants/filter-options';
 import CustomCheckbox from '@/components/common/checkbox';
@@ -41,9 +42,8 @@ export default function Filter() {
   );
 
   const isChecked = useCallback(
-    (category: string, value: string) => {
-      return selectedFilters[category]?.includes(value) ?? false;
-    },
+    (category: string, value: string) =>
+      selectedFilters[category]?.includes(value) ?? false,
     [selectedFilters],
   );
 

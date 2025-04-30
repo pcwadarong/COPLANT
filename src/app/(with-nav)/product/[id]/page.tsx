@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
+
 import type { Metadata } from 'next';
+
+import { getProductDetail } from '@/lib/firebase/product/get';
 
 import FloatingImage from './floating-image';
 import ProductMainSection from './main-section';
-
-import { getProductDetail } from '@/lib/firebase/product/get';
 
 export async function generateMetadata({
   params,

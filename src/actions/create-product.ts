@@ -1,13 +1,17 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+
 import {
   createProduct,
   uploadProductImagesForCreate,
 } from '@/lib/firebase/product/create';
 import { serverProductFields } from '@/lib/validation/product-schema';
 
-export default async function createProductAction(_: unknown, formData: FormData) {
+export default async function createProductAction(
+  _: unknown,
+  formData: FormData,
+) {
   const id = (formData.get('id') ?? '') as string;
   const name = (formData.get('name') ?? '') as string;
   const scientificName = (formData.get('scientificName') ?? '') as string;

@@ -1,5 +1,6 @@
-import { adminFirestore } from '@/lib/firebase/firebaseAdminConfig';
 import { FirebaseError } from 'firebase/app';
+
+import { adminFirestore } from '@/lib/firebase/firebaseAdminConfig';
 import { ProductPreview, ProductProperties } from '@/types';
 
 export async function getProductList(): Promise<ProductPreview[]> {
@@ -62,7 +63,7 @@ export async function getProductDetail(id: string): Promise<ProductProperties> {
     const docSnap = await docRef.get();
 
     if (!docSnap.exists) {
-      throw new Error(`상품이 존재하지 않습니다.`);
+      throw new Error('상품이 존재하지 않습니다.');
     }
 
     const data = docSnap.data() as ProductProperties;

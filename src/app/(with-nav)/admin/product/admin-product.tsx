@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 
 import deleteProduct from '@/lib/firebase/product/delete';
-
 import { ProductPreview } from '@/types';
 
 export default function AdminProductListItem({
@@ -15,7 +15,7 @@ export default function AdminProductListItem({
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = async() => {
     if (!id || !confirm('정말 삭제할까요?')) return;
 
     setDeleting(true);

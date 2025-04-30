@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
 
-import EditProductPage from './edit-form';
-import { ProductProperties } from '@/types';
 import { getProductDetail } from '@/lib/firebase/product/get';
+import { ProductProperties } from '@/types';
+
+import EditProductPage from './edit-form';
 
 export default async function EditProduct({
   params,

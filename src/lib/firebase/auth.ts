@@ -1,10 +1,11 @@
+import { FirebaseError } from 'firebase/app';
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
+
 import { auth } from './firebaseConfig';
 
 export async function handleAuth(

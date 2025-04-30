@@ -10,7 +10,7 @@ export const productFields = z.object({
     .min(1, '학명을 입력해주세요.')
     .max(50, '학명은 50자 이내여야 합니다.')
     .regex(
-      /^[a-zA-Z\s'\-]+$/,
+      /^[a-zA-Z\s'-_]+$/,
       '학명에는 영어, 작은 따옴표, 하이픈, 공백만 허용됩니다.',
     ),
   description: z

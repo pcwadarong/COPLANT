@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 
 import CustomButton from '@/components/common/button';
@@ -57,7 +58,8 @@ export default function TestPage() {
     const key = current.key;
     const prevValues = answers[key] || [];
 
-    if (value === 'none') { // 모든 option을 포함한다
+    if (value === 'none') {
+      // 모든 option을 포함한다
       const allOtherValues = current.options
         .filter((opt) => opt.value !== 'none')
         .map((opt) => opt.value);

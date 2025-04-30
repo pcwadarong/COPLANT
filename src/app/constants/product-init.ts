@@ -1,4 +1,4 @@
-import { ProductFormState, FilterState } from '@/types';
+import { FilterState, ProductFormState } from '@/types';
 
 export const defaultFilters: FilterState = {
   difficulty: '',

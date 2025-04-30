@@ -1,7 +1,9 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, User, getIdTokenResult } from 'firebase/auth';
+
+import { getIdTokenResult, onAuthStateChanged, User } from 'firebase/auth';
+
 import { auth } from '../lib/firebase/firebaseConfig';
 
 type AuthContextType = {
@@ -24,10 +26,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-  
+
       if (user) {
         try {
-          await user.getIdToken(true); 
+          await user.getIdToken(true);
           const token = await getIdTokenResult(user);
           const isAdminClaim = token.claims.admin === true;
           setIsAdmin(isAdminClaim);
@@ -38,10 +40,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         setIsAdmin(false);
       }
-  
+
       setLoading(false);
     });
-  
+
     return () => unsubscribe();
   }, []);
 

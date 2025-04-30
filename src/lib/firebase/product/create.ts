@@ -1,11 +1,9 @@
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '@/lib/firebase/firebaseConfig';
-import { adminFirestore } from '../firebaseAdminConfig';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
-import {
-  ProductProperties,
-  ProductImageURLs,
-} from '@/types';
+import { storage } from '@/lib/firebase/firebaseConfig';
+import { ProductImageURLs, ProductProperties } from '@/types';
+
+import { adminFirestore } from '../firebaseAdminConfig';
 
 export async function createProduct(product: ProductProperties) {
   await adminFirestore.collection('plants').doc(product.id).set(product);
@@ -39,4 +37,3 @@ export async function uploadProductImagesForCreate(
     details,
   };
 }
-

@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
+
 import { ProductPreview } from '@/types';
 
 export const ListItem = (item: ProductPreview) => (

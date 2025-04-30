@@ -1,12 +1,13 @@
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '@/lib/firebase/firebaseConfig';
-import { adminFirestore } from '../firebaseAdminConfig';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
+import { storage } from '@/lib/firebase/firebaseConfig';
 import {
-  ProductProperties,
-  PartialProductImageURLs,
   PartialProductImageFiles,
+  PartialProductImageURLs,
+  ProductProperties,
 } from '@/types';
+
+import { adminFirestore } from '../firebaseAdminConfig';
 
 export async function updateProduct(updateFields: Partial<ProductProperties>) {
   const { id, ...fieldsToUpdate } = updateFields;

@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
-import SearchBar from '@/components/common/searchBar';
-import Filter from './filter';
-import { ListItem } from './list-item';
+import type { Metadata } from 'next';
 
+import SearchBar from '@/components/common/searchBar';
 import { getProductList } from '@/lib/firebase/product/get';
 import { getActiveFilters, getFilteredList } from '@/lib/utils/filters';
-
 import { ProductPreview } from '@/types';
+
+import Filter from './filter';
+import { ListItem } from './list-item';
 
 export async function generateMetadata({
   searchParams,

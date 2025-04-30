@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { z } from 'zod';
 
-import CustomCheckbox from '../common/checkbox';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
+import { z } from 'zod';
 
 import { fetchProductNamesOnServer } from '@/actions/get-product';
 import { ProductName } from '@/types';
+
+import CustomCheckbox from '../common/checkbox';
 
 interface Props {
   isOpen: boolean;

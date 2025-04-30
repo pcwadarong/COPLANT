@@ -30,7 +30,7 @@ const config = [
       '@stylistic/array-bracket-spacing': ['error', 'never'],
       '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/space-before-function-paren': ['error', 'never'],
+      // '@stylistic/space-before-function-paren': ['error', 'never'],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
 

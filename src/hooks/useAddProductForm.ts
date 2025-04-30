@@ -1,17 +1,18 @@
-import { useState, useMemo, useCallback } from 'react';
-import { z } from 'zod';
-import imageCompression from 'browser-image-compression';
+import { useCallback, useMemo, useState } from 'react';
 
-import {
-  MultiSelectFilter,
-  SingleSelectFilter,
-  FilterState,
-  ProductFormState,
-} from '@/types';
+import imageCompression from 'browser-image-compression';
+import { z } from 'zod';
+
 import {
   addProductSchema,
   productFields,
 } from '@/lib/validation/product-schema';
+import {
+  FilterState,
+  MultiSelectFilter,
+  ProductFormState,
+  SingleSelectFilter,
+} from '@/types';
 
 export function useProductForm(initialState: ProductFormState) {
   const [form, setForm] = useState<ProductFormState>({ ...initialState });
@@ -149,9 +150,10 @@ export function useProductForm(initialState: ProductFormState) {
     );
   };
 
-  const isFormValid = useMemo(() => {
-    return addProductSchema.safeParse(form).success;
-  }, [form]);
+  const isFormValid = useMemo(
+    () => addProductSchema.safeParse(form).success,
+    [form],
+  );
 
   return {
     form,

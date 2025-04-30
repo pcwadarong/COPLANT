@@ -1,14 +1,13 @@
 'use client';
 
-import { useEffect, useState, useActionState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 
-import CustomButton from '@/components/common/button';
-
 import { signUpAction } from '@/actions/auth';
-import { signUpSchema } from '@/lib/validation/sign-schema';
-
 import { INITIAL_ACTION_STATE } from '@/app/constants/states';
+import CustomButton from '@/components/common/button';
+import { signUpSchema } from '@/lib/validation/sign-schema';
 import { ActionState } from '@/types';
 
 export function SignUp() {

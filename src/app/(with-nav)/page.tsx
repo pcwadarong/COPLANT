@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+
 import MovingLeafSection from './moving-leaf';
 
 export const metadata: Metadata = {

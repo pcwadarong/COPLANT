@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function SearchBar() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function SearchBar() {
   }, [q]);
 
   const onSubmit = () => {
-    if (!query) router.replace(`/product`);
+    if (!query) router.replace('/product');
     else if (q === query) return;
     else router.replace(`/product?q=${query}`);
   };

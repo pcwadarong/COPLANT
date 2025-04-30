@@ -1,12 +1,13 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+
+import { getProductDetail } from '@/lib/firebase/product/get';
 import {
   updateProduct,
   uploadProductImagesForUpdate,
 } from '@/lib/firebase/product/update';
 import { serverProductFields } from '@/lib/validation/product-schema';
-import { getProductDetail } from '@/lib/firebase/product/get';
 import { ProductProperties } from '@/types';
 
 export default async function updateProductAction(

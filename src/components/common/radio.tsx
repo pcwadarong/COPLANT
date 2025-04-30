@@ -29,53 +29,51 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
   labelSize = 'text-sm',
   disabled = false,
   ...props
-}) => {
-  return (
-    <label
-      htmlFor={id}
-      className={clsx(
-        'flex items-center gap-2 cursor-pointer select-none',
-        className,
-      )}
+}) => (
+  <label
+    htmlFor={id}
+    className={clsx(
+      'flex items-center gap-2 cursor-pointer select-none',
+      className,
+    )}
+  >
+    <input
+      id={id}
+      name={name}
+      value={value}
+      type="radio"
+      checked={checked}
+      onChange={onChange}
+      disabled={disabled}
+      className="sr-only peer"
+      aria-checked={checked}
+      aria-disabled={disabled}
+      {...props}
+    />
+    <div
+      style={{
+        borderColor: checked ? borderCheckedColor : borderColor,
+        borderWidth,
+        backgroundColor: checked ? bgCheckedColor : bgColor,
+      }}
+      className="flex items-center justify-center rounded-full w-5 h-5"
+      role="radio"
+      aria-checked={checked}
+      aria-labelledby={`${id}-label`}
+      tabIndex={0}
     >
-      <input
-        id={id}
-        name={name}
-        value={value}
-        type="radio"
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        className="sr-only peer"
-        aria-checked={checked}
-        aria-disabled={disabled}
-        {...props}
-      />
-      <div
-        style={{
-          borderColor: checked ? borderCheckedColor : borderColor,
-          borderWidth,
-          backgroundColor: checked ? bgCheckedColor : bgColor,
-        }}
-        className="flex items-center justify-center rounded-full w-5 h-5"
-        role="radio"
-        aria-checked={checked}
-        aria-labelledby={`${id}-label`}
-        tabIndex={0}
-      >
-        {checked && (
-          <div
-            style={{ backgroundColor: borderCheckedColor }}
-            className="w-2 h-2 rounded-full"
-          />
-        )}
-      </div>
+      {checked && (
+        <div
+          style={{ backgroundColor: borderCheckedColor }}
+          className="w-2 h-2 rounded-full"
+        />
+      )}
+    </div>
 
-      <span id={`${id}-label`} className={clsx(labelSize, 'font-medium')}>
-        {label}
-      </span>
-    </label>
-  );
-};
+    <span id={`${id}-label`} className={clsx(labelSize, 'font-medium')}>
+      {label}
+    </span>
+  </label>
+);
 
 export default CustomRadio;

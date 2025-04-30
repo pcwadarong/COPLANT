@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, Transition, SVGMotionProps } from 'framer-motion';
+
+import { motion, SVGMotionProps, Transition } from 'framer-motion';
+
+import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 import Drawer from './drawer';
-import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 interface Props {
   isOpen?: boolean;

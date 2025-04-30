@@ -1,9 +1,9 @@
-import { deleteDoc, doc } from 'firebase/firestore';
-import { firestore } from '@/lib/firebase/firebaseConfig';
 import { FirebaseError } from 'firebase/app';
+import { deleteDoc, doc } from 'firebase/firestore';
+
+import { firestore } from '@/lib/firebase/firebaseConfig';
 
 export default async function deleteProduct(id: string) {
-
   if (!id)
     return {
       status: false,

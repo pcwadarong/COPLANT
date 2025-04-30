@@ -1,6 +1,7 @@
 'use client';
 
 import { UseLockBodyScroll } from '@/hooks/useLockBodyScroll';
+
 import Cart from './cart';
 
 export default function CartMobile({ onClose }: { onClose: () => void }) {

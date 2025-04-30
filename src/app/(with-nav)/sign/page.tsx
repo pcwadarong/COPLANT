@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
 import { useAuth } from '@/contexts/AuthContext';
 
 import { SignIn } from './sign-in-form';

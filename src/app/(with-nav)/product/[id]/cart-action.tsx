@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
-import Counter from '@/components/common/counter';
 import CustomButton from '@/components/common/button';
-
+import Counter from '@/components/common/counter';
 import { ProductProperties } from '@/types';
 
 export default function CartAction({

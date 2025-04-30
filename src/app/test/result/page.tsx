@@ -1,10 +1,11 @@
-import Image from 'next/image';
 import { Suspense } from 'react';
 
-import TestResultClient from './result-client';
+import Image from 'next/image';
 
 import { getProductList } from '@/lib/firebase/product/get';
 import { ProductPreview } from '@/types';
+
+import TestResultClient from './result-client';
 
 export default async function TestResultPage() {
   const data: ProductPreview[] = await getProductList();

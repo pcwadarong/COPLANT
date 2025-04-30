@@ -1,6 +1,7 @@
-import './globals.css';
-import { AuthProvider } from '@/contexts/AuthContext';
 import GoToTopButton from '@/components/common/go-to-top';
+import { AuthProvider } from '@/contexts/AuthContext';
+
+import './globals.css';
 
 export default function RootLayout({
   children,

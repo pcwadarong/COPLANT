@@ -1,5 +1,5 @@
-import { ProductFormState } from '@/types';
 import { LabeledInput, LabeledTextarea } from '@/components/common/label-input';
+import { ProductFormState } from '@/types';
 
 interface Props {
   form: ProductFormState;
