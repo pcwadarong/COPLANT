@@ -66,55 +66,55 @@ through an intuitive quiz, filter system, and informative UI.
 
 ```bash
 /src
-  /actions                 # 서버 액션 모음 (Firebase 인증 및 상품 처리 등)
-    auth.ts
-    create-product.ts
-    get-product.ts
-    update-product.ts
+  /actions                 
+    auth.ts               // Firebase auth-related server actions
+    create-product.ts     // Action to create a new product
+    get-product.ts        // Action to fetch product details
+    update-product.ts     // Action to update an existing product
   /api/revalidate
-    route.ts               # revalidate용 API 라우트
-  /app                     # 페이지 라우팅 구조 (App Router 기반)
-    /admin                 # 관리자 전용 페이지
-      /product             # 상품 등록/수정 관련 페이지
-        /new               # 신규 상품 등록
+    route.ts              // API route for revalidating cache
+  /app                    
+    /admin                
+      /product            
+        /new              
           page.tsx
           add-product-button.tsx
           admin-product.tsx
-        /[id]/edit         # 기존 상품 수정
+        /[id]/edit        
           edit-form.tsx
           page.tsx
-    /product               # 사용자 상품 관련 페이지
-      /[id]                # 상품 상세 페이지
+    /product              
+      /[id]               
         cart-action.tsx
         floating-image.tsx
         info-block.tsx
-        main-section.tsx   # 클라이언트 UI 렌더링
-        page.tsx           # 서버 데이터 페칭
-      filter.tsx           # 필터 컴포넌트
-      list-item.tsx        # 상품 카드
-      page.tsx             # 상품 리스트
-    /sign                  # 인증 관련 페이지
-      /find-password       # 비밀번호 재설정
+        main-section.tsx   // Main client-side UI
+        page.tsx           // Server-side data fetching
+      filter.tsx           // Product filter UI
+      list-item.tsx        // Individual product card component
+      page.tsx             // Product list page
+    /sign                 
+      /find-password       
         page.tsx
-      sign-in-form.tsx     # 로그인 폼
-      sign-up-form.tsx     # 회원가입 폼
-      layout.tsx           # 네비/푸터 포함 레이아웃
-      moving-leaf.tsx      # 메인 페이지 배경 모션
-      page.tsx             # 메인 페이지 진입점
-      template.tsx         # 로딩 애니메이션 템플릿
-    /test                  # 테스트 기반 추천 페이지
-      /result              # 테스트 결과 페이지
-        page.tsx           # 서버 데이터
+      sign-in-form.tsx     
+      sign-up-form.tsx     
+      layout.tsx           
+      moving-leaf.tsx      
+      page.tsx             
+      template.tsx         
+    /test                 
+      /result              
+        page.tsx           
         product.tsx
-        result-client.tsx  # 클라이언트 UI 렌더링
+        result-client.tsx  // Renders the result UI on the client
       page.tsx
-    /constants             # 고정 상수 모음
-      filter-options.ts    # 필터 옵션
-      preset-tags.ts       # 태그 프리셋
-      product-init.ts      # 상품 초기값
-      questions.ts         # 테스트 질문/선지
+    /constants             
+      filter-options.ts    
+      preset-tags.ts       
+      product-init.ts      
+      questions.ts         
   /components
-    /common                # 공통 UI 컴포넌트 (버튼, 인풋 등)
+    /common                
       button.tsx
       checkbox.tsx
       counter.tsx
@@ -123,40 +123,41 @@ through an intuitive quiz, filter system, and informative UI.
       label-input.tsx
       radio.tsx
       searchBar.tsx
-    /admin                 # 관리자 UI 컴포넌트
-      filter-selector.tsx  # 필터 항목 선택
-      form-field.tsx       # 텍스트 필드 섹션
-      image-uploader.tsx   # 이미지 업로드
-      tag-selector.tsx     # 태그 선택 필드
-    /nav                   # 내비게이션 컴포넌트
+    /admin                 
+      filter-selector.tsx  
+      form-field.tsx       
+      image-uploader.tsx   
+      tag-selector.tsx     
+    /nav                   
       cart.tsx
       drawer.tsx
       hamburger.tsx
-      nav-auth.tsx         # 인증 상태별 메뉴
+      nav-auth.tsx         
       navigation.tsx
   /contexts
-    AuthContext.tsx        # 인증 상태 관리 컨텍스트
+    AuthContext.tsx        // Manages user auth state
   /hooks
-    useAddProductForm.ts   # 상품 등록 커스텀 훅
-    useEditProductForm.ts  # 상품 수정 커스텀 훅
-    useLockBodyScroll.ts   # drawer 열림 시 스크롤 잠금
+    useAddProductForm.ts   // Hook for handling product creation form
+    useEditProductForm.ts  // Hook for handling product editing form
+    useLockBodyScroll.ts   // Hook to lock scroll when drawer is open
   /lib
-    /firebase              # Firebase 관련 설정 및 함수들
+    /firebase              
       product/
-        create.ts          # 상품 등록
-        delete.ts          # 상품 삭제
-        get.ts             # 상품 불러오기
-        update.ts          # 상품 수정
-      auth.ts              # 로그인/회원가입 등
-      firebaseAdminConfig.ts # 서버 전용 설정
-      firebaseConfig.ts      # 클라이언트 전용 설정
+        create.ts          
+        delete.ts          
+        get.ts             
+        update.ts          
+      auth.ts              
+      firebaseAdminConfig.ts 
+      firebaseConfig.ts      
     /utils
-      filters.ts           # 필터 유틸 함수
-      get-matched-product.ts # 테스트 결과 매칭 로직
+      filters.ts           
+      get-matched-product.ts 
     /validation
-      product-schema.ts    # 상품 유효성 스키마
-      sign-schema.ts       # 인증 유효성 스키마
-  types.ts                 # 전역 타입 정의
+      product-schema.ts    
+      sign-schema.ts       
+  types.ts                 // Global TypeScript types
+
 ```
 
 ## ⏳ Development Timeline
