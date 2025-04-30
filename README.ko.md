@@ -58,7 +58,7 @@
 ### 🔧 Dev Tools
 
 - TypeScript
-- ESLint, Prettier
+- Flat + ESlint-only (Stylistic)
 - Vercel (배포)
 - Git, GitHub
 

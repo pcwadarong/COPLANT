@@ -58,7 +58,7 @@ through an intuitive quiz, filter system, and informative UI.
 ### 🔧 Dev Tools
 
 - TypeScript
-- ESLint, Prettier
+- Flat + ESlint-only (Stylistic)
 - Vercel (for deployment)
 - Git, GitHub
 
