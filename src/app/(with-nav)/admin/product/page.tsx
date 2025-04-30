@@ -1,8 +1,8 @@
 import { getProductList } from '@/lib/firebase/product/get';
-import AdminProductListItem from './admin-product';
-import AddProductButton from './add-product-button';
-
 import { ProductPreview } from '@/types';
+
+import AddProductButton from './add-product-button';
+import AdminProductListItem from './admin-product';
 
 export default async function AdminProductListPage() {
   try {
@@ -13,11 +13,8 @@ export default async function AdminProductListPage() {
         className="sm:h-screen flex flex-col max-w-3xl mx-auto mb-10 px-4 sm:px-0"
         aria-labelledby="admin-product-list-heading"
       >
-        <div className='flex items-end mt-10 mb-4 flex-shrink-0 justify-between'>
-          <h2
-            id="admin-product-list-heading"
-            className="font-bold text-2xl"
-          >
+        <div className="flex items-end mt-10 mb-4 flex-shrink-0 justify-between">
+          <h2 id="admin-product-list-heading" className="font-bold text-2xl">
             등록된 상품 목록
           </h2>
           <AddProductButton />

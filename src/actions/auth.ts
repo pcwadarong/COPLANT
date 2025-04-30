@@ -3,7 +3,10 @@
 import { handleAuth, resetPasswordWithFirebase } from '@/lib/firebase/auth';
 import { signUpSchema } from '@/lib/validation/sign-schema';
 
-export async function signUpAction(_: unknown, formData: FormData) {
+export async function signUpAction(
+  _: unknown,
+  formData: FormData,
+): Promise<{ status: boolean; error?: string }> {
   const email = formData.get('email') as string | null;
   const password = formData.get('password') as string | null;
   const confirmPassword = formData.get('confirmPassword') as string | null;
@@ -29,7 +32,10 @@ export async function signUpAction(_: unknown, formData: FormData) {
   return await handleAuth('signup', email!, password!);
 }
 
-export async function resetPWAction(_: unknown, formData: FormData) {
+export async function resetPWAction(
+  _: unknown,
+  formData: FormData,
+): Promise<{ status: boolean; error?: string }> {
   const email = formData.get('email') as string | null;
 
   if (!email) {
